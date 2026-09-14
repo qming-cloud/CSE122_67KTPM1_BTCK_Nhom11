@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>SkillSwap - Nền Tảng Trao Đổi Kỹ Năng Sinh Viên Đại Học</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="js/tailwind.config.js"></script>
+</head>
+
+<body class="bg-surface font-sans text-on-surface antialiased grid-pattern">
+  <div id="header-placeholder" class="sticky top-0 z-50 w-full"></div>
+  <main class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-20">
+    <div id="hero-placeholder"></div>
+    <div id="how-it-works-placeholder"></div>
+    <div id="students-placeholder"></div>
+    <div id="categories-placeholder"></div>
+    <div id="community-placeholder"></div>
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <div id="modals-placeholder"></div>
+
+  <!-- Component Loader -->
+  <script>
+    async function loadComponent(id, file) {
+      try {
+        const response = await fetch(file);
+        if (!response.ok) throw new Error(`Could not load ${file}`);
+        const html = await response.text();
+        document.getElementById(id).innerHTML = html;
+      } catch (error) {
+        console.error(error);
+        document.getElementById(id).innerHTML = `<div class="text-red-500 p-4 border border-red-500 rounded">Lỗi tải Component: Bạn cần chạy bằng Live Server để tránh lỗi CORS.</div>`;
+      }
+    }
+
+    async function initApp() {
+      // 1. Tải toàn bộ component song song
+      await Promise.all([
+        loadComponent('header-placeholder', 'components/header.html'),
+        loadComponent('hero-placeholder', 'components/hero.html'),
+        loadComponent('how-it-works-placeholder', 'components/how-it-works.html'),
+        loadComponent('students-placeholder', 'components/students.html'),
+        loadComponent('categories-placeholder', 'components/categories.html'),
+        loadComponent('community-placeholder', 'components/community.html'),
+        loadComponent('footer-placeholder', 'components/footer.html'),
+        loadComponent('modals-placeholder', 'components/modals.html')
+      ]);
+
+      // 2. Sau khi render xong HTML mới nạp accounts.js và main.js để gắn sự kiện
+      const accountsScript = document.createElement('script');
+      accountsScript.src = 'js/accounts.js';
+      document.body.appendChild(accountsScript);
+
+      accountsScript.onload = () => {
+        const mainScript = document.createElement('script');
+        mainScript.src = 'js/main.js';
+        document.body.appendChild(mainScript);
+      };
+    }
+
+    // Khởi chạy
+    document.addEventListener('DOMContentLoaded', initApp);
+  </script>
+
+  <!-- Persona Switcher -->
+  <script src="js/persona-switcher.js"></script>
+</body>
+
+</html>
