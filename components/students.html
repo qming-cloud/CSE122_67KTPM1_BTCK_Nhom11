@@ -1,0 +1,260 @@
+    <section class="py-14 sm:py-20" id="cap-doi-ky-nang">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+        <div>
+          <span
+            class="inline-block px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 font-black text-xs uppercase tracking-wider mb-2 border border-emerald-300">
+            Sinh viên tiêu biểu
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-black text-on-surface">Bạn Học Nổi Bật Đang Chờ Đổi Kỹ Năng</h2>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="filter-online" class="px-3.5 py-2 rounded-xl bg-on-surface text-white font-extrabold text-xs transition-colors">Đang Online</button>
+          <button id="filter-near"
+            class="px-3.5 py-2 rounded-xl bg-white border-2 border-on-surface font-extrabold text-xs text-on-surface hover:bg-surface-container transition-colors">Gần
+            Trường Tôi</button>
+        </div>
+      </div>
+      <div id="student-list-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Thẻ SV 1: Bách Khoa -->
+        <div
+          class="bg-white rounded-3xl border-2 border-on-surface neo-shadow p-6 flex flex-col justify-between relative group hover:-translate-y-1 transition-all">
+          <div>
+            <!-- Header info -->
+            <div class="flex items-start justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <div class="relative">
+                  <img alt="Trần Minh Hoàng"
+                    class="w-14 h-14 rounded-2xl object-cover border-2 border-on-surface neo-shadow-sm"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1nrl_XsFeIvsAzfn3Po7TTLpbymiRf0spLMyUcSJ40oYgF2KijqxAmVggZ9nMmt6-h9kTHeA1Z1P78zXeQi9KM7Q4qLQ4ZjvWxQSvp7MQmGFHGJH8YDSisNvsHoU5DUxCqEKN84JKGv2LdGtOgXT4GtuHCkX8meCWrj5RENXJPkfi7bY6k_xeuQBzS6id4VhDWotltAbHjOXtFLXtZO1m9xcN8aVDi8SZPZe8vfh0C0_uBrqfl3BHRw" />
+                  <span
+                    class="absolute -bottom-1 -right-1 bg-primary text-white p-0.5 rounded-full text-[10px] flex items-center justify-center"
+                    title="Đã xác thực email trường">
+                    <span class="material-symbols-outlined text-xs">verified</span>
+                  </span>
+                </div>
+                <div>
+                  <div class="flex items-center gap-1">
+                    <h4 class="font-extrabold text-base text-on-surface">Minh Hoàng</h4>
+                    <span class="text-[10px] font-bold bg-blue-100 text-blue-800 px-1.5 py-0.2 rounded">K66</span>
+                  </div>
+                  <p class="text-xs font-bold text-on-surface-variant">ĐH Bách Khoa • KH Máy Tính</p>
+                  <p class="text-[11px] text-slate-500 flex items-center gap-1 mt-0.5">
+                    <span class="material-symbols-outlined text-xs text-amber-500"
+                      style="font-variation-settings: 'FILL' 1;">star</span>
+                    <span class="font-extrabold text-slate-800">4.98</span> (32 lượt đổi thành công)
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Tags Skills -->
+            <div class="space-y-3 my-4">
+              <div>
+                <span
+                  class="text-[11px] font-black uppercase text-emerald-700 tracking-wider block mb-1.5 flex items-center gap-1">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span> DẠY MIỄN PHÍ:
+                </span>
+                <div class="flex flex-wrap gap-1.5">
+                  <span
+                    class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-900 font-extrabold text-xs border border-emerald-300">
+                    Python &amp; Crawl Data
+                  </span>
+                  <span
+                    class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-900 font-extrabold text-xs border border-emerald-300">
+                    Cấu trúc Dữ liệu
+                  </span>
+                </div>
+              </div>
+              <div>
+                <span
+                  class="text-[11px] font-black uppercase text-amber-700 tracking-wider block mb-1.5 flex items-center gap-1">
+                  <span class="w-2 h-2 rounded-full bg-amber-500"></span> MUỐN HỌC:
+                </span>
+                <div class="flex flex-wrap gap-1.5">
+                  <span
+                    class="px-2.5 py-1 rounded-lg bg-amber-100 text-amber-900 font-extrabold text-xs border border-amber-300">
+                    IELTS Speaking 7.0
+                  </span>
+                  <span
+                    class="px-2.5 py-1 rounded-lg bg-amber-100 text-amber-900 font-extrabold text-xs border border-amber-300">
+                    Guitar đệm hát
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Action Button -->
+          <div class="pt-3 border-t border-slate-200 flex items-center gap-2">
+            <button
+              class="flex-1 py-2.5 rounded-xl bg-primary hover:bg-primary-container text-white font-extrabold text-xs border-2 border-on-surface neo-shadow-sm flex items-center justify-center gap-1 transition-transform active:translate-y-0.5">
+              <span class="material-symbols-outlined text-sm">swap_horiz</span>
+              <span>Gửi Yêu Cầu Đổi Kỹ Năng</span>
+            </button>
+            <button
+              class="p-2 rounded-xl bg-surface-container hover:bg-surface-container-highest text-on-surface border border-outline-variant"
+              title="Lưu lại">
+              <span class="material-symbols-outlined text-base">bookmark</span>
+            </button>
+          </div>
+        </div>
+        <!-- Thẻ SV 2: Ngoại Thương -->
+        <div
+          class="bg-white rounded-3xl border-2 border-on-surface neo-shadow p-6 flex flex-col justify-between relative group hover:-translate-y-1 transition-all">
+          <div>
+            <!-- Header info -->
+            <div class="flex items-start justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <div class="relative">
+                  <img alt="Linh Đan"
+                    class="w-14 h-14 rounded-2xl object-cover border-2 border-on-surface neo-shadow-sm"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEFinrNAjQGtrL-1EbPMLIn-FuBrSVTwNoUndPGAyYhNZV_N1GnrTDqxSegJ1zd3jrKoNchYtklPMh5Iu9kiZHWVblqI9od3-xudJMtsei-3bcOPjKA9EvYWTDajQDB9cD83SeYm2w3YCOrOE50ufE-ekawURxGEuuGQmaBrFRxaVRprpcx71i7JyMCwp14fy0Jck6hDcSq0TE77w8lw8EMXxbPzFFrWM5FE0WlYRL6bp6KsXUyYowxA" />
+                  <span
+                    class="absolute -bottom-1 -right-1 bg-primary text-white p-0.5 rounded-full text-[10px] flex items-center justify-center">
+                    <span class="material-symbols-outlined text-xs">verified</span>
+                  </span>
+                </div>
+                <div>
+                  <div class="flex items-center gap-1">
+                    <h4 class="font-extrabold text-base text-on-surface">Linh Đan</h4>
+                    <span class="text-[10px] font-bold bg-pink-100 text-pink-800 px-1.5 py-0.2 rounded">K60</span>
+                  </div>
+                  <p class="text-xs font-bold text-on-surface-variant">ĐH Ngoại Thương • Kinh Tế Đối Ngoại</p>
+                  <p class="text-[11px] text-slate-500 flex items-center gap-1 mt-0.5">
+                    <span class="material-symbols-outlined text-xs text-amber-500"
+                      style="font-variation-settings: 'FILL' 1;">star</span>
+                    <span class="font-extrabold text-slate-800">5.0</span> (45 lượt đổi thành công)
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Tags Skills -->
+            <div class="space-y-3 my-4">
+              <div>
+                <span
+                  class="text-[11px] font-black uppercase text-emerald-700 tracking-wider block mb-1.5 flex items-center gap-1">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span> DẠY MIỄN PHÍ:
+                </span>
+                <div class="flex flex-wrap gap-1.5">
+                  <span
+                    class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-900 font-extrabold text-xs border border-emerald-300">
+                    IELTS Speaking 8.0
+                  </span>
+                  <span
+                    class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-900 font-extrabold text-xs border border-emerald-300">
+                    Thuyết trình Case Study
+                  </span>
+                </div>
+              </div>
+              <div>
+                <span
+                  class="text-[11px] font-black uppercase text-amber-700 tracking-wider block mb-1.5 flex items-center gap-1">
+                  <span class="w-2 h-2 rounded-full bg-amber-500"></span> MUỐN HỌC:
+                </span>
+                <div class="flex flex-wrap gap-1.5">
+                  <span
+                    class="px-2.5 py-1 rounded-lg bg-amber-100 text-amber-900 font-extrabold text-xs border border-amber-300">
+                    Làm Video CapCut / TikTok
+                  </span>
+                  <span
+                    class="px-2.5 py-1 rounded-lg bg-amber-100 text-amber-900 font-extrabold text-xs border border-amber-300">
+                    Figma Prototyping
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Action Button -->
+          <div class="pt-3 border-t border-slate-200 flex items-center gap-2">
+            <button
+              class="flex-1 py-2.5 rounded-xl bg-primary hover:bg-primary-container text-white font-extrabold text-xs border-2 border-on-surface neo-shadow-sm flex items-center justify-center gap-1 transition-transform active:translate-y-0.5">
+              <span class="material-symbols-outlined text-sm">swap_horiz</span>
+              <span>Gửi Yêu Cầu Đổi Kỹ Năng</span>
+            </button>
+            <button
+              class="p-2 rounded-xl bg-surface-container hover:bg-surface-container-highest text-on-surface border border-outline-variant"
+              title="Lưu lại">
+              <span class="material-symbols-outlined text-base">bookmark</span>
+            </button>
+          </div>
+        </div>
+        <!-- Thẻ SV 3: RMIT / Mỹ thuật CN -->
+        <div
+          class="bg-white rounded-3xl border-2 border-on-surface neo-shadow p-6 flex flex-col justify-between relative group hover:-translate-y-1 transition-all">
+          <div>
+            <!-- Header info -->
+            <div class="flex items-start justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <div class="relative">
+                  <img alt="Quang Huy"
+                    class="w-14 h-14 rounded-2xl object-cover border-2 border-on-surface neo-shadow-sm"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGTTEMqV_V6gVJhvvB8sv9vGwOq6oOUDXjjuy5_jXsoniPpDXAngG8oj_hc6aJdpR0bl6tvmJit6JR0ynf72EdXMWyTYWUtbNoGgUasnQcDSlqBUFaI-4naSc6E7AFmbH95oGMVwulfcR4CKRTWpviydT95H3tx0eBRw6-ARFw0CPu0_ZXz8vHMg8zvUGUIpUkSLg8igz0kwGkgraC7EZ7QeRF5Z-ugmjsO-dyvRejA_DVnjUpOyYRWQ" />
+                  <span
+                    class="absolute -bottom-1 -right-1 bg-primary text-white p-0.5 rounded-full text-[10px] flex items-center justify-center">
+                    <span class="material-symbols-outlined text-xs">verified</span>
+                  </span>
+                </div>
+                <div>
+                  <div class="flex items-center gap-1">
+                    <h4 class="font-extrabold text-base text-on-surface">Quang Huy</h4>
+                    <span class="text-[10px] font-bold bg-amber-100 text-amber-800 px-1.5 py-0.2 rounded">Year 3</span>
+                  </div>
+                  <p class="text-xs font-bold text-on-surface-variant">RMIT • Thiết Kế Ứng Dụng Sáng Tạo</p>
+                  <p class="text-[11px] text-slate-500 flex items-center gap-1 mt-0.5">
+                    <span class="material-symbols-outlined text-xs text-amber-500"
+                      style="font-variation-settings: 'FILL' 1;">star</span>
+                    <span class="font-extrabold text-slate-800">4.95</span> (28 lượt đổi thành công)
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Tags Skills -->
+            <div class="space-y-3 my-4">
+              <div>
+                <span
+                  class="text-[11px] font-black uppercase text-emerald-700 tracking-wider block mb-1.5 flex items-center gap-1">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span> DẠY MIỄN PHÍ:
+                </span>
+                <div class="flex flex-wrap gap-1.5">
+                  <span
+                    class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-900 font-extrabold text-xs border border-emerald-300">
+                    Figma Auto-Layout &amp; UI
+                  </span>
+                  <span
+                    class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-900 font-extrabold text-xs border border-emerald-300">
+                    Blender 3D cơ bản
+                  </span>
+                </div>
+              </div>
+              <div>
+                <span
+                  class="text-[11px] font-black uppercase text-amber-700 tracking-wider block mb-1.5 flex items-center gap-1">
+                  <span class="w-2 h-2 rounded-full bg-amber-500"></span> MUỐN HỌC:
+                </span>
+                <div class="flex flex-wrap gap-1.5">
+                  <span
+                    class="px-2.5 py-1 rounded-lg bg-amber-100 text-amber-900 font-extrabold text-xs border border-amber-300">
+                    Tài chính cá nhân &amp; Đầu tư
+                  </span>
+                  <span
+                    class="px-2.5 py-1 rounded-lg bg-amber-100 text-amber-900 font-extrabold text-xs border border-amber-300">
+                    Tiếng Hàn giao tiếp
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Action Button -->
+          <div class="pt-3 border-t border-slate-200 flex items-center gap-2">
+            <button
+              class="flex-1 py-2.5 rounded-xl bg-primary hover:bg-primary-container text-white font-extrabold text-xs border-2 border-on-surface neo-shadow-sm flex items-center justify-center gap-1 transition-transform active:translate-y-0.5">
+              <span class="material-symbols-outlined text-sm">swap_horiz</span>
+              <span>Gửi Yêu Cầu Đổi Kỹ Năng</span>
+            </button>
+            <button
+              class="p-2 rounded-xl bg-surface-container hover:bg-surface-container-highest text-on-surface border border-outline-variant"
+              title="Lưu lại">
+              <span class="material-symbols-outlined text-base">bookmark</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>

@@ -1,0 +1,15 @@
+:root {
+  --color-primary: #3525CD;
+  --color-primary-container: #4F46E5;
+  --color-on-primary: #FFFFFF;
+  --color-secondary: #855300;
+  --color-secondary-container: #FEA619;
+  --color-on-secondary: #FFFFFF;
+  --color-background: #FAF8FF;
+  --color-surface: #FFFFFF;
+  --color-on-surface: #131B2E;
+  --color-teach: #10B981;
+  --color-learn: #F97316;
+  --color-error: #BA1A1A;
+}
+@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}

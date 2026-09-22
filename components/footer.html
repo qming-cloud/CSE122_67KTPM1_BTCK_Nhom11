@@ -1,0 +1,68 @@
+<section class="w-full mt-10">
+  <div
+    class="rounded-3xl bg-primary-container text-white p-8 sm:p-12 border-3 border-on-surface neo-shadow relative overflow-hidden text-center flex flex-col items-center">
+    <!-- Decorative circle shapes -->
+    <div class="absolute -right-16 -top-16 w-80 h-80 rounded-full bg-amber-400 opacity-20 blur-2xl pointer-events-none">
+    </div>
+    <div
+      class="absolute right-20 -bottom-20 w-60 h-60 rounded-full bg-emerald-400 opacity-20 blur-2xl pointer-events-none">
+    </div>
+    <div class="relative z-10 max-w-2xl flex flex-col items-center">
+      <div
+        class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 text-yellow-300 font-extrabold text-xs mb-4 border border-white/30">
+        <span class="material-symbols-outlined text-sm">school</span>
+        <span>Dành riêng cho sinh viên Việt Nam (.edu.vn)</span>
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-black tracking-tight mb-4 leading-tight">
+        Sẵn sàng đổi kỹ năng mà không tốn một xu học phí?
+      </h2>
+      <p class="text-sm sm:text-base font-semibold text-indigo-100 mb-8 leading-relaxed">
+        Tham gia cùng 18,500+ sinh viên đại học đang tiến bộ mỗi ngày. Đăng ký tài khoản miễn phí chỉ trong 30 giây
+        bằng email sinh viên trường bạn.
+      </p>
+      <!-- Quick Signup Form -->
+      <form class="flex flex-col sm:flex-row items-center justify-center gap-3 w-full max-w-lg mx-auto"
+        onsubmit="event.preventDefault(); alert('Chúc mừng bạn! Mã kích hoạt tài khoản SkillSwap đã được gửi tới email sinh viên của bạn.');">
+        <div class="relative w-full">
+          <span
+            class="material-symbols-outlined absolute left-3.5 top-3.5 text-slate-400 text-lg pointer-events-none">mail</span>
+          <input
+            class="w-full h-12 pl-11 pr-3 rounded-xl bg-white text-on-surface placeholder:text-slate-400 font-bold text-sm focus:outline-none focus:ring-4 focus:ring-amber-300 border-2 border-on-surface shadow-inner"
+            placeholder="Nhập email sinh viên của bạn (@...edu.vn)" required="" type="email" />
+        </div>
+        <button
+          class="w-full sm:w-auto h-12 px-6 rounded-xl bg-amber-400 hover:bg-amber-300 text-on-surface font-black text-sm border-2 border-on-surface neo-shadow-sm hover:translate-x-[1px] hover:translate-y-[1px] transition-all shrink-0 whitespace-nowrap"
+          type="submit">
+          Tham Gia Ngay 🚀
+        </button>
+      </form>
+      <div class="flex items-center gap-4 text-xs font-semibold text-indigo-200 mt-4 justify-center w-full">
+        <span class="flex items-center gap-1">✓ Không cần thẻ ngân hàng</span>
+        <span class="flex items-center gap-1">✓ Xác thực bảo mật sinh viên</span>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- FOOTER -->
+<footer class="w-full bg-white border-t-2 border-on-surface mt-16">
+  <div
+    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="flex flex-col sm:flex-row items-center gap-3">
+      <div class="flex items-center gap-2">
+        <span class="font-black text-xl text-primary">SkillSwap</span>
+        <span class="text-xs font-bold px-2 py-0.5 rounded bg-yellow-300 border border-on-surface">Việt Nam</span>
+      </div>
+      <span class="text-slate-400 hidden sm:inline">•</span>
+      <span class="text-xs font-bold text-on-surface-variant">Nền tảng Trao Đổi Kiến Thức Học Thuật Ngang Hàng</span>
+    </div>
+    <div class="flex flex-wrap items-center gap-6 text-xs font-bold">
+      <a class="text-on-surface hover:text-primary transition-colors" href="#">Đại Sứ Trường Học</a>
+      <a class="text-on-surface hover:text-primary transition-colors" href="#">Tiêu Chuẩn Cộng Đồng</a>
+      <a class="text-on-surface hover:text-primary transition-colors" href="#">Bảo Vệ Người Dùng</a>
+      <a class="text-on-surface hover:text-primary transition-colors" href="#">Liên Hệ Hỗ Trợ</a>
+    </div>
+    <div class="text-xs font-bold text-slate-500">
+      © 2025 SkillSwap Vietnam. Học hỏi không giới hạn.
+    </div>
+  </div>
+</footer>

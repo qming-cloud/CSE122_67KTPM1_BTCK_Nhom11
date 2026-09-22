@@ -1,0 +1,51 @@
+html {
+  scroll-behavior: smooth !important;
+  scroll-padding-top: 5rem;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overscroll-behavior: none;
+}
+
+select.appearance-none {
+  background-image: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+select.appearance-none::-ms-expand {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.neo-shadow {
+  box-shadow: 4px 4px 0px 0px #131b2e;
+}
+
+.neo-shadow-sm {
+  box-shadow: 2px 2px 0px 0px #131b2e;
+}
+
+.neo-shadow-hover:hover {
+  box-shadow: 6px 6px 0px 0px #131b2e;
+  transform: translate(-2px, -2px);
+}
+
+.neo-shadow-amber {
+  box-shadow: 4px 4px 0px 0px #f59e0b;
+}
+
+.grid-pattern {
+  background-size: 32px 32px;
+  background-image: radial-gradient(circle, #cbd5e1 1.2px, transparent 1.2px);
+}

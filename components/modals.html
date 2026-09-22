@@ -1,0 +1,147 @@
+  <!-- Auth Wall Modal -->
+  <div id="auth-modal" class="fixed inset-0 z-[100] bg-on-surface/50 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-surface rounded-3xl border-2 border-on-surface neo-shadow w-full max-w-xl p-8 md:p-10 flex flex-col justify-between relative overflow-hidden animate-slideUp">
+      
+      <!-- Close Button -->
+      <button onclick="closeAuthModal()" class="absolute top-4 right-4 w-8 h-8 rounded-xl bg-surface-container hover:bg-surface-container-highest flex items-center justify-center text-on-surface transition-colors z-20">
+        <span class="material-symbols-outlined text-lg">close</span>
+      </button>
+
+      <div class="absolute -top-24 -left-24 w-48 h-48 bg-primary/5 rounded-full blur-2xl pointer-events-none"></div>
+      
+      <div>
+        <!-- Header & Brand -->
+        <div class="flex items-center justify-between mb-space-lg">
+          <div class="flex items-center gap-2">
+            <div class="w-9 h-9 rounded-lg bg-primary flex items-center justify-center shadow-sm">
+              <span class="material-symbols-outlined text-on-primary text-[22px]">swap_horiz</span>
+            </div>
+            <span class="font-headline-sm text-headline-sm font-bold text-on-surface tracking-tight">Skill<span class="text-primary">Swap</span></span>
+          </div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teach/10 text-teach font-label-md text-label-md font-semibold">
+            <span class="w-2 h-2 rounded-full bg-teach animate-pulse"></span>
+            Cộng đồng mở
+          </span>
+        </div>
+        <div class="mb-space-lg">
+          <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-2">Chào mừng trở lại</h1>
+          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Đăng nhập để tiếp tục trao đổi kỹ năng cùng hơn 50.000+ thành viên SkillSwap.
+          </p>
+        </div>
+        <!-- Social Authentications -->
+        <div class="grid grid-cols-2 gap-space-sm mb-space-md">
+          <button class="flex items-center justify-center gap-2.5 px-4 py-2.5 rounded-lg bg-surface border border-outline-variant/50 hover:bg-surface-container-low transition-all text-on-surface font-label-lg text-label-lg shadow-sm" type="button">
+            <svg class="w-4 h-4" viewbox="0 0 24 24">
+              <path d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z" fill="#4285F4"></path>
+              <path d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z" fill="#34A853"></path>
+              <path d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z" fill="#FBBC05"></path>
+              <path d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z" fill="#EA4335"></path>
+            </svg>
+            <span>Google</span>
+          </button>
+          <button class="flex items-center justify-center gap-2.5 px-4 py-2.5 rounded-lg bg-surface border border-outline-variant/50 hover:bg-surface-container-low transition-all text-on-surface font-label-lg text-label-lg shadow-sm" type="button">
+            <svg class="w-4 h-4 fill-current text-on-surface" viewbox="0 0 24 24">
+              <path clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill-rule="evenodd"></path>
+            </svg>
+            <span>GitHub</span>
+          </button>
+        </div>
+        <!-- Divider -->
+        <div class="relative flex items-center justify-center my-space-md">
+          <div class="w-full bg-outline-variant/40 h-[1px]"></div>
+          <span class="absolute bg-surface px-3 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">hoặc đăng nhập bằng email</span>
+        </div>
+        <!-- Form Fields -->
+        <form class="space-y-space-md" id="loginForm" onsubmit="submitAuth(event)">
+          <div>
+            <label class="block font-label-md text-label-md text-on-surface mb-1.5" for="emailInput">Email hoặc Tên tài khoản</label>
+            <div class="relative flex items-center rounded-lg bg-surface-container-low border border-outline-variant/40 focus-within:bg-surface focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all">
+              <span class="material-symbols-outlined absolute left-3 text-on-surface-variant text-[20px] pointer-events-none">mail</span>
+              <input class="w-full bg-transparent pl-10 pr-4 py-2.5 font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none rounded-lg" id="emailInput" placeholder="ban@example.com" required="" type="text" value=""/>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label class="font-label-md text-label-md text-on-surface" for="passwordInput">Mật khẩu</label>
+              <a class="font-label-md text-label-md text-primary hover:text-primary-container transition-colors" data-path="forgot-password" href="#">Quên mật khẩu?</a>
+            </div>
+            <div class="relative flex items-center rounded-lg bg-surface-container-low border border-outline-variant/40 focus-within:bg-surface focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all">
+              <span class="material-symbols-outlined absolute left-3 text-on-surface-variant text-[20px] pointer-events-none">lock</span>
+              <input class="w-full bg-transparent pl-10 pr-10 py-2.5 font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none rounded-lg" id="passwordInput" placeholder="••••••••" required="" type="password" value=""/>
+              <button class="absolute right-3 text-on-surface-variant hover:text-on-surface transition-colors focus:outline-none flex items-center justify-center" id="togglePasswordBtn" onclick="togglePassword()" type="button">
+                <span class="material-symbols-outlined text-[20px]" id="passwordEyeIcon">visibility</span>
+              </button>
+            </div>
+          </div>
+          <div class="flex items-center justify-between pt-1">
+            <label class="flex items-center gap-2 cursor-pointer select-none">
+              <input checked="" class="w-4 h-4 rounded text-primary focus:ring-primary accent-primary cursor-pointer" type="checkbox"/>
+              <span class="font-body-sm text-body-sm text-on-surface-variant">Ghi nhớ đăng nhập trên thiết bị này</span>
+            </label>
+          </div>
+          <!-- Primary Action -->
+          <button class="w-full py-3.5 px-6 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-headline-sm text-label-lg flex items-center justify-center gap-2 shadow-md shadow-primary/20 active:scale-[0.99] transition-all" type="submit">
+            <span>Đăng nhập</span>
+            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+          </button>
+        </form>
+        <!-- Register Link -->
+        <div class="mt-space-md text-center">
+          <p class="font-body-md text-body-md text-on-surface-variant">
+            Chưa có tài khoản? 
+            <a class="font-label-lg text-label-lg text-primary hover:text-primary-container hover:underline ml-1 font-semibold" data-path="register" href="#">Đăng ký ngay</a>
+          </p>
+        </div>
+      </div>
+      <!-- Security Bottom Note -->
+      <div class="mt-space-lg pt-space-sm flex items-center justify-center gap-2 text-on-surface-variant">
+        <span class="material-symbols-outlined text-teach text-[18px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+        <span class="font-label-sm text-label-sm text-on-surface-variant">Được mã hóa bảo mật 256-bit SSL tiêu chuẩn quốc tế</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Swap Request (Existing) -->
+  <div id="swap-modal" class="fixed inset-0 z-[100] bg-on-surface/50 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl border-2 border-on-surface neo-shadow w-full max-w-md p-6 animate-slideUp">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-black text-on-surface">Gửi Yêu Cầu Cho <span id="modal-student-name" class="text-primary"></span></h3>
+        <button onclick="closeModal()" class="w-8 h-8 rounded-xl bg-surface-container hover:bg-surface-container-highest flex items-center justify-center text-on-surface transition-colors">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
+      <div class="mb-4">
+        <label class="block text-xs font-bold text-on-surface-variant mb-1.5">Lời nhắn của bạn</label>
+        <textarea id="modal-message" class="w-full h-24 p-3 rounded-xl border-2 border-outline focus:border-primary focus:ring-4 focus:ring-primary/20 transition-all resize-none text-sm font-medium" placeholder="VD: Chào bạn, mình muốn đổi kỹ năng Python lấy IELTS. Bạn rảnh vào cuối tuần không?"></textarea>
+      </div>
+      <button onclick="submitSwapRequest()" class="w-full py-3 rounded-xl bg-primary hover:bg-primary-container text-white font-black text-sm transition-transform active:translate-y-0.5 border-2 border-on-surface neo-shadow-sm flex justify-center items-center gap-2">
+        <span class="material-symbols-outlined text-base">send</span> Gửi Yêu Cầu
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-6 right-6 z-[110] bg-emerald-500 text-white px-5 py-3 rounded-xl font-bold text-sm shadow-xl shadow-emerald-500/30 flex items-center gap-2 transition-all duration-300 translate-y-20 opacity-0 pointer-events-none">
+    <span class="material-symbols-outlined text-lg">check_circle</span>
+    <span id="toast-message">Đã gửi yêu cầu thành công!</span>
+  </div>
+
+  <!-- Inbox Modal -->
+  <div id="inbox-modal" class="fixed inset-0 z-[100] bg-on-surface/50 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl border-2 border-on-surface neo-shadow w-full max-w-lg p-6 animate-slideUp flex flex-col max-h-[80vh]">
+      <div class="flex justify-between items-center mb-4 border-b-2 border-slate-100 pb-4">
+        <h3 class="text-xl font-black text-on-surface flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary">mail</span> 
+          Hộp Thư Yêu Cầu
+        </h3>
+        <button onclick="closeInboxModal()" class="w-8 h-8 rounded-xl bg-surface-container hover:bg-surface-container-highest flex items-center justify-center text-on-surface transition-colors">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
+      
+      <div id="inbox-list" class="overflow-y-auto flex-1 pr-2 space-y-4">
+        <!-- Inbox items will be injected here -->
+      </div>
+    </div>
+  </div>
