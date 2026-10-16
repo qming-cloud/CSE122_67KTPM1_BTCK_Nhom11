@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Tạo Yêu Cầu Tùy Biến (Brief) | Craft Link</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link href="../assets/css/colors.css" rel="stylesheet" />
+  <link href="../assets/css/base.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../assets/js/tailwind-config.js"></script>
+  <script src="../assets/js/data.js"></script>
+</head>
+
+<body class="bg-surface font-body-md text-on-surface antialiased">
+
+  <header class="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-lg shadow-sm border-b border-gray-100">
+
+    <!-- Main Navigation -->
+    <div class="max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between gap-8">
+      <!-- Logo -->
+      <a href="../index.html" class="flex items-center gap-3 shrink-0 group">
+        <img alt="Craft Link Heritage Logo"
+          class="h-10 w-auto object-contain transition-transform group-hover:scale-105"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhxZHgqwl09Uzofz21BtUSqe8y4LXLZlHjhsrlcmCxyuEV1ZArTaGXStarugkKmhBemL7Mqmal5XoJe19C-24ZTWXQZ_SfC9_cFtdlQiRbygt-FcTHZORNtERKETXhtF3InaeLB0mHQA7OALAZ78tMAgEY0MCbvnHSzI-Zlpilk1999JlSrT6ZKrwBP4zXcTPhnPM77_5PXcO09sN6xO47H4FBz6PxlfzH5bSya1-emdbI75e45SCd" />
+        <div class="flex flex-col hidden sm:flex">
+          <span class="text-lg text-primary font-bold tracking-wide">CRAFT LINK</span>
+          <span class="text-[9px] text-gray-500 tracking-[0.2em] uppercase">Di sản thủ công Việt</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="hidden lg:flex items-center justify-center gap-6 flex-1">
+        <a href="../index.html"
+          class="text-gray-700 hover:text-primary font-medium text-[15px] transition-colors whitespace-nowrap relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-primary hover:after:w-full after:transition-all">Trang
+          chủ</a>
+        <a href="buyer-marketplace.html"
+          class="text-gray-700 hover:text-primary font-medium text-[15px] transition-colors whitespace-nowrap relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-primary hover:after:w-full after:transition-all">Sàn
+          khám phá</a>
+        <a href="#"
+          class="text-gray-700 hover:text-primary font-medium text-[15px] transition-colors whitespace-nowrap relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-primary hover:after:w-full after:transition-all">Câu
+          chuyện nghệ nhân</a>
+        <a href="impact.html"
+          class="text-gray-700 hover:text-primary font-medium text-[15px] transition-colors whitespace-nowrap relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-primary hover:after:w-full after:transition-all">Về
+          chúng tôi & Tác động</a>
+        <a href="buyer-custom-brief.html"
+          class="text-gray-700 hover:text-primary font-medium text-[15px] transition-colors whitespace-nowrap relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-primary hover:after:w-full after:transition-all">Đặt
+          Làm Riêng</a>
+      </nav>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-4 shrink-0">
+        <div class="flex items-center gap-1.5">
+          <a href="#"
+            class="relative p-2 text-gray-600 hover:text-primary hover:bg-primary/10 rounded-full transition-all">
+            <span class="material-symbols-outlined">favorite</span>
+            <span
+              class="absolute top-0 right-0 w-4 h-4 rounded-full bg-[#E5484D] text-white text-[10px] font-bold flex items-center justify-center border-2 border-white shadow-sm">5</span>
+          </a>
+          <a href="#"
+            class="relative p-2 text-gray-600 hover:text-primary hover:bg-primary/10 rounded-full transition-all">
+            <span class="material-symbols-outlined">shopping_bag</span>
+            <span
+              class="absolute top-0 right-0 w-4 h-4 rounded-full bg-[#E5484D] text-white text-[10px] font-bold flex items-center justify-center border-2 border-white shadow-sm">3</span>
+          </a>
+          <!-- Account Dropdown -->
+          <div class="relative group">
+            <a href="login.html"
+              class="ml-2 flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white hover:opacity-90 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 cursor-pointer">
+              <span class="material-symbols-outlined text-[20px]">person</span>
+            </a>
+
+            <div
+              class="absolute right-0 top-full pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 w-64 z-50">
+              <div
+                class="bg-white rounded-xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] border border-gray-100 flex flex-col overflow-hidden">
+                <!-- User Info -->
+                <div class="p-4 border-b border-gray-50 flex items-center gap-3 bg-gray-50/50">
+                  <div
+                    class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
+                    KH</div>
+                  <div>
+                    <div class="font-semibold text-gray-800 text-sm">Khách hàng Buyer</div>
+                    <div class="text-xs text-gray-500">buyer@craftlink.com</div>
+                  </div>
+                </div>
+                <!-- Links -->
+                <div class="p-2 flex flex-col">
+                  <a href="#"
+                    class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-primary/5 hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined text-[18px]">person</span>
+                    Hồ sơ của tôi
+                  </a>
+                  <a href="buyer-orders.html"
+                    class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-primary bg-primary/5 hover:bg-primary/10 transition-colors">
+                    <span class="material-symbols-outlined text-[18px]">list_alt</span>
+                    Đơn hàng Đặt làm riêng
+                  </a>
+                  <a href="#"
+                    class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-primary/5 hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined text-[18px]">local_mall</span>
+                    Đơn hàng sản phẩm
+                  </a>
+                </div>
+                <!-- Logout -->
+                <div class="p-2 border-t border-gray-50">
+                  <a href="login.html"
+                    class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 transition-colors">
+                    <span class="material-symbols-outlined text-[18px]">logout</span>
+                    Đăng xuất
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="w-full pt-[116px] bg-surface pb-20">
+    <div class="max-w-4xl mx-auto px-6 mt-8">
+
+      <!-- Page Header -->
+      <div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h1 class="text-3xl font-bold text-primary flex items-center gap-3">
+            <span class="material-symbols-outlined text-4xl text-secondary">design_services</span>
+            Tạo Yêu Cầu Tùy Biến (Custom Brief)
+          </h1>
+          <p class="text-gray-600 mt-2">Mô tả ý tưởng của bạn và để AI của CraftLink giúp bạn hoàn thiện một bản yêu cầu
+            chuyên nghiệp gửi tới các nghệ nhân.</p>
+        </div>
+        <a href="buyer-orders.html"
+          class="group inline-flex items-center gap-2 px-4 py-2 bg-primary/5 hover:bg-primary/10 text-primary rounded-xl font-medium transition-all shadow-sm border border-primary/10">
+          <span
+            class="material-symbols-outlined text-xl group-hover:-translate-x-1 transition-transform">inventory_2</span>
+          Xem Đơn Hàng Của Bạn
+          <span
+            class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+        </a>
+      </div>
+
+      <!-- Main Form -->
+      <form id="briefForm" novalidate class="space-y-8 bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+
+        <!-- STEP 1: Ý tưởng thô & AI Builder -->
+        <div class="bg-blue-50/50 p-6 rounded-xl border border-blue-100 relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-secondary"></div>
+          <h2 class="text-lg font-semibold text-primary mb-2 flex items-center gap-2">
+            <span class="material-symbols-outlined text-blue-500">lightbulb</span>
+            1. Ý tưởng ban đầu của bạn
+          </h2>
+          <p class="text-sm text-gray-600 mb-4">Nhập một vài từ khóa hoặc mô tả ngắn gọn, AI sẽ giúp bạn viết chi tiết.
+          </p>
+
+          <textarea id="rawIdea" rows="3"
+            class="w-full p-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all resize-none text-gray-700"
+            placeholder="Ví dụ: Tôi muốn làm 10 cái túi xách bằng thổ cẩm sặc sỡ để tặng đối tác nước ngoài..."></textarea>
+
+          <div class="mt-4 flex items-center justify-between">
+            <button type="button" id="btnAiBuilder"
+              class="flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg font-medium hover:shadow-md hover:opacity-90 transition-all">
+              <span class="material-symbols-outlined text-[20px]">auto_awesome</span>
+              <span>AI Hỗ trợ viết Brief</span>
+            </button>
+            <span id="aiStatus" class="text-sm text-blue-600 font-medium hidden flex items-center gap-2">
+              <span class="material-symbols-outlined animate-spin text-[18px]">progress_activity</span>
+              Đang phân tích ý tưởng...
+            </span>
+          </div>
+        </div>
+
+        <hr class="border-gray-100" />
+
+        <!-- STEP 2: Yêu cầu chi tiết -->
+        <div>
+          <h2 class="text-lg font-semibold text-primary mb-4 flex items-center gap-2">
+            <span class="material-symbols-outlined text-green-600">assignment</span>
+            2. Thông tin chi tiết (Bản hoàn thiện)
+          </h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="md:col-span-2">
+              <label class="block text-sm font-medium text-gray-700 mb-1">Tiêu đề dự án *</label>
+              <input type="text" id="projectTitle" required
+                class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none"
+                placeholder="VD: Bộ túi xách thổ cẩm quà tặng doanh nghiệp" />
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Thể loại sản phẩm *</label>
+              <select id="category" required
+                class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none bg-white">
+                <option value="">-- Chọn thể loại --</option>
+                <option value="Thổ cẩm & Dệt may">Thổ cẩm & Dệt may</option>
+                <option value="Gốm mộc">Gốm mộc & Men tro</option>
+                <option value="Mây tre đan">Mây tre đan bản địa</option>
+                <option value="Sơn mài">Sơn mài & Khảm trai</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Số lượng dự kiến *</label>
+              <input type="number" id="quantity" required min="1"
+                class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none"
+                placeholder="VD: 10" />
+            </div>
+
+            <div class="md:col-span-2">
+              <label class="block text-sm font-medium text-gray-700 mb-1">Mô tả chi tiết kỹ thuật *</label>
+              <textarea id="description" required rows="5"
+                class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none resize-none"
+                placeholder="Kích thước, chất liệu cụ thể, hoa văn, màu sắc chủ đạo..."></textarea>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Ngân sách dự kiến (VND)</label>
+              <input type="text" id="budget"
+                class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none"
+                placeholder="VD: 5,000,000 - 10,000,000" />
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Hạn chót nhận hàng *</label>
+              <input type="date" id="deadline" required
+                class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit actions -->
+        <div class="flex items-center justify-end gap-4 pt-6 border-t border-gray-100">
+          <a href="../index.html"
+            class="px-6 py-3 text-gray-600 font-medium hover:bg-gray-50 rounded-lg transition-colors">Hủy bỏ</a>
+          <button type="button" id="btnUpdate"
+            class="px-8 py-3 bg-secondary text-white font-medium rounded-lg hover:bg-secondary/90 hover:shadow-lg transition-all flex items-center gap-2">
+            <span>Cập Nhật</span>
+            <span class="material-symbols-outlined text-[20px]">save</span>
+          </button>
+          <button type="submit" id="btnSubmit"
+            class="px-8 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 hover:shadow-lg transition-all flex items-center gap-2">
+            <span>Gửi Yêu Cầu Đặt Hàng</span>
+            <span class="material-symbols-outlined text-[20px]">send</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- Success Modal (Hidden by default) -->
+  <div id="successModal"
+    class="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm hidden flex items-center justify-center">
+    <div
+      class="bg-white p-8 rounded-2xl max-w-md w-full text-center shadow-2xl transform scale-95 opacity-0 transition-all"
+      id="modalContent">
+      <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+        <span class="material-symbols-outlined text-[32px]">check_circle</span>
+      </div>
+      <h3 class="text-2xl font-bold text-gray-900 mb-2">Tạo yêu cầu thành công!</h3>
+      <p class="text-gray-600 mb-6">Brief của bạn đã được gửi tới hệ thống chờ nghệ nhân phản hồi. Bạn có thể theo dõi
+        tiến độ trong phần Quản lý đơn hàng.</p>
+      <a href="buyer-orders.html"
+        class="block w-full py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors">
+        Xem Đơn Hàng Của Tôi
+      </a>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast"
+    class="fixed top-4 right-4 bg-white border-l-4 border-green-500 shadow-lg p-4 rounded-lg hidden flex items-center gap-3 z-[110] transform transition-all duration-300 translate-x-full">
+    <span class="material-symbols-outlined text-green-500" id="toastIcon">check_circle</span>
+    <div>
+      <h4 class="font-bold text-gray-900" id="toastTitle">Thành công!</h4>
+      <p class="text-sm text-gray-600" id="toastMessage">Thao tác thành công.</p>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 0. Nhận diện ID sản phẩm hoặc ID đơn hàng cần Edit từ URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = urlParams.get('product');
+      const editId = urlParams.get('edit');
+      let isEditMode = false;
+      let existingBrief = null;
+
+      // Toast Helper
+      window.showToast = (msg, isError = false) => {
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toastMessage');
+        const toastTitle = document.getElementById('toastTitle');
+        const toastIcon = document.getElementById('toastIcon');
+
+        toastMessage.innerText = msg;
+        if (isError) {
+          toast.className = toast.className.replace('border-green-500', 'border-red-500');
+          toastTitle.innerText = "Lỗi nhập liệu";
+          toastIcon.innerText = "error";
+          toastIcon.className = "material-symbols-outlined text-red-500";
+        } else {
+          toast.className = toast.className.replace('border-red-500', 'border-green-500');
+          toastTitle.innerText = "Thành công!";
+          toastIcon.innerText = "check_circle";
+          toastIcon.className = "material-symbols-outlined text-green-500";
+        }
+
+        toast.classList.remove('hidden');
+        setTimeout(() => toast.classList.remove('translate-x-full'), 10);
+        setTimeout(() => {
+          toast.classList.add('translate-x-full');
+          setTimeout(() => toast.classList.add('hidden'), 300);
+        }, 3500);
+      };
+
+      // Helper hiển thị lỗi viền đỏ & text lỗi
+      const showFieldError = (inputEl, message) => {
+        if (!inputEl) return;
+        inputEl.classList.add('border-red-500', 'bg-red-50/20', 'focus:ring-red-400', 'focus:border-red-500');
+        inputEl.classList.remove('border-gray-200', 'focus:ring-primary', 'focus:border-primary');
+
+        let parent = inputEl.parentElement;
+        let errEl = parent.querySelector('.field-error-msg');
+        if (!errEl) {
+          errEl = document.createElement('p');
+          errEl.className = 'field-error-msg text-red-500 text-xs mt-1.5 flex items-center gap-1 font-medium animate-in fade-in duration-200';
+          parent.appendChild(errEl);
+        }
+        errEl.innerHTML = `<span class="material-symbols-outlined text-[15px]">error</span> ${message}`;
+      };
+
+      // Helper xóa lỗi viền đỏ
+      const clearFieldError = (inputEl) => {
+        if (!inputEl) return;
+        inputEl.classList.remove('border-red-500', 'bg-red-50/20', 'focus:ring-red-400', 'focus:border-red-500');
+        inputEl.classList.add('border-gray-200', 'focus:ring-primary', 'focus:border-primary');
+
+        let parent = inputEl.parentElement;
+        let errEl = parent.querySelector('.field-error-msg');
+        if (errEl) {
+          errEl.remove();
+        }
+      };
+
+      // Tự động xóa lỗi khi người dùng gõ / chọn lại
+      const formFields = ['rawIdea', 'projectTitle', 'category', 'quantity', 'description', 'budget', 'deadline'];
+      formFields.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.addEventListener('input', () => clearFieldError(el));
+          el.addEventListener('change', () => clearFieldError(el));
+        }
+      });
+
+      // Xử lý chế độ Chỉnh sửa (Edit mode)
+      const btnSubmit = document.getElementById('btnSubmit');
+      const btnUpdate = document.getElementById('btnUpdate');
+
+      if (editId) {
+        isEditMode = true;
+        let briefs = JSON.parse(localStorage.getItem('craftlink_briefs')) || [];
+        existingBrief = briefs.find(b => b.id === editId);
+        if (existingBrief) {
+          document.getElementById('projectTitle').value = existingBrief.title || '';
+          document.getElementById('category').value = existingBrief.category || '';
+          document.getElementById('quantity').value = existingBrief.quantity || '';
+          document.getElementById('budget').value = existingBrief.budget || '';
+          document.getElementById('description').value = existingBrief.description || '';
+
+          if (existingBrief.deadline && existingBrief.deadline.includes('/')) {
+            const [dd, mm, yyyy] = existingBrief.deadline.split('/');
+            document.getElementById('deadline').value = `${yyyy}-${mm}-${dd}`;
+          } else if (existingBrief.deadline) {
+            document.getElementById('deadline').value = existingBrief.deadline;
+          }
+
+          const pageTitle = document.querySelector('h1');
+          if (pageTitle) pageTitle.innerHTML = `<span class="material-symbols-outlined text-4xl text-secondary">edit</span> Cập Nhật Yêu Cầu (${editId})`;
+          
+          if (btnSubmit) btnSubmit.classList.add('hidden');
+          if (btnUpdate) {
+            btnUpdate.classList.remove('hidden');
+            btnUpdate.setAttribute('type', 'submit');
+          }
+        }
+      } else {
+        if (btnUpdate) btnUpdate.classList.add('hidden');
+        if (btnSubmit) btnSubmit.classList.remove('hidden');
+      }
+
+      window.selectedProductForAI = null;
+
+      // Xử lý nhận sản phẩm mẫu từ Marketplace
+      if (productId && !isEditMode) {
+        // Ưu tiên tìm trong mockProducts cục bộ trước
+        let foundProduct = null;
+        if (typeof mockProducts !== 'undefined' && Array.isArray(mockProducts)) {
+          foundProduct = mockProducts.find(p => p.id == productId);
+        }
+
+        const applyProductToForm = (p) => {
+          window.selectedProductForAI = p;
+          const pName = p.title || p.name || 'Sản phẩm thủ công';
+          const pPrice = p.price ? (typeof p.price === 'number' ? new Intl.NumberFormat('vi-VN').format(p.price) + ' VND' : p.price) : 'Thỏa thuận';
+          
+          document.getElementById('rawIdea').value = `Tôi muốn tùy biến sản phẩm mẫu: ${pName}. Xin hãy giữ nguyên chất liệu nhưng thay đổi màu sắc và hoa văn để làm quà tặng.`;
+          document.getElementById('projectTitle').value = `Tùy biến: ${pName}`;
+          document.getElementById('budget').value = pPrice;
+
+          const pTribe = p.ethnic || p.tribe || '';
+          const pMat = p.material || '';
+          if (pTribe.includes("H'Mông") || pTribe.includes("Thái") || pMat.includes("Lanh") || pMat.includes("Chàm")) {
+            document.getElementById('category').value = "Thổ cẩm & Dệt may";
+          }
+          
+          // Xóa lỗi nếu có giá trị điền sẵn
+          clearFieldError(document.getElementById('rawIdea'));
+          clearFieldError(document.getElementById('projectTitle'));
+          clearFieldError(document.getElementById('category'));
+        };
+
+        if (foundProduct) {
+          applyProductToForm(foundProduct);
+        } else {
+          // Thử lấy từ API mock
+          fetch('https://81fed15e-8a3d-4d91-8e70-b5aa111e1a25.mock.pstmn.io/products')
+            .then(res => res.json())
+            .then(products => {
+              const product = products.find(p => p.id === productId);
+              if (product) applyProductToForm(product);
+            })
+            .catch(err => console.log("Không tải được API ngoài:", err));
+        }
+      }
+
+      // 1. Logic AI Brief Builder (Không dùng alert!)
+      const btnAiBuilder = document.getElementById('btnAiBuilder');
+      const aiStatus = document.getElementById('aiStatus');
+      const rawIdea = document.getElementById('rawIdea');
+
+      btnAiBuilder.addEventListener('click', () => {
+        if (!rawIdea.value.trim()) {
+          showFieldError(rawIdea, "Vui lòng nhập một chút ý tưởng ban đầu của bạn trước khi dùng AI!");
+          showToast("Vui lòng nhập ý tưởng ban đầu trước khi nhờ AI hỗ trợ!", true);
+          rawIdea.focus();
+          return;
+        }
+
+        clearFieldError(rawIdea);
+
+        // Hiện trạng thái Loading
+        btnAiBuilder.classList.add('hidden');
+        aiStatus.classList.remove('hidden');
+        aiStatus.classList.add('flex');
+
+        // Mô phỏng AI xử lý mất 2 giây
+        setTimeout(() => {
+          let aiTitle = "Túi Tote Thổ Cẩm Sợi Lanh H'Mông - Quà Tặng Doanh Nghiệp";
+          let aiCategory = "Thổ cẩm & Dệt may";
+          let aiQuantity = "10";
+          let aiDesc = "- Kích thước: 35x40cm, quai đeo vai dài 60cm.\n- Chất liệu: Vải lanh tự nhiên dệt tay, lót vải canvas mộc bên trong để đứng dáng túi.\n- Họa tiết: Thêu chữ thập truyền thống của người H'Mông Đen (Mô típ hoa văn sao tám cánh hoặc đường zích zắc).\n- Màu sắc chủ đạo: Nền nhuộm chàm tự nhiên (Deep Indigo), họa tiết thêu chỉ đỏ, cam, trắng.\n- Yêu cầu khác: Có mác ghi rõ 'Handmade by CraftLink artisans'.";
+          let aiBudget = "4,000,000 - 6,000,000 VND";
+
+          if (window.selectedProductForAI) {
+            const p = window.selectedProductForAI;
+            const pName = p.title || p.name;
+            const pEthnic = p.ethnic || p.tribe || 'bản địa';
+            const pLoc = p.location || 'Việt Nam';
+            const pArtisan = p.artisan_group || 'nghệ nhân CraftLink';
+
+            aiTitle = `Dự án Tùy biến: ${pName}`;
+            aiCategory = document.getElementById('category').value || "Thổ cẩm & Dệt may";
+            aiQuantity = "20";
+            aiDesc = `- Dựa trên sản phẩm gốc: ${pName}\n- Kỹ thuật & Chất liệu: ${p.material || 'Lanh & Chàm'} của đồng bào ${pEthnic} tại ${pLoc}\n- Yêu cầu thay đổi: Phối lại màu sắc tươi sáng hơn cho bộ sưu tập.\n- Kích thước: Giữ nguyên form gốc nhưng nới rộng 5cm mỗi chiều.\n- Yêu cầu thêm: Đính kèm thẻ (tag) câu chuyện nghệ nhân ${pArtisan}.`;
+
+            let priceNum = 500000;
+            if (typeof p.price === 'number') priceNum = p.price;
+            else if (p.price) priceNum = parseInt(p.price.toString().replace(/[^0-9]/g, '')) || 500000;
+            const total = priceNum * parseInt(aiQuantity);
+            aiBudget = new Intl.NumberFormat('vi-VN').format(total) + " VND (Dự kiến cho 20 SP)";
+          }
+
+          document.getElementById('projectTitle').value = aiTitle;
+          document.getElementById('category').value = aiCategory;
+          document.getElementById('quantity').value = aiQuantity;
+          document.getElementById('description').value = aiDesc;
+          document.getElementById('budget').value = aiBudget;
+
+          // Set deadline 30 ngày sau
+          const date = new Date();
+          date.setDate(date.getDate() + 30);
+          document.getElementById('deadline').value = date.toISOString().split('T')[0];
+
+          // Xóa tất cả các lỗi viền đỏ (nếu có trước đó) vì AI đã điền đầy đủ
+          ['projectTitle', 'category', 'quantity', 'description', 'deadline'].forEach(id => {
+            clearFieldError(document.getElementById(id));
+          });
+
+          // Phục hồi nút & đổi text
+          aiStatus.classList.add('hidden');
+          aiStatus.classList.remove('flex');
+          btnAiBuilder.classList.remove('hidden');
+          btnAiBuilder.innerHTML = `<span class="material-symbols-outlined text-[20px]">check</span><span>AI Đã Điền Form</span>`;
+          btnAiBuilder.classList.replace('from-blue-600', 'from-green-500');
+          btnAiBuilder.classList.replace('to-indigo-600', 'to-green-600');
+
+          showToast("AI đã hoàn thành bản brief chi tiết dựa trên ý tưởng của bạn!");
+        }, 1800);
+      });
+
+      // 2. Logic Lưu Data & VALIDATION BÁO ĐỎ KHI SUBMIT
+      const briefForm = document.getElementById('briefForm');
+
+      const validateForm = () => {
+        let isValid = true;
+        let firstInvalidElement = null;
+
+        const projectTitle = document.getElementById('projectTitle');
+        const category = document.getElementById('category');
+        const quantity = document.getElementById('quantity');
+        const description = document.getElementById('description');
+        const deadline = document.getElementById('deadline');
+
+        // 1. Kiểm tra Tiêu đề
+        if (!projectTitle.value.trim()) {
+          showFieldError(projectTitle, "Vui lòng nhập tiêu đề dự án của bạn");
+          isValid = false;
+          if (!firstInvalidElement) firstInvalidElement = projectTitle;
+        } else {
+          clearFieldError(projectTitle);
+        }
+
+        // 2. Kiểm tra Thể loại
+        if (!category.value) {
+          showFieldError(category, "Vui lòng chọn thể loại sản phẩm");
+          isValid = false;
+          if (!firstInvalidElement) firstInvalidElement = category;
+        } else {
+          clearFieldError(category);
+        }
+
+        // 3. Kiểm tra Số lượng
+        if (!quantity.value || parseInt(quantity.value) < 1) {
+          showFieldError(quantity, "Vui lòng nhập số lượng hợp lệ (tối thiểu là 1 SP)");
+          isValid = false;
+          if (!firstInvalidElement) firstInvalidElement = quantity;
+        } else {
+          clearFieldError(quantity);
+        }
+
+        // 4. Kiểm tra Mô tả chi tiết
+        if (!description.value.trim()) {
+          showFieldError(description, "Vui lòng nhập mô tả chi tiết yêu cầu kỹ thuật");
+          isValid = false;
+          if (!firstInvalidElement) firstInvalidElement = description;
+        } else if (description.value.trim().length < 10) {
+          showFieldError(description, "Mô tả quá ngắn, vui lòng mô tả kỹ hơn (tối thiểu 10 ký tự)");
+          isValid = false;
+          if (!firstInvalidElement) firstInvalidElement = description;
+        } else {
+          clearFieldError(description);
+        }
+
+        // 5. Kiểm tra Hạn chót
+        if (!deadline.value) {
+          showFieldError(deadline, "Vui lòng chọn hạn chót nhận hàng");
+          isValid = false;
+          if (!firstInvalidElement) firstInvalidElement = deadline;
+        } else {
+          clearFieldError(deadline);
+        }
+
+        if (!isValid && firstInvalidElement) {
+          firstInvalidElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          firstInvalidElement.focus();
+          showToast("Vui lòng điền đầy đủ các thông tin bắt buộc (viền đỏ)!", true);
+        }
+
+        return isValid;
+      };
+
+      briefForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Chạy kiểm tra hợp lệ
+        if (!validateForm()) {
+          return;
+        }
+
+        // Thu thập dữ liệu
+        let formattedDeadline = document.getElementById('deadline').value;
+        if (formattedDeadline && formattedDeadline.includes('-')) {
+          const [yyyy, mm, dd] = formattedDeadline.split('-');
+          formattedDeadline = `${dd}/${mm}/${yyyy}`;
+        }
+
+        const newBrief = {
+          id: isEditMode ? existingBrief.id : 'BRF-' + Math.floor(1000 + Math.random() * 9000),
+          title: document.getElementById('projectTitle').value.trim(),
+          category: document.getElementById('category').value,
+          quantity: document.getElementById('quantity').value,
+          budget: document.getElementById('budget').value.trim() || 'Thỏa thuận',
+          description: document.getElementById('description').value.trim(),
+          deadline: formattedDeadline || document.getElementById('deadline').value,
+          status: isEditMode ? existingBrief.status : 'pending',
+          createdAt: isEditMode ? existingBrief.createdAt : new Date().toLocaleDateString('vi-VN')
+        };
+
+        // Đọc mảng cũ từ localStorage
+        let briefs = JSON.parse(localStorage.getItem('craftlink_briefs')) || [];
+
+        if (isEditMode) {
+          briefs = briefs.map(b => b.id === existingBrief.id ? newBrief : b);
+          document.querySelector('#modalContent h3').innerText = "Cập nhật thành công!";
+          document.querySelector('#modalContent p').innerText = "Yêu cầu của bạn đã được cập nhật thành công.";
+        } else {
+          briefs.unshift(newBrief);
+        }
+
+        // Lưu lại vào localStorage
+        localStorage.setItem('craftlink_briefs', JSON.stringify(briefs));
+
+        // Hiện Modal thành công
+        const modal = document.getElementById('successModal');
+        const modalContent = document.getElementById('modalContent');
+        modal.classList.remove('hidden');
+
+        setTimeout(() => {
+          modalContent.classList.remove('scale-95', 'opacity-0');
+          modalContent.classList.add('scale-100', 'opacity-100');
+        }, 10);
+      });
+
+      // Nút Cập nhật trigger submit
+      if (btnUpdate) {
+        btnUpdate.addEventListener('click', () => {
+          briefForm.requestSubmit();
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>
