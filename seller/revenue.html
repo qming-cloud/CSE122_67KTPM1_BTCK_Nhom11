@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <title>Doanh Thu & Ví Nghệ Nhân | Kênh Người Bán Craft Link</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  
+  <link href="../assets/css/colors.css" rel="stylesheet"/>
+  <link href="../assets/css/base.css" rel="stylesheet"/>
+  <link href="seller.css" rel="stylesheet"/>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../assets/js/tailwind-config.js"></script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+
+  <div id="seller-sidebar"></div>
+
+  <div class="lg:pl-64 flex flex-col min-h-screen">
+    <div id="seller-header"></div>
+
+    <main class="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 max-w-7xl mx-auto w-full pb-24 lg:pb-12">
+      
+      <!-- Tiêu đề trang -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="font-serif-craft text-2xl sm:text-3xl font-bold text-primary">Doanh Thu & Tài Chính Gian Hàng</h2>
+          <p class="text-sm text-on-surface-variant">Minh bạch dòng tiền, đối soát tự động và rút tiền nhanh về tài khoản ngân hàng</p>
+        </div>
+        <button type="button" id="btn-open-withdraw-modal" class="px-5 py-2.5 rounded-xl bg-secondary text-on-secondary font-semibold text-sm hover:opacity-95 shadow-sm transition-all flex items-center gap-2">
+          <span class="material-symbols-outlined text-[20px]">account_balance</span>
+          <span>Yêu cầu rút tiền</span>
+        </button>
+      </div>
+
+      <!-- Thẻ Ví & Số Dư Khả Dụng -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Thẻ số dư ví chính (7 Cột) -->
+        <div class="lg:col-span-7 bg-gradient-to-br from-primary via-primary-container to-[#1a2f24] rounded-2xl p-6 sm:p-8 text-on-primary shadow-sm flex flex-col justify-between space-y-6 relative overflow-hidden">
+          <div class="flex justify-between items-start">
+            <div class="space-y-1">
+              <span class="text-xs font-semibold text-tertiary-fixed uppercase tracking-wider">Số dư khả dụng có thể rút</span>
+              <div class="font-serif-craft text-3xl sm:text-4xl font-extrabold text-surface-bright tracking-tight" id="wallet-balance-display">
+                24.850.000đ
+              </div>
+            </div>
+            <span class="px-3 py-1 rounded-full bg-surface/15 text-xs text-tertiary-fixed font-semibold flex items-center gap-1">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Ví Sẵn Sàng
+            </span>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4 pt-4 border-t border-surface/20 text-xs">
+            <div>
+              <span class="text-on-primary-container block">Tài khoản thụ hưởng:</span>
+              <strong class="text-surface font-semibold text-sm" id="bank-account-text">Vietcombank - 0011004899882</strong>
+              <span class="text-on-primary-container block text-[11px]">Chủ TK: VANG THI MAI</span>
+            </div>
+            <div class="text-right">
+              <span class="text-on-primary-container block">Chính sách phí Fair Trade:</span>
+              <span class="text-tertiary-fixed font-bold text-sm">Chỉ 3% doanh thu</span>
+              <span class="text-on-primary-container block text-[11px]">Tài trợ bởi Craft Link</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2 Thẻ phụ (5 Cột) -->
+        <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+          <div class="bg-surface-container-lowest p-5 rounded-2xl border border-surface-container-high shadow-2xs flex flex-col justify-between">
+            <span class="text-xs font-semibold text-on-surface-variant uppercase">Đang chờ thanh toán / đối soát</span>
+            <div class="font-serif-craft text-2xl font-bold text-primary mt-2">1.595.000đ</div>
+            <span class="text-[11px] text-on-surface-variant mt-1">Từ các đơn hàng đang trên đường giao bưu tá</span>
+          </div>
+
+          <div class="bg-surface-container-lowest p-5 rounded-2xl border border-surface-container-high shadow-2xs flex flex-col justify-between">
+            <span class="text-xs font-semibold text-on-surface-variant uppercase">Tổng thu nhập tích lũy</span>
+            <div class="font-serif-craft text-2xl font-bold text-secondary mt-2">89.420.000đ</div>
+            <span class="text-[11px] text-emerald-700 font-semibold mt-1">Đã hỗ trợ 28 phụ nữ dệt thổ cẩm tự chủ</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bảng Lịch Sử Biến Động Số Dư & Giao Dịch -->
+      <div class="bg-surface-container-lowest rounded-2xl border border-surface-container-high shadow-2xs p-6 space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-serif-craft text-lg font-bold text-primary">Lịch Sử Biến Động Số Dư</h3>
+          <span class="text-xs text-on-surface-variant">Tất cả giao dịch ghi nhận tự động</span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="bg-surface-container-low border-b border-surface-container text-xs text-on-surface-variant uppercase font-semibold">
+                <th class="py-3 px-3">Mã GD</th>
+                <th class="py-3 px-3">Loại giao dịch</th>
+                <th class="py-3 px-3">Thời gian</th>
+                <th class="py-3 px-3">Ghi chú</th>
+                <th class="py-3 px-3 text-right">Số tiền</th>
+              </tr>
+            </thead>
+            <tbody id="transactions-tbody" class="divide-y divide-surface-container-low">
+              <!-- Render bằng JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Modal Yêu Cầu Rút Tiền -->
+    <div id="modal-withdraw" class="seller-modal-backdrop">
+      <div class="seller-modal-box p-6 space-y-5">
+        <div class="flex items-center justify-between border-b border-surface-container pb-3">
+          <h3 class="font-serif-craft font-bold text-lg text-primary flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary">account_balance</span>
+            <span>Yêu Cầu Rút Tiền Về Ngân Hàng</span>
+          </h3>
+          <button type="button" id="btn-close-withdraw" class="text-outline hover:text-primary">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-surface-container-low text-xs text-on-surface-variant space-y-1">
+          <div class="flex justify-between">
+            <span>Ngân hàng:</span>
+            <strong class="text-primary">Vietcombank - CN Lào Cai</strong>
+          </div>
+          <div class="flex justify-between">
+            <span>Số tài khoản:</span>
+            <strong class="text-primary font-mono">0011004899882</strong>
+          </div>
+          <div class="flex justify-between">
+            <span>Chủ tài khoản:</span>
+            <strong class="text-primary">VANG THI MAI</strong>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-primary uppercase mb-1.5">
+            Số tiền muốn rút (VNĐ)
+          </label>
+          <input type="number" id="input-withdraw-amount" min="100000" step="50000" placeholder="Nhập số tiền (tối thiểu 100.000đ)" 
+            class="w-full h-11 px-4 rounded-xl bg-surface-container-low border border-surface-container focus:border-primary focus:bg-surface-container-lowest focus:outline-none text-sm font-bold" />
+          <div class="flex justify-between items-center text-[11px] text-on-surface-variant mt-1">
+            <span>Tối đa: <span id="max-withdraw-text" class="font-semibold text-primary">24.850.000đ</span></span>
+            <button type="button" id="btn-withdraw-all" class="text-secondary font-bold hover:underline">Rút tất cả</button>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-2">
+          <button type="button" id="btn-cancel-withdraw" class="px-4 py-2.5 rounded-xl border border-surface-container text-xs font-semibold text-on-surface">
+            Hủy
+          </button>
+          <button type="button" id="btn-confirm-withdraw" class="px-5 py-2.5 rounded-xl bg-secondary text-on-secondary text-xs font-semibold shadow-sm hover:opacity-90">
+            Xác nhận rút tiền
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="seller-bottom-nav"></div>
+  </div>
+
+  <script src="seller-data.js"></script>
+  <script src="seller.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      SellerApp.initLayout({
+        activeNav: 'revenue',
+        pageTitle: 'Doanh Thu & Ví Tiền'
+      });
+
+      let shop = SellerData.getShopInfo();
+      let transactions = SellerData.getTransactions();
+
+      function refreshUI() {
+        document.getElementById('wallet-balance-display').textContent = SellerApp.formatVND(shop.walletBalance);
+        document.getElementById('max-withdraw-text').textContent = SellerApp.formatVND(shop.walletBalance);
+        document.getElementById('bank-account-text').textContent = `${shop.bankInfo.bankName.split('(')[1]?.replace(')', '') || 'Vietcombank'} - ${shop.bankInfo.accountNumber}`;
+
+        const tbody = document.getElementById('transactions-tbody');
+        tbody.innerHTML = transactions.map(t => {
+          const isIncome = t.amount > 0;
+          return `
+            <tr class="hover:bg-surface-container-low/50">
+              <td class="py-3 px-3 font-semibold text-xs text-primary font-mono">${t.id}</td>
+              <td class="py-3 px-3">
+                <span class="inline-flex items-center gap-1.5 text-xs font-semibold ${isIncome ? 'text-emerald-800' : 'text-rose-800'}">
+                  <span class="material-symbols-outlined text-[16px]">${isIncome ? 'arrow_downward' : 'arrow_upward'}</span>
+                  <span>${t.title}</span>
+                </span>
+              </td>
+              <td class="py-3 px-3 text-xs text-on-surface-variant">${t.date}</td>
+              <td class="py-3 px-3 text-xs text-on-surface-variant">${t.note || '-'}</td>
+              <td class="py-3 px-3 text-right font-bold text-xs sm:text-sm ${isIncome ? 'text-emerald-700' : 'text-primary'}">
+                ${isIncome ? '+' : ''}${SellerApp.formatVND(t.amount)}
+              </td>
+            </tr>
+          `;
+        }).join('');
+      }
+
+      // Modal rút tiền
+      const modal = document.getElementById('modal-withdraw');
+      const openBtn = document.getElementById('btn-open-withdraw-modal');
+      const closeBtn = document.getElementById('btn-close-withdraw');
+      const cancelBtn = document.getElementById('btn-cancel-withdraw');
+      const confirmBtn = document.getElementById('btn-confirm-withdraw');
+      const inputAmount = document.getElementById('input-withdraw-amount');
+      const btnAll = document.getElementById('btn-withdraw-all');
+
+      openBtn.onclick = () => {
+        inputAmount.value = '';
+        modal.classList.add('active');
+      };
+
+      const closeModal = () => modal.classList.remove('active');
+      closeBtn.onclick = closeModal;
+      cancelBtn.onclick = closeModal;
+
+      btnAll.onclick = () => {
+        inputAmount.value = shop.walletBalance;
+      };
+
+      confirmBtn.onclick = () => {
+        const amount = Number(inputAmount.value);
+        if (!amount || amount < 100000) {
+          SellerApp.showToast('Số tiền rút tối thiểu là 100.000đ!', 'warning');
+          return;
+        }
+        if (amount > shop.walletBalance) {
+          SellerApp.showToast('Số dư trong ví không đủ để thực hiện rút tiền!', 'error');
+          return;
+        }
+
+        // Trừ số dư và thêm giao dịch
+        shop.walletBalance -= amount;
+        SellerData.saveShopInfo(shop);
+
+        const newTx = {
+          id: 'TX-' + Math.floor(1000 + Math.random() * 9000),
+          type: 'withdrawal',
+          title: `Rút tiền về ${shop.bankInfo.accountNumber}`,
+          amount: -amount,
+          date: 'Vừa xong',
+          status: 'completed',
+          note: 'Yêu cầu chuyển khoản đã được ghi nhận'
+        };
+        transactions.unshift(newTx);
+        SellerData.saveTransactions(transactions);
+
+        closeModal();
+        SellerApp.showToast(`Yêu cầu rút ${SellerApp.formatVND(amount)} thành công! Tiền sẽ về trong 2-4 giờ.`);
+        refreshUI();
+      };
+
+      refreshUI();
+    });
+  </script>
+</body>
+</html>

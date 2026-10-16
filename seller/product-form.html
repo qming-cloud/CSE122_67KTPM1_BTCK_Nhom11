@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <title>Thêm / Chỉnh Sửa Tác Phẩm | Kênh Người Bán Craft Link</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  
+  <link href="../assets/css/colors.css" rel="stylesheet"/>
+  <link href="../assets/css/base.css" rel="stylesheet"/>
+  <link href="seller.css" rel="stylesheet"/>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../assets/js/tailwind-config.js"></script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+
+  <div id="seller-sidebar"></div>
+
+  <div class="lg:pl-64 flex flex-col min-h-screen">
+    <div id="seller-header"></div>
+
+    <main class="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 max-w-7xl mx-auto w-full pb-24 lg:pb-12">
+      
+      <!-- Thanh Tiêu Đề & Quay Lại -->
+      <div class="flex items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <a href="products.html" class="w-10 h-10 rounded-xl bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-primary transition-colors" title="Quay lại danh sách">
+            <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+          </a>
+          <div>
+            <h2 class="font-serif-craft text-2xl font-bold text-primary" id="form-page-title">Đăng Tác Phẩm Thủ Công Mới</h2>
+            <p class="text-xs text-on-surface-variant">Điền thông tin xuất xứ làng nghề, chất liệu và hình ảnh tác phẩm</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <a href="products.html" class="px-4 py-2.5 rounded-xl border border-surface-container-highest text-on-surface font-semibold text-sm hover:bg-surface-container transition-colors">
+            Hủy bỏ
+          </a>
+          <button type="button" id="btn-save-product" class="px-6 py-2.5 rounded-xl bg-secondary text-on-secondary font-semibold text-sm hover:opacity-95 shadow-sm transition-all flex items-center gap-2">
+            <span class="material-symbols-outlined text-[18px]">save</span>
+            <span>Lưu tác phẩm</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Layout 2 Cột: Form Thông Tin (7 Phần) & Xem Trước Card Trực Quan (5 Phần) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Cột Nhập Liệu Form (8 Cột) -->
+        <form id="product-form" class="lg:col-span-8 space-y-6">
+          
+          <!-- Nhóm 1: Thông tin cơ bản -->
+          <div class="bg-surface-container-lowest p-6 rounded-2xl border border-surface-container-high shadow-2xs space-y-4">
+            <h3 class="font-serif-craft text-lg font-bold text-primary flex items-center gap-2">
+              <span class="material-symbols-outlined text-secondary text-[20px]">info</span>
+              <span>1. Thông Tin Cơ Bản</span>
+            </h3>
+
+            <!-- Tên sản phẩm -->
+            <div>
+              <label for="prod-name" class="block text-xs font-semibold text-primary uppercase mb-1.5">
+                Tên Tác Phẩm <span class="text-error">*</span>
+              </label>
+              <input type="text" id="prod-name" required placeholder="Ví dụ: Khăn choàng Thổ cẩm Dệt thoi Sợi Gai dầu..." 
+                class="w-full h-11 px-4 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none text-sm transition-all" />
+              <p class="text-[11px] text-error mt-1 hidden" id="err-name">Vui lòng nhập tên tác phẩm.</p>
+            </div>
+
+            <!-- Danh mục & Giá -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="prod-category" class="block text-xs font-semibold text-primary uppercase mb-1.5">
+                  Danh Mục Thủ Công <span class="text-error">*</span>
+                </label>
+                <select id="prod-category" required class="w-full h-11 px-3.5 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:outline-none text-sm">
+                  <option value="Thổ cẩm & Dệt may">Thổ cẩm & Dệt may</option>
+                  <option value="Gốm mộc & Men tro">Gốm mộc & Men tro</option>
+                  <option value="Mây tre đan">Mây tre đan</option>
+                  <option value="Sơn mài & Khảm trai">Sơn mài & Khảm trai</option>
+                  <option value="Trang sức bạc & Kim hoàn">Trang sức bạc & Kim hoàn</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="prod-price" class="block text-xs font-semibold text-primary uppercase mb-1.5">
+                  Giá Bán (VNĐ) <span class="text-error">*</span>
+                </label>
+                <input type="number" id="prod-price" required min="1000" step="1000" placeholder="680000" 
+                  class="w-full h-11 px-4 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none text-sm font-semibold" />
+                <p class="text-[11px] text-error mt-1 hidden" id="err-price">Vui lòng nhập giá hợp lệ.</p>
+              </div>
+            </div>
+
+            <!-- Tồn kho & Giá gốc so sánh -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="prod-stock" class="block text-xs font-semibold text-primary uppercase mb-1.5">
+                  Số Lượng Tồn Kho <span class="text-error">*</span>
+                </label>
+                <input type="number" id="prod-stock" required min="0" placeholder="10" 
+                  class="w-full h-11 px-4 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none text-sm" />
+              </div>
+
+              <div>
+                <label for="prod-orig-price" class="block text-xs font-semibold text-primary uppercase mb-1.5">
+                  Giá Niêm Yết Cũ (Nếu có)
+                </label>
+                <input type="number" id="prod-orig-price" min="0" step="1000" placeholder="750000" 
+                  class="w-full h-11 px-4 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:outline-none text-sm" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Nhóm 2: Xuất xứ di sản & Chất liệu -->
+          <div class="bg-surface-container-lowest p-6 rounded-2xl border border-surface-container-high shadow-2xs space-y-4">
+            <h3 class="font-serif-craft text-lg font-bold text-primary flex items-center gap-2">
+              <span class="material-symbols-outlined text-secondary text-[20px]">nature_people</span>
+              <span>2. Di Sản & Chất Liệu Bản Địa</span>
+            </h3>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="prod-village" class="block text-xs font-semibold text-primary uppercase mb-1.5">
+                  Làng Nghề / Địa Phương
+                </label>
+                <input type="text" id="prod-village" placeholder="Ví dụ: Làng dệt Lùng Tám, Hà Giang" 
+                  class="w-full h-11 px-4 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:outline-none text-sm" />
+              </div>
+
+              <div>
+                <label for="prod-material" class="block text-xs font-semibold text-primary uppercase mb-1.5">
+                  Chất Liệu Truyền Thống
+                </label>
+                <input type="text" id="prod-material" placeholder="Ví dụ: Sợi lanh, chàm hữu cơ, sáp ong" 
+                  class="w-full h-11 px-4 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:outline-none text-sm" />
+              </div>
+            </div>
+
+            <!-- Tích chọn Huy hiệu Fair Trade & Bán chạy -->
+            <div class="pt-2 flex flex-wrap gap-6 items-center">
+              <label class="flex items-center gap-2.5 cursor-pointer">
+                <input type="checkbox" id="check-fair-trade" checked class="w-4 h-4 rounded text-secondary focus:ring-secondary accent-secondary" />
+                <span class="text-xs font-semibold text-primary">Chứng nhận Thương Mại Công Bằng (Fair Trade)</span>
+              </label>
+
+              <label class="flex items-center gap-2.5 cursor-pointer">
+                <input type="checkbox" id="check-new" class="w-4 h-4 rounded text-secondary focus:ring-secondary accent-secondary" />
+                <span class="text-xs font-semibold text-primary">Đánh dấu tác phẩm mới</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Nhóm 3: Hình ảnh tác phẩm -->
+          <div class="bg-surface-container-lowest p-6 rounded-2xl border border-surface-container-high shadow-2xs space-y-4">
+            <div class="flex items-center justify-between">
+              <h3 class="font-serif-craft text-lg font-bold text-primary flex items-center gap-2">
+                <span class="material-symbols-outlined text-secondary text-[20px]">photo_camera</span>
+                <span>3. Hình Ảnh Tác Phẩm</span>
+              </h3>
+              <span class="text-xs text-on-surface-variant">Ảnh rõ nét, ánh sáng tự nhiên</span>
+            </div>
+
+            <!-- Khung tải ảnh / paste URL ảnh nhanh -->
+            <div class="p-6 border-2 border-dashed border-surface-container-high rounded-xl text-center space-y-3 bg-surface-container-low/50">
+              <div class="w-12 h-12 rounded-full bg-surface-container mx-auto flex items-center justify-center text-outline">
+                <span class="material-symbols-outlined text-[26px]">upload_file</span>
+              </div>
+              <div class="text-xs text-on-surface-variant">
+                <label for="input-file-upload" class="text-secondary font-bold hover:underline cursor-pointer">Bấm để chọn ảnh</label>
+                hoặc nhập link URL ảnh bên dưới
+              </div>
+              <input type="file" id="input-file-upload" accept="image/*" class="hidden" />
+              
+              <div class="flex gap-2 max-w-md mx-auto">
+                <input type="url" id="input-image-url" placeholder="https://..." class="flex-1 h-9 px-3 text-xs rounded-lg bg-surface border border-surface-container" />
+                <button type="button" id="btn-add-img-url" class="px-3 text-xs rounded-lg bg-primary text-on-primary font-semibold">Thêm link</button>
+              </div>
+            </div>
+
+            <!-- Danh sách Preview các ảnh đã thêm -->
+            <div class="flex flex-wrap gap-3" id="image-previews-container">
+              <!-- Sẽ render tự động qua JS -->
+            </div>
+          </div>
+
+          <!-- Nhóm 4: Câu chuyện & Mô tả tác phẩm -->
+          <div class="bg-surface-container-lowest p-6 rounded-2xl border border-surface-container-high shadow-2xs space-y-3">
+            <h3 class="font-serif-craft text-lg font-bold text-primary flex items-center gap-2">
+              <span class="material-symbols-outlined text-secondary text-[20px]">auto_stories</span>
+              <span>4. Câu Chuyện & Kỹ Thuật Chế Tác</span>
+            </h3>
+            <textarea id="prod-desc" rows="4" placeholder="Kể cho khách hàng nghe về câu chuyện di sản, ý nghĩa hoa văn, hoặc cách mà nghệ nhân đã tỉ mỉ tạo ra tác phẩm..."
+              class="w-full p-4 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none text-sm transition-all leading-relaxed"></textarea>
+          </div>
+
+        </form>
+
+        <!-- Cột Xem Trước Thời Gian Thực (Live Preview Card - 4 Cột) -->
+        <div class="lg:col-span-4 sticky top-28 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-primary uppercase tracking-wider flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[16px] text-secondary">visibility</span>
+              Xem trước thẻ hiển thị khách hàng
+            </span>
+          </div>
+
+          <!-- Thẻ sản phẩm mô phỏng giao diện người mua của Craft Link -->
+          <div class="bg-surface-container-lowest rounded-2xl border border-surface-container-high shadow-xs overflow-hidden max-w-sm mx-auto group">
+            
+            <!-- Ảnh chính -->
+            <div class="relative aspect-[4/3] bg-surface-container overflow-hidden">
+              <img id="preview-card-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCn6Mod7HwcwbLvZp07ozudATDYxeidZxR-QS4uNS1ToADHUlFu6VNniMTudCWf1FfvFVFcy40tjcXN-xsmp6AHmEzg9LxsxAjTNtYvULx69YHTeTlhJ8qO_NrFYcXT3KgZlBVoaHE9dtacSc60jzPIzIHVdz8edwhCjnI2TAif_g12SsVhf5d5TP6DPbxnUKEwNXs6QeDCpGU04qE6jN9r5TQT-ODdhKXN3sfnvOzWRcb-0eN7-38" 
+                alt="Xem trước ảnh" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              
+              <!-- Badges -->
+              <div class="absolute top-3 left-3 flex flex-col gap-1.5 items-start">
+                <span id="preview-badge-fairtrade" class="badge-fair-trade shadow-xs">Fair Trade</span>
+                <span id="preview-badge-new" class="px-2 py-0.5 rounded-full bg-secondary text-on-secondary text-[10px] font-bold shadow-xs hidden">Mới</span>
+              </div>
+            </div>
+
+            <!-- Nội dung thẻ -->
+            <div class="p-4 space-y-2">
+              <div class="flex items-center justify-between text-[11px] text-on-surface-variant">
+                <span id="preview-card-category">Thổ cẩm & Dệt may</span>
+                <span id="preview-card-village" class="truncate max-w-[140px]">Hà Giang</span>
+              </div>
+
+              <h4 id="preview-card-title" class="font-serif-craft font-bold text-base text-primary line-clamp-2 leading-snug">
+                Tên tác phẩm thủ công
+              </h4>
+
+              <div class="flex items-baseline gap-2 pt-1">
+                <span id="preview-card-price" class="text-base font-extrabold text-secondary">680.000đ</span>
+                <span id="preview-card-orig-price" class="text-xs text-outline line-through hidden">750.000đ</span>
+              </div>
+
+              <div class="text-[11px] text-emerald-800 font-medium flex items-center gap-1 pt-1 border-t border-surface-container">
+                <span class="material-symbols-outlined text-[14px]">check_circle</span>
+                <span id="preview-card-stock">Còn 10 tác phẩm sẵn sàng</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-surface-container-low border border-surface-container text-xs text-on-surface-variant leading-relaxed">
+            <span class="font-bold text-primary block mb-1">Mẹo dành cho nghệ nhân:</span>
+            Tác phẩm có hình ảnh chụp tự nhiên và câu chuyện nguồn gốc rõ ràng giúp người mua trân quý hơn và tăng 40% khả năng quyết định chọn mua.
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+    <div id="seller-bottom-nav"></div>
+  </div>
+
+  <script src="seller-data.js"></script>
+  <script src="seller.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      SellerApp.initLayout({
+        activeNav: 'products',
+        pageTitle: 'Chỉnh Sửa Tác Phẩm'
+      });
+
+      // Lấy ID từ URL nếu đang ở chế độ chỉnh sửa (ví dụ: ?id=SP-001)
+      const urlParams = new URLSearchParams(window.location.search);
+      const editId = urlParams.get('id');
+
+      let currentImages = [
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuDCn6Mod7HwcwbLvZp07ozudATDYxeidZxR-QS4uNS1ToADHUlFu6VNniMTudCWf1FfvFVFcy40tjcXN-xsmp6AHmEzg9LxsxAjTNtYvULx69YHTeTlhJ8qO_NrFYcXT3KgZlBVoaHE9dtacSc60jzPIzIHVdz8edwhCjnI2TAif_g12SsVhf5d5TP6DPbxnUKEwNXs6QeDCpGU04qE6jN9r5TQT-ODdhKXN3sfnvOzWRcb-0eN7-38"
+      ];
+
+      const nameInput = document.getElementById('prod-name');
+      const categorySelect = document.getElementById('prod-category');
+      const priceInput = document.getElementById('prod-price');
+      const origPriceInput = document.getElementById('prod-orig-price');
+      const stockInput = document.getElementById('prod-stock');
+      const villageInput = document.getElementById('prod-village');
+      const materialInput = document.getElementById('prod-material');
+      const fairTradeCheck = document.getElementById('check-fair-trade');
+      const newCheck = document.getElementById('check-new');
+      const descInput = document.getElementById('prod-desc');
+      const saveBtn = document.getElementById('btn-save-product');
+
+      // Nếu có editId -> nạp dữ liệu cũ
+      if (editId) {
+        document.getElementById('form-page-title').textContent = 'Chỉnh Sửa Tác Phẩm #' + editId;
+        const existing = SellerData.getProductById(editId);
+        if (existing) {
+          nameInput.value = existing.name || '';
+          categorySelect.value = existing.category || 'Thổ cẩm & Dệt may';
+          priceInput.value = existing.price || '';
+          origPriceInput.value = existing.originalPrice || '';
+          stockInput.value = existing.stock ?? 10;
+          villageInput.value = existing.village || '';
+          materialInput.value = existing.material || '';
+          fairTradeCheck.checked = !!existing.isFairTrade;
+          newCheck.checked = !!existing.isNew;
+          descInput.value = existing.description || '';
+          if (existing.images && existing.images.length > 0) {
+            currentImages = [...existing.images];
+          }
+        }
+      }
+
+      // Live Preview Đồng bộ
+      function updateLivePreview() {
+        const name = nameInput.value.trim() || 'Tên tác phẩm thủ công';
+        const cat = categorySelect.value;
+        const price = Number(priceInput.value) || 0;
+        const origPrice = Number(origPriceInput.value) || 0;
+        const stock = Number(stockInput.value) || 0;
+        const village = villageInput.value.trim() || 'Làng nghề Việt Nam';
+
+        document.getElementById('preview-card-title').textContent = name;
+        document.getElementById('preview-card-category').textContent = cat;
+        document.getElementById('preview-card-village').textContent = village;
+        document.getElementById('preview-card-price').textContent = SellerApp.formatVND(price);
+
+        const origEl = document.getElementById('preview-card-orig-price');
+        if (origPrice > price) {
+          origEl.textContent = SellerApp.formatVND(origPrice);
+          origEl.classList.remove('hidden');
+        } else {
+          origEl.classList.add('hidden');
+        }
+
+        document.getElementById('preview-card-stock').textContent = `Còn ${stock} tác phẩm sẵn sàng`;
+
+        const ftBadge = document.getElementById('preview-badge-fairtrade');
+        if (fairTradeCheck.checked) ftBadge.classList.remove('hidden');
+        else ftBadge.classList.add('hidden');
+
+        const newBadge = document.getElementById('preview-badge-new');
+        if (newCheck.checked) newBadge.classList.remove('hidden');
+        else newBadge.classList.add('hidden');
+
+        if (currentImages.length > 0) {
+          document.getElementById('preview-card-img').src = currentImages[0];
+        }
+      }
+
+      // Render danh sách thumbnail ảnh
+      function renderThumbnails() {
+        const container = document.getElementById('image-previews-container');
+        container.innerHTML = currentImages.map((src, idx) => `
+          <div class="relative w-20 h-20 rounded-xl overflow-hidden border-2 ${idx === 0 ? 'border-secondary' : 'border-surface-container'} group">
+            <img src="${src}" alt="Ảnh ${idx+1}" class="w-full h-full object-cover" />
+            <button type="button" onclick="removeImage(${idx})" class="absolute top-1 right-1 w-5 h-5 rounded-full bg-error text-on-error flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity" title="Xóa ảnh">
+              <span class="material-symbols-outlined text-[12px]">close</span>
+            </button>
+            ${idx === 0 ? '<span class="absolute bottom-0 inset-x-0 bg-secondary text-on-secondary text-[9px] text-center font-bold uppercase">Ảnh bìa</span>' : ''}
+          </div>
+        `).join('');
+
+        updateLivePreview();
+      }
+
+      window.removeImage = function(idx) {
+        if (currentImages.length <= 1) {
+          SellerApp.showToast('Tác phẩm cần ít nhất 1 hình ảnh minh họa!', 'warning');
+          return;
+        }
+        currentImages.splice(idx, 1);
+        renderThumbnails();
+      };
+
+      // Thêm ảnh từ URL
+      document.getElementById('btn-add-img-url').addEventListener('click', () => {
+        const inputUrl = document.getElementById('input-image-url');
+        const url = inputUrl.value.trim();
+        if (!url) return;
+        currentImages.push(url);
+        inputUrl.value = '';
+        renderThumbnails();
+        SellerApp.showToast('Đã thêm ảnh xem trước!');
+      });
+
+      // Tải ảnh giả lập qua File Input
+      document.getElementById('input-file-upload').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(evt) {
+            currentImages.push(evt.target.result);
+            renderThumbnails();
+            SellerApp.showToast('Đã tải ảnh lên!');
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+
+      // Lắng nghe sự kiện input
+      [nameInput, categorySelect, priceInput, origPriceInput, stockInput, villageInput, fairTradeCheck, newCheck].forEach(el => {
+        el.addEventListener('input', updateLivePreview);
+        el.addEventListener('change', updateLivePreview);
+      });
+
+      // Lưu Form
+      saveBtn.addEventListener('click', () => {
+        const name = nameInput.value.trim();
+        const price = Number(priceInput.value);
+
+        let hasError = false;
+        if (!name) {
+          document.getElementById('err-name').classList.remove('hidden');
+          hasError = true;
+        } else {
+          document.getElementById('err-name').classList.add('hidden');
+        }
+
+        if (!price || price < 1000) {
+          document.getElementById('err-price').classList.remove('hidden');
+          hasError = true;
+        } else {
+          document.getElementById('err-price').classList.add('hidden');
+        }
+
+        if (hasError) {
+          SellerApp.showToast('Vui lòng kiểm tra lại các trường bắt buộc!', 'error');
+          return;
+        }
+
+        let products = SellerData.getProducts();
+
+        if (editId) {
+          // Chế độ sửa
+          const index = products.findIndex(p => p.id === editId);
+          if (index !== -1) {
+            products[index] = {
+              ...products[index],
+              name,
+              category: categorySelect.value,
+              price,
+              originalPrice: Number(origPriceInput.value) || price,
+              stock: Number(stockInput.value) || 0,
+              village: villageInput.value.trim(),
+              material: materialInput.value.trim(),
+              isFairTrade: fairTradeCheck.checked,
+              isNew: newCheck.checked,
+              description: descInput.value.trim(),
+              images: currentImages
+            };
+            SellerData.saveProducts(products);
+            SellerApp.showToast('Đã cập nhật tác phẩm thành công!');
+            setTimeout(() => window.location.href = 'products.html', 800);
+          }
+        } else {
+          // Chế độ thêm mới
+          const newId = 'SP-' + String(products.length + 1).padStart(3, '0');
+          const newProduct = {
+            id: newId,
+            name,
+            category: categorySelect.value,
+            price,
+            originalPrice: Number(origPriceInput.value) || price,
+            stock: Number(stockInput.value) || 0,
+            status: 'active',
+            village: villageInput.value.trim(),
+            material: materialInput.value.trim(),
+            isFairTrade: fairTradeCheck.checked,
+            isNew: newCheck.checked,
+            isBestSeller: false,
+            soldCount: 0,
+            rating: 5.0,
+            description: descInput.value.trim(),
+            images: currentImages
+          };
+          products.unshift(newProduct);
+          SellerData.saveProducts(products);
+          SellerApp.showToast('Đã đăng tác phẩm mới thành công!');
+          setTimeout(() => window.location.href = 'products.html', 800);
+        }
+      });
+
+      renderThumbnails();
+    });
+  </script>
+</body>
+</html>
