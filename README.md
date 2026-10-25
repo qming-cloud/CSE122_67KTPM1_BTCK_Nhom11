@@ -18,7 +18,7 @@
 
 ## 🌐 Demo trực tuyến
 
-🔗 **GitHub Pages:** [https://KhanhNguyen3010.github.io/CSE_BTCK_2551170903/](https://KhanhNguyen3010.github.io/CSE_BTCK_2551170903/)
+🔗 **GitHub Pages:** [https://qming-cloud.github.io/CSE122_67KTPM1_BTCK_Nhom11/](https://qming-cloud.github.io/CSE122_67KTPM1_BTCK_Nhom11/)
 
 > Nếu link trên chưa hoạt động, hãy làm theo hướng dẫn bên dưới để bật GitHub Pages.
 
@@ -34,7 +34,7 @@
 
 ```bash
 # Clone repository
-git clone https://github.com/KhanhNguyen3010/CSE_BTCK_2551170903.git
+git clone https://qming-cloud.github.io/CSE122_67KTPM1_BTCK_Nhom11.git
 cd CSE_BTCK_2551170903
 
 # Mở file trong trình duyệt
@@ -195,12 +195,6 @@ Craftlink-web/
 
 | Thành viên | Vai trò chính | Trách nhiệm chéo |
 |---|---|---|
-| **SV1** | Khách hàng (Buyer) | Responsive, giao diện dùng chung |
-| **SV2** | Người sáng tạo (Maker) | JavaScript, dữ liệu giả lập |
-| **SV3** | Kiểm duyệt + Quản trị | Tích hợp, điều hướng, phát hành |
-
----
-
-## 📝 License
-
-Dự án này được thực hiện cho mục đích học tập tại UIT – Trường Đại học Công nghệ Thông tin, ĐHQG-HCM.
+| **Nguyễn Nam Khánh** | Khách hàng (Buyer) |
+| **Lê Quang Minh** | Người sáng tạo (Maker) |
+| **Trần Phương Nam** | Kiểm duyệt + Quản trị |
