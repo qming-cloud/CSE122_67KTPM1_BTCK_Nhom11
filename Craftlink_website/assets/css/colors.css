@@ -49,3 +49,55 @@
   --state-warning: var(--color-ochre-gold);
   --state-error: var(--color-earthen-red);
 }
+
+/* ==========================================================================
+   CRAFT LINK - DARK MODE PALETTE (MỞ RỘNG 3)
+   Bảng màu tối sang trọng: Chàm đêm, Đất nung ấm, Vàng sáp ong
+   ========================================================================== */
+[data-theme="dark"],
+html.dark {
+  /* --- 1. CORE BRAND PALETTE (DARK) --- */
+  --color-soft-oat: #121815;      /* Nền chính sẫm */
+  --color-pebble-warm: #1C2721;   /* Card & Surface nổi */
+  --color-deep-forest: #E6EFE9;   /* Chữ chính sáng rõ */
+  --color-earthen-red: #D9734E;   /* Nút nhấn cam đất ấm */
+  --color-ochre-gold: #E5B56B;    /* Nhấn vàng thổ hoàng */
+  --color-moss-green: #688B74;    /* Xanh rêu điểm xuyết */
+  --color-muted-text: #9EB0A4;    /* Chữ phụ dịu mắt */
+
+  /* --- 2. BACKGROUND & SURFACES --- */
+  --bg-main: var(--color-soft-oat);
+  --bg-card: var(--color-pebble-warm);
+  --bg-surface-light: #16201B;
+  --bg-dark: #0B100D;
+
+  /* --- 3. TYPOGRAPHY --- */
+  --text-primary: var(--color-deep-forest);
+  --text-secondary: var(--color-muted-text);
+  --text-on-dark: #FFFFFF;
+  --text-muted: #7E9285;
+
+  /* --- 4. BUTTONS & INTERACTIVES --- */
+  --btn-primary-bg: var(--color-earthen-red);
+  --btn-primary-hover: #BF5A37;
+  --btn-primary-text: #FFFFFF;
+
+  --btn-secondary-bg: #2A3B32;
+  --btn-secondary-hover: #374E42;
+  --btn-secondary-text: var(--color-soft-oat);
+
+  /* --- 5. ACCENTS & BADGES --- */
+  --accent-gold: var(--color-ochre-gold);
+  --accent-moss: var(--color-moss-green);
+  --badge-impact-bg: #24352C;
+  --badge-impact-text: #E5EFE9;
+
+  /* --- 6. BORDERS & SEPARATORS --- */
+  --border-color: #26382E;
+  --border-focus: var(--color-earthen-red);
+
+  /* --- 7. SYSTEM STATES --- */
+  --state-success: #4E8B63;
+  --state-warning: var(--color-ochre-gold);
+  --state-error: #E55A5A;
+}

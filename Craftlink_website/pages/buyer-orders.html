@@ -64,6 +64,12 @@
             <span
               class="absolute top-0 right-0 w-4 h-4 rounded-full bg-[#E5484D] text-white text-[10px] font-bold flex items-center justify-center border-2 border-white shadow-sm">3</span>
           </a>
+          <!-- Nút chuyển đổi Giao diện Sáng / Tối (Dark / Light Mode) -->
+          <button id="theme-toggle-btn" type="button" onclick="CraftlinkTheme.toggle()"
+            class="theme-toggle-btn relative p-2 text-gray-600 hover:text-primary hover:bg-primary/10 rounded-full transition-all cursor-pointer flex items-center justify-center"
+            title="Chuyển sang Chế độ Tối" aria-label="Chuyển chế độ Sáng / Tối">
+            <span class="material-symbols-outlined theme-toggle-icon text-[22px]">dark_mode</span>
+          </button>
           <!-- Account Dropdown -->
           <div class="relative group">
             <a href="login.html"
@@ -471,6 +477,7 @@
       closeOrderDetail();
       renderOrders();
       showToast(`Đã xác nhận báo giá #${id}. Nghệ nhân bắt đầu sản xuất!`);
+      if (window.CraftlinkSync) window.CraftlinkSync.notifyStatusChanged(id, 'producing', `Đơn #${id} đã được Buyer xác nhận sản xuất`);
     };
 
     // Hàm HỦY đơn (chuyển status thành 'cancelled')
@@ -482,6 +489,7 @@
       closeOrderDetail();
       renderOrders();
       showToast(`Đã chuyển yêu cầu #${id} sang trạng thái Đã hủy.`);
+      if (window.CraftlinkSync) window.CraftlinkSync.notifyStatusChanged(id, 'cancelled', `Đơn #${id} đã bị hủy`);
     };
 
     // Hàm KHÔI PHỤC đơn đã hủy (chuyển status thành 'pending')
@@ -493,6 +501,7 @@
       closeOrderDetail();
       renderOrders();
       showToast(`Đã khôi phục yêu cầu #${id} thành công.`);
+      if (window.CraftlinkSync) window.CraftlinkSync.notifyStatusChanged(id, 'pending', `Đơn #${id} đã được khôi phục`);
     };
 
     // Hàm XÓA VĨNH VIỄN đơn hàng
@@ -503,7 +512,8 @@
 
       closeOrderDetail();
       renderOrders();
-      showToast(`Đã xóa vĩnh viễn yêu cầu #${id}.`);
+      showToast(`Đã xóa vĩnh viễn đơn hàng #${id}`);
+      if (window.CraftlinkSync) window.CraftlinkSync.notifyStatusChanged(id, 'deleted', `Đơn #${id} đã xóa`);
     };
 
     // Hàm mở modal AI
@@ -740,10 +750,17 @@
       }
     };
 
+    // Xuất ra window để realtime-sync có thể gọi tự động khi có cập nhật từ Maker
+    window.renderOrders = renderOrders;
+
     // Chạy khi load trang
     document.addEventListener('DOMContentLoaded', renderOrders);
   </script>
 
+  <!-- Mở rộng 3: Quản lý Chế độ Sáng / Tối toàn hệ thống -->
+  <script src="../assets/js/theme-switcher.js"></script>
+  <!-- Mở rộng 1: Đồng bộ dữ liệu liên thông Real-time giữa các Role -->
+  <script src="../assets/js/realtime-sync.js"></script>
   <!-- Widget chuyển đổi vai trò (Buyer / Maker / Admin / Moderator) -->
   <script src="../assets/js/role-switcher.js"></script>
 </body>
