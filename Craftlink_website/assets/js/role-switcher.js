@@ -77,7 +77,7 @@
       badgeColor: 'bg-[#15251D] text-white',
       accentColor: '#15251D',
       tagline: 'Dashboard tổng quan, quản lý người dùng & danh mục',
-      targetUrl: prefix + 'admin/pages/dashboard.html',
+      targetUrl: prefix + 'admin/pages/admin-platform-dashboard.html',
       demoUser: 'admin@craftlink.com',
       avatarText: 'AD'
     }

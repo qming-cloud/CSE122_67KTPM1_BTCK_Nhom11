@@ -3,6 +3,27 @@
    Chống tràn ngang 320px, tối ưu zoom 200%, drawer & tables responsive
    ========================================================================== */
 
+/* 0. Shared base rules (giữ từ nhánh main) */
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    overscroll-behavior: none;
+  }
+  main > :first-child {
+    margin-top: 0 !important;
+  }
+  main > :last-child {
+    margin-bottom: 0 !important;
+  }
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
 /* 1. Global Box Sizing & Fluid Resets */
 *, *::before, *::after {
   box-sizing: border-box;

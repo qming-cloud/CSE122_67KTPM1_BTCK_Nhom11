@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Đơn Hàng Tùy Biến | Craft Link</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link href="../assets/css/colors.css" rel="stylesheet" />
+  <link href="../assets/css/base.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../assets/js/tailwind-config.js"></script>
+</head>
+
+<body class="bg-surface font-body-md text-on-surface antialiased">
+
+  <!-- HEADER GỐC CỦA DỰ ÁN -->
+  <header class="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-lg shadow-sm border-b border-gray-100">
+    <div class="max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between gap-8">
+      <a href="../index.html" class="flex items-center gap-3 shrink-0 group">
+        <img alt="Craft Link Heritage Logo"
+          class="h-10 w-auto object-contain transition-transform group-hover:scale-105"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhxZHgqwl09Uzofz21BtUSqe8y4LXLZlHjhsrlcmCxyuEV1ZArTaGXStarugkKmhBemL7Mqmal5XoJe19C-24ZTWXQZ_SfC9_cFtdlQiRbygt-FcTHZORNtERKETXhtF3InaeLB0mHQA7OALAZ78tMAgEY0MCbvnHSzI-Zlpilk1999JlSrT6ZKrwBP4zXcTPhnPM77_5PXcO09sN6xO47H4FBz6PxlfzH5bSya1-emdbI75e45SCd" />
+        <div class="flex flex-col hidden sm:flex">
+          <span class="text-lg text-primary font-bold tracking-wide">CRAFT LINK</span>
+          <span class="text-[9px] text-gray-500 tracking-[0.2em] uppercase">Di sản thủ công Việt</span>
+        </div>
+      </a>
+      <nav class="hidden lg:flex items-center justify-center gap-6 flex-1">
+        <a href="../index.html"
+          class="text-gray-700 hover:text-primary font-medium text-[15px] transition-colors whitespace-nowrap relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-primary hover:after:w-full after:transition-all">Trang
+          chủ</a>
+        <a href="buyer-marketplace.html"
+          class="text-gray-700 hover:text-primary font-medium text-[15px] transition-colors whitespace-nowrap relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-primary hover:after:w-full after:transition-all">Sàn
+          khám phá</a>
+        <a href="#"
+          class="text-gray-700 hover:text-primary font-medium text-[15px] transition-colors whitespace-nowrap relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-primary hover:after:w-full after:transition-all">Câu
+          chuyện nghệ nhân</a>
+        <a href="impact.html"
+          class="text-gray-700 hover:text-primary font-medium text-[15px] transition-colors whitespace-nowrap relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-primary hover:after:w-full after:transition-all">Về
+          chúng tôi & Tác động</a>
+        <a href="buyer-custom-brief.html"
+          class="text-primary font-semibold text-[15px] transition-colors whitespace-nowrap relative after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-0.5 after:bg-primary border-b-2 border-primary pb-1">Đặt
+          Làm Riêng</a>
+      </nav>
+      <div class="flex items-center gap-4 shrink-0">
+        <div class="flex items-center gap-1.5">
+          <a href="#"
+            class="relative p-2 text-gray-600 hover:text-primary hover:bg-primary/10 rounded-full transition-all">
+            <span class="material-symbols-outlined">favorite</span>
+            <span
+              class="absolute top-0 right-0 w-4 h-4 rounded-full bg-[#E5484D] text-white text-[10px] font-bold flex items-center justify-center border-2 border-white shadow-sm">5</span>
+          </a>
+          <a href="#"
+            class="relative p-2 text-gray-600 hover:text-primary hover:bg-primary/10 rounded-full transition-all">
+            <span class="material-symbols-outlined">shopping_bag</span>
+            <span
+              class="absolute top-0 right-0 w-4 h-4 rounded-full bg-[#E5484D] text-white text-[10px] font-bold flex items-center justify-center border-2 border-white shadow-sm">3</span>
+          </a>
+          <!-- Account Dropdown -->
+          <div class="relative group">
+            <a href="login.html"
+              class="ml-2 flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white hover:opacity-90 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 cursor-pointer">
+              <span class="material-symbols-outlined text-[20px]">person</span>
+            </a>
+
+            <div
+              class="absolute right-0 top-full pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 w-64 z-50">
+              <div
+                class="bg-white rounded-xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] border border-gray-100 flex flex-col overflow-hidden">
+                <!-- User Info -->
+                <div class="p-4 border-b border-gray-50 flex items-center gap-3 bg-gray-50/50">
+                  <div
+                    class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
+                    KH</div>
+                  <div>
+                    <div class="font-semibold text-gray-800 text-sm">Khách hàng Buyer</div>
+                    <div class="text-xs text-gray-500">buyer@craftlink.com</div>
+                  </div>
+                </div>
+                <!-- Links -->
+                <div class="p-2 flex flex-col">
+                  <a href="#"
+                    class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-primary/5 hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined text-[18px]">person</span>
+                    Hồ sơ của tôi
+                  </a>
+                  <a href="buyer-orders.html"
+                    class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-primary bg-primary/5 hover:bg-primary/10 transition-colors">
+                    <span class="material-symbols-outlined text-[18px]">list_alt</span>
+                    Đơn hàng Đặt làm riêng
+                  </a>
+                  <a href="#"
+                    class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-primary/5 hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined text-[18px]">local_mall</span>
+                    Đơn hàng sản phẩm
+                  </a>
+                </div>
+                <!-- Logout -->
+                <div class="p-2 border-t border-gray-50">
+                  <a href="login.html"
+                    class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 transition-colors">
+                    <span class="material-symbols-outlined text-[18px]">logout</span>
+                    Đăng xuất
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="w-full pt-[120px] bg-gray-50 min-h-screen pb-20">
+    <div class="max-w-[1200px] mx-auto px-6">
+
+      <!-- Page Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900 flex items-center gap-3">
+            <span class="material-symbols-outlined text-4xl text-secondary">inventory_2</span>
+            Đơn Hàng Của Tôi
+          </h1>
+          <p class="text-gray-600 mt-2">Quản lý và theo dõi tiến độ các sản phẩm đặt làm riêng của bạn.</p>
+        </div>
+        <a href="buyer-custom-brief.html"
+          class="inline-flex items-center gap-2 px-6 py-2.5 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors shadow-sm">
+          <span class="material-symbols-outlined text-[20px]">add</span>
+          Tạo Yêu Cầu Mới
+        </a>
+      </div>
+
+      <!-- Tabs Navigation -->
+      <div class="flex items-center gap-2 sm:gap-4 border-b border-gray-200 mb-6 overflow-x-auto pb-1" id="statusTabs">
+        <button onclick="switchTab('all')" data-status="all"
+          class="tab-btn pb-3 border-b-2 border-primary text-primary font-bold text-sm whitespace-nowrap transition-all flex items-center gap-2 cursor-pointer">
+          <span>Tất cả yêu cầu</span>
+          <span class="count-badge px-2 py-0.5 rounded-full text-xs bg-primary/10 text-primary font-bold" id="countAll">0</span>
+        </button>
+        <button onclick="switchTab('pending')" data-status="pending"
+          class="tab-btn pb-3 border-b-2 border-transparent text-gray-500 hover:text-gray-800 font-medium text-sm whitespace-nowrap transition-all flex items-center gap-2 cursor-pointer">
+          <span>Chờ báo giá</span>
+          <span class="count-badge px-2 py-0.5 rounded-full text-xs bg-gray-100 text-gray-600 font-semibold" id="countPending">0</span>
+        </button>
+        <button onclick="switchTab('quoted')" data-status="quoted"
+          class="tab-btn pb-3 border-b-2 border-transparent text-gray-500 hover:text-gray-800 font-medium text-sm whitespace-nowrap transition-all flex items-center gap-2 cursor-pointer">
+          <span>Đã nhận báo giá</span>
+          <span class="count-badge px-2 py-0.5 rounded-full text-xs bg-gray-100 text-gray-600 font-semibold" id="countQuoted">0</span>
+        </button>
+        <button onclick="switchTab('producing')" data-status="producing"
+          class="tab-btn pb-3 border-b-2 border-transparent text-gray-500 hover:text-gray-800 font-medium text-sm whitespace-nowrap transition-all flex items-center gap-2 cursor-pointer">
+          <span>Đang sản xuất</span>
+          <span class="count-badge px-2 py-0.5 rounded-full text-xs bg-gray-100 text-gray-600 font-semibold" id="countProducing">0</span>
+        </button>
+        <button onclick="switchTab('completed')" data-status="completed"
+          class="tab-btn pb-3 border-b-2 border-transparent text-gray-500 hover:text-gray-800 font-medium text-sm whitespace-nowrap transition-all flex items-center gap-2 cursor-pointer">
+          <span>Đã hoàn thành</span>
+          <span class="count-badge px-2 py-0.5 rounded-full text-xs bg-gray-100 text-gray-600 font-semibold" id="countCompleted">0</span>
+        </button>
+        <button onclick="switchTab('cancelled')" data-status="cancelled"
+          class="tab-btn pb-3 border-b-2 border-transparent text-gray-500 hover:text-gray-800 font-medium text-sm whitespace-nowrap transition-all flex items-center gap-2 cursor-pointer">
+          <span>Đã hủy</span>
+          <span class="count-badge px-2 py-0.5 rounded-full text-xs bg-gray-100 text-gray-600 font-semibold" id="countCancelled">0</span>
+        </button>
+      </div>
+
+      <!-- TRẠNG THÁI EMPTY (Hiện qua JS khi không có đơn) -->
+      <div id="emptyState"
+        class="hidden flex-col items-center justify-center py-16 bg-white rounded-2xl shadow-sm border border-gray-100 text-center">
+        <div class="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mb-4">
+          <span class="material-symbols-outlined text-4xl text-gray-400" id="emptyIcon">shopping_cart_checkout</span>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mb-2" id="emptyTitle">Bạn chưa có yêu cầu nào</h3>
+        <p class="text-gray-500 mb-6 max-w-sm mx-auto text-sm" id="emptyDesc">Hãy mô tả ý tưởng của bạn để các nghệ nhân của CraftLink biến nó thành hiện thực nhé.</p>
+        <div id="emptyActions">
+          <a href="buyer-custom-brief.html"
+            class="px-6 py-2.5 bg-secondary text-white rounded-lg font-medium hover:bg-secondary/90 transition-colors shadow-sm inline-flex items-center gap-2">
+            <span class="material-symbols-outlined text-[18px]">add_circle</span>
+            Tạo Brief Ngay
+          </a>
+        </div>
+      </div>
+
+      <!-- TRẠNG THÁI CÓ DATA (Danh sách Cards) -->
+      <div id="ordersList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- JS sẽ inject thẻ HTML vào đây -->
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Modal AI Tóm Tắt Trao Đổi -->
+  <div id="aiSummaryModal"
+    class="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm hidden flex items-center justify-center">
+    <div class="bg-white p-8 rounded-2xl max-w-lg w-full shadow-2xl relative">
+      <button onclick="document.getElementById('aiSummaryModal').classList.add('hidden')"
+        class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+          <span class="material-symbols-outlined">auto_awesome</span>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-gray-900">AI Tóm Tắt Trao Đổi</h3>
+          <p class="text-sm text-gray-500">Giữa bạn và Nghệ nhân Vàng A Sáng</p>
+        </div>
+      </div>
+      <div class="bg-gray-50 p-4 rounded-xl border border-gray-100 space-y-3 text-sm text-gray-700">
+        <p><strong>📝 Thỏa thuận cuối:</strong></p>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>Chất liệu: Chốt sử dụng vải lanh thô 100% thay vì pha cotton.</li>
+          <li>Thời gian: Nghệ nhân xin thêm 3 ngày do thời tiết mưa ảnh hưởng đến việc phơi chàm. Hạn chót mới: <span
+              class="font-semibold text-blue-600">25/11/2026</span>.</li>
+          <li>Ngân sách: Giữ nguyên mức giá 5,500,000 VND. Đã bao gồm phí ship.</li>
+        </ul>
+      </div>
+      <div class="mt-6 flex justify-end">
+        <button onclick="document.getElementById('aiSummaryModal').classList.add('hidden')"
+          class="px-6 py-2.5 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-medium">Đóng</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Chi Tiết Đơn Hàng -->
+  <div id="orderDetailModal"
+    class="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div
+      class="bg-white rounded-2xl max-w-2xl w-full shadow-2xl relative max-h-[90vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+      
+      <!-- Modal Header -->
+      <div class="p-6 border-b border-gray-100 flex items-center justify-between bg-gray-50/60">
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center text-primary font-bold">
+            <span class="material-symbols-outlined text-[24px]">description</span>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-gray-400 tracking-wider" id="detailId">BRF-1234</span>
+              <span id="detailStatusBadge"></span>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mt-0.5 line-clamp-1" id="detailTitle">Tiêu đề yêu cầu</h3>
+          </div>
+        </div>
+        <button onclick="closeOrderDetail()" class="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors cursor-pointer">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-6 overflow-y-auto space-y-6 flex-1 text-sm text-gray-700">
+        
+        <!-- Grid specs -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100">
+          <div>
+            <span class="text-xs text-gray-500 block mb-1">Thể loại</span>
+            <span class="font-semibold text-gray-900" id="detailCategory">-</span>
+          </div>
+          <div>
+            <span class="text-xs text-gray-500 block mb-1">Số lượng</span>
+            <span class="font-semibold text-gray-900" id="detailQuantity">-</span>
+          </div>
+          <div>
+            <span class="text-xs text-gray-500 block mb-1">Ngân sách</span>
+            <span class="font-semibold text-secondary" id="detailBudget">-</span>
+          </div>
+          <div>
+            <span class="text-xs text-gray-500 block mb-1">Hạn chót</span>
+            <span class="font-semibold text-gray-900" id="detailDeadline">-</span>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div>
+          <h4 class="font-bold text-gray-900 mb-2 flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-[18px]">notes</span>
+            Yêu cầu kỹ thuật &amp; Mô tả chi tiết
+          </h4>
+          <div class="p-4 bg-gray-50/50 border border-gray-200 rounded-xl whitespace-pre-line leading-relaxed text-gray-700" id="detailDescription">
+            Chưa có mô tả chi tiết.
+          </div>
+        </div>
+
+        <!-- Timeline / Progress Simulation -->
+        <div class="p-4 bg-blue-50/50 border border-blue-100 rounded-xl">
+          <div class="flex items-center gap-2 text-blue-900 font-bold mb-3">
+            <span class="material-symbols-outlined text-[20px] text-blue-600">timeline</span>
+            Tiến độ thực hiện
+          </div>
+          <div class="space-y-3" id="timelineContent">
+            <!-- Timeline items rendered dynamically -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-3 bg-gray-50/60" id="detailFooter">
+        <!-- Dynamic Action Buttons -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast"
+    class="fixed top-4 right-4 bg-white border-l-4 border-green-500 shadow-lg p-4 rounded-lg hidden flex items-center gap-3 z-[110] transform transition-all duration-300 translate-x-full">
+    <span class="material-symbols-outlined text-green-500" id="toastIcon">check_circle</span>
+    <div>
+      <h4 class="font-bold text-gray-900" id="toastTitle">Thành công!</h4>
+      <p class="text-sm text-gray-600" id="toastMessage">Thao tác thành công.</p>
+    </div>
+  </div>
+
+  <script>
+    // Dữ liệu mẫu ban đầu (nếu localStorage chưa có)
+    const initialSampleOrders = [
+      {
+        id: "BRF-8821",
+        title: "Bộ Khăn Choàng Thổ Cẩm Lanh Chàm - Quà Tặng Doanh Nghiệp",
+        category: "Thổ cẩm & Dệt may",
+        quantity: "15",
+        budget: "12,000,000 VND",
+        deadline: "28/11/2026",
+        status: "producing",
+        description: "- Kích thước: 40x180cm mỗi khăn.\n- Chất liệu: Vải lanh mộc 100% tự nhiên, nhuộm chàm cổ truyền H'Mông.\n- Họa tiết: Thêu chữ thập hoa văn mặt trời ở hai đầu khăn.\n- Đính kèm tag thương hiệu riêng của doanh nghiệp.",
+        createdAt: "10/10/2026"
+      },
+      {
+        id: "BRF-5392",
+        title: "Túi Tote Thêu Họa Tiết Trống Đồng Tùy Biến",
+        category: "Thổ cẩm & Dệt may",
+        quantity: "5",
+        budget: "3,250,000 VND",
+        deadline: "15/12/2026",
+        status: "pending",
+        description: "- Dựa trên mẫu Túi Tote của người Dao Đỏ.\n- Thay đổi màu chỉ thêu viền sang tông vàng đồng và xanh navy.\n- Có dây kéo kim loại chống rỉ.",
+        createdAt: "12/10/2026"
+      },
+      {
+        id: "BRF-2104",
+        title: "Vỏ Gối Sofa Họa Tiết Kỷ Hà Dệt Thủ Công Mường",
+        category: "Thổ cẩm & Dệt may",
+        quantity: "8",
+        budget: "2,560,000 VND",
+        deadline: "01/10/2026",
+        status: "completed",
+        description: "- Kích thước: 45x45cm.\n- Mặt trước: Vải dệt hoa văn thổ cẩm Mường Hòa Bình.\n- Mặt sau: Vải đũi thô màu be trơn có khóa kéo ẩn.",
+        createdAt: "15/09/2026"
+      },
+      {
+        id: "BRF-7743",
+        title: "Áo Blouse Lụa Tơ Tằm Họa Tiết Chăm Ninh Thuận",
+        category: "Trang phục & Thời trang",
+        quantity: "3",
+        budget: "8,400,000 VND",
+        deadline: "20/12/2026",
+        status: "quoted",
+        description: "- Chất liệu: Lụa tơ tằm dệt tay 100%.\n- Màu sắc: Đỏ thổ cẩm + viền vàng đồng.\n- Họa tiết: Hoa văn tháp Chăm cách điệu in kỹ thuật số.",
+        createdAt: "13/10/2026"
+      }
+    ];
+
+    // Khởi tạo localStorage nếu rỗng lần đầu
+    if (!localStorage.getItem('craftlink_briefs')) {
+      localStorage.setItem('craftlink_briefs', JSON.stringify(initialSampleOrders));
+    }
+
+    // State hiện tại của Tab lọc
+    let currentTab = 'all';
+
+    // Hàm render badge trạng thái
+    const renderStatusBadge = (status) => {
+      switch (status) {
+        case 'pending':
+          return '<span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold flex items-center gap-1 w-fit"><span class="material-symbols-outlined text-[14px]">schedule</span> Chờ báo giá</span>';
+        case 'quoted':
+          return '<span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-semibold flex items-center gap-1 w-fit"><span class="material-symbols-outlined text-[14px]">request_quote</span> Đã nhận báo giá</span>';
+        case 'producing':
+          return '<span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold flex items-center gap-1 w-fit"><span class="material-symbols-outlined text-[14px]">precision_manufacturing</span> Đang sản xuất</span>';
+        case 'completed':
+          return '<span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold flex items-center gap-1 w-fit"><span class="material-symbols-outlined text-[14px]">check_circle</span> Đã hoàn thành</span>';
+        case 'cancelled':
+          return '<span class="px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs font-semibold flex items-center gap-1 w-fit"><span class="material-symbols-outlined text-[14px]">cancel</span> Đã hủy</span>';
+        default:
+          return '<span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold flex items-center gap-1 w-fit">Không xác định</span>';
+      }
+    };
+
+    // Hàm hiển thị Toast thông báo
+    window.showToast = (msg, isError = false) => {
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toastMessage');
+      const toastTitle = document.getElementById('toastTitle');
+      const toastIcon = document.getElementById('toastIcon');
+
+      toastMessage.innerText = msg;
+      if (isError) {
+        toast.className = toast.className.replace('border-green-500', 'border-red-500');
+        toastTitle.innerText = "Thông báo";
+        toastIcon.innerText = "error";
+        toastIcon.className = "material-symbols-outlined text-red-500";
+      } else {
+        toast.className = toast.className.replace('border-red-500', 'border-green-500');
+        toastTitle.innerText = "Thành công!";
+        toastIcon.innerText = "check_circle";
+        toastIcon.className = "material-symbols-outlined text-green-500";
+      }
+
+      toast.classList.remove('hidden');
+      setTimeout(() => toast.classList.remove('translate-x-full'), 10);
+      setTimeout(() => {
+        toast.classList.add('translate-x-full');
+        setTimeout(() => toast.classList.add('hidden'), 300);
+      }, 3500);
+    };
+
+    // Chuyển Tab lọc
+    window.switchTab = (status) => {
+      currentTab = status;
+
+      // Cập nhật style nút Tab
+      document.querySelectorAll('#statusTabs .tab-btn').forEach(btn => {
+        const btnStatus = btn.getAttribute('data-status');
+        const badge = btn.querySelector('.count-badge');
+
+        if (btnStatus === status) {
+          btn.className = 'tab-btn pb-3 border-b-2 border-primary text-primary font-bold text-sm whitespace-nowrap transition-all flex items-center gap-2 cursor-pointer';
+          if (badge) badge.className = 'count-badge px-2 py-0.5 rounded-full text-xs bg-primary/10 text-primary font-bold';
+        } else {
+          btn.className = 'tab-btn pb-3 border-b-2 border-transparent text-gray-500 hover:text-gray-800 font-medium text-sm whitespace-nowrap transition-all flex items-center gap-2 cursor-pointer';
+          if (badge) badge.className = 'count-badge px-2 py-0.5 rounded-full text-xs bg-gray-100 text-gray-600 font-semibold';
+        }
+      });
+
+      renderOrders();
+    };
+
+    // Cập nhật số đếm trên các Tab
+    const updateTabCounts = (briefs) => {
+      const counts = {
+        all: briefs.length,
+        pending: briefs.filter(b => b.status === 'pending').length,
+        quoted: briefs.filter(b => b.status === 'quoted').length,
+        producing: briefs.filter(b => b.status === 'producing').length,
+        completed: briefs.filter(b => b.status === 'completed').length,
+        cancelled: briefs.filter(b => b.status === 'cancelled').length,
+      };
+
+      document.getElementById('countAll').innerText = counts.all;
+      document.getElementById('countPending').innerText = counts.pending;
+      document.getElementById('countQuoted').innerText = counts.quoted;
+      document.getElementById('countProducing').innerText = counts.producing;
+      document.getElementById('countCompleted').innerText = counts.completed;
+      document.getElementById('countCancelled').innerText = counts.cancelled;
+    };
+
+    // Hàm XÁC NHẬN báo giá -> chuyển sang producing
+    window.acceptQuote = (id) => {
+      let briefs = JSON.parse(localStorage.getItem('craftlink_briefs')) || [];
+      briefs = briefs.map(b => b.id === id ? { ...b, status: 'producing' } : b);
+      localStorage.setItem('craftlink_briefs', JSON.stringify(briefs));
+
+      closeOrderDetail();
+      renderOrders();
+      showToast(`Đã xác nhận báo giá #${id}. Nghệ nhân bắt đầu sản xuất!`);
+    };
+
+    // Hàm HỦY đơn (chuyển status thành 'cancelled')
+    window.cancelOrder = (id) => {
+      let briefs = JSON.parse(localStorage.getItem('craftlink_briefs')) || [];
+      briefs = briefs.map(b => b.id === id ? { ...b, status: 'cancelled' } : b);
+      localStorage.setItem('craftlink_briefs', JSON.stringify(briefs));
+
+      closeOrderDetail();
+      renderOrders();
+      showToast(`Đã chuyển yêu cầu #${id} sang trạng thái Đã hủy.`);
+    };
+
+    // Hàm KHÔI PHỤC đơn đã hủy (chuyển status thành 'pending')
+    window.reactivateOrder = (id) => {
+      let briefs = JSON.parse(localStorage.getItem('craftlink_briefs')) || [];
+      briefs = briefs.map(b => b.id === id ? { ...b, status: 'pending' } : b);
+      localStorage.setItem('craftlink_briefs', JSON.stringify(briefs));
+
+      closeOrderDetail();
+      renderOrders();
+      showToast(`Đã khôi phục yêu cầu #${id} thành công.`);
+    };
+
+    // Hàm XÓA VĨNH VIỄN đơn hàng
+    window.deleteOrderPermanently = (id) => {
+      let briefs = JSON.parse(localStorage.getItem('craftlink_briefs')) || [];
+      briefs = briefs.filter(b => b.id !== id);
+      localStorage.setItem('craftlink_briefs', JSON.stringify(briefs));
+
+      closeOrderDetail();
+      renderOrders();
+      showToast(`Đã xóa vĩnh viễn yêu cầu #${id}.`);
+    };
+
+    // Hàm mở modal AI
+    window.openAiSummary = () => {
+      document.getElementById('aiSummaryModal').classList.remove('hidden');
+    };
+
+    // Mở modal Chi tiết Đơn hàng
+    window.openOrderDetail = (id) => {
+      const briefs = JSON.parse(localStorage.getItem('craftlink_briefs')) || [];
+      const brief = briefs.find(b => b.id === id);
+      if (!brief) return;
+
+      document.getElementById('detailId').innerText = brief.id;
+      document.getElementById('detailTitle').innerText = brief.title;
+      document.getElementById('detailStatusBadge').innerHTML = renderStatusBadge(brief.status);
+      document.getElementById('detailCategory').innerText = brief.category || 'Thổ cẩm & Dệt may';
+      document.getElementById('detailQuantity').innerText = (brief.quantity || '1') + ' SP';
+      document.getElementById('detailBudget').innerText = brief.budget || 'Thỏa thuận';
+      document.getElementById('detailDeadline').innerText = brief.deadline || 'Chưa định';
+      document.getElementById('detailDescription').innerText = brief.description || 'Không có mô tả chi tiết.';
+
+      // Render timeline theo trạng thái
+      const timelineEl = document.getElementById('timelineContent');
+      let steps = [
+        { label: 'Gửi yêu cầu (Brief)', time: brief.createdAt || '10/10/2026', done: true },
+        { label: 'Tiếp nhận & Báo giá', time: ['quoted','producing','completed'].includes(brief.status) ? 'Đã báo giá' : 'Đang xử lý...', done: ['quoted','producing','completed'].includes(brief.status) },
+        { label: 'Xác nhận báo giá', time: ['producing','completed'].includes(brief.status) ? 'Đã xác nhận' : (brief.status === 'quoted' ? 'Chờ xác nhận' : 'Chưa có báo giá'), done: ['producing','completed'].includes(brief.status) },
+        { label: 'Chế tác thủ công', time: brief.status === 'producing' ? 'Đang tiến hành' : (brief.status === 'completed' ? 'Hoàn tất' : 'Chưa bắt đầu'), done: brief.status === 'completed' },
+        { label: 'Bàn giao sản phẩm', time: brief.status === 'completed' ? brief.deadline : 'Chờ hoàn thành', done: brief.status === 'completed' }
+      ];
+
+      timelineEl.innerHTML = steps.map(s => `
+        <div class="flex items-center gap-3 text-xs">
+          <span class="w-5 h-5 rounded-full flex items-center justify-center font-bold ${s.done ? 'bg-green-100 text-green-700' : 'bg-gray-200 text-gray-500'}">
+            ${s.done ? '✓' : '•'}
+          </span>
+          <span class="font-medium ${s.done ? 'text-gray-900 font-semibold' : 'text-gray-500'}">${s.label}</span>
+          <span class="text-gray-400 ml-auto">${s.time}</span>
+        </div>
+      `).join('');
+
+      // Render các nút hành động ở Footer
+      const footerEl = document.getElementById('detailFooter');
+      let buttonsHtml = '';
+
+      if (brief.status === 'pending') {
+        buttonsHtml = `
+          <div class="flex items-center gap-2">
+            <button onclick="cancelOrder('${brief.id}')" class="px-4 py-2 border border-red-200 text-red-600 hover:bg-red-50 rounded-lg font-medium transition-colors flex items-center gap-1.5 cursor-pointer">
+              <span class="material-symbols-outlined text-[18px]">cancel</span> Hủy yêu cầu này
+            </button>
+            <a href="buyer-custom-brief.html?edit=${brief.id}" class="px-4 py-2 bg-blue-600 text-white hover:bg-blue-700 rounded-lg font-medium transition-colors flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[18px]">edit</span> Chỉnh sửa Brief
+            </a>
+          </div>
+        `;
+      } else if (brief.status === 'quoted') {
+        buttonsHtml = `
+          <div class="flex items-center gap-2">
+            <button onclick="cancelOrder('${brief.id}')" class="px-4 py-2 border border-red-200 text-red-600 hover:bg-red-50 rounded-lg font-medium transition-colors flex items-center gap-1.5 cursor-pointer">
+              <span class="material-symbols-outlined text-[18px]">cancel</span> Từ chối báo giá
+            </button>
+            <button onclick="acceptQuote('${brief.id}')" class="px-4 py-2 bg-purple-600 text-white hover:bg-purple-700 rounded-lg font-medium transition-colors flex items-center gap-1.5 cursor-pointer">
+              <span class="material-symbols-outlined text-[18px]">check_circle</span> Xác nhận & Bắt đầu sản xuất
+            </button>
+          </div>
+        `;
+      } else if (brief.status === 'cancelled') {
+        buttonsHtml = `
+          <div class="flex items-center gap-2">
+            <button onclick="deleteOrderPermanently('${brief.id}')" class="px-4 py-2 text-red-600 hover:bg-red-50 border border-red-200 rounded-lg font-medium transition-colors flex items-center gap-1.5 cursor-pointer">
+              <span class="material-symbols-outlined text-[18px]">delete_forever</span> Xóa vĩnh viễn
+            </button>
+            <button onclick="reactivateOrder('${brief.id}')" class="px-4 py-2 bg-green-600 text-white hover:bg-green-700 rounded-lg font-medium transition-colors flex items-center gap-1.5 cursor-pointer">
+              <span class="material-symbols-outlined text-[18px]">restore</span> Khôi phục yêu cầu
+            </button>
+          </div>
+        `;
+      } else if (brief.status === 'producing') {
+        buttonsHtml = `
+          <button onclick="openAiSummary()" class="px-4 py-2 bg-blue-50 text-blue-700 hover:bg-blue-100 rounded-lg font-medium transition-colors flex items-center gap-1.5 cursor-pointer">
+            <span class="material-symbols-outlined text-[18px]">auto_awesome</span> Xem AI Tóm tắt tiến độ
+          </button>
+        `;
+      } else {
+        buttonsHtml = `
+          <a href="buyer-custom-brief.html?product=${brief.id}" class="px-4 py-2 bg-secondary text-white hover:bg-secondary/90 rounded-lg font-medium transition-colors flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[18px]">repeat</span> Đặt lại mẫu tương tự
+          </a>
+        `;
+      }
+
+      buttonsHtml += `
+        <button onclick="closeOrderDetail()" class="px-5 py-2 bg-gray-100 text-gray-700 hover:bg-gray-200 rounded-lg font-medium transition-colors ml-auto cursor-pointer">
+          Đóng
+        </button>
+      `;
+
+      footerEl.innerHTML = buttonsHtml;
+      document.getElementById('orderDetailModal').classList.remove('hidden');
+    };
+
+    // Đóng modal Chi tiết
+    window.closeOrderDetail = () => {
+      document.getElementById('orderDetailModal').classList.add('hidden');
+    };
+
+    // Đóng modal bằng phím ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeOrderDetail();
+        document.getElementById('aiSummaryModal').classList.add('hidden');
+      }
+    });
+
+    // Render danh sách đơn hàng
+    const renderOrders = () => {
+      const emptyState = document.getElementById('emptyState');
+      const ordersList = document.getElementById('ordersList');
+
+      const allBriefs = JSON.parse(localStorage.getItem('craftlink_briefs')) || [];
+      updateTabCounts(allBriefs);
+
+      // Lọc theo Tab đang chọn
+      let filteredBriefs = allBriefs;
+      if (currentTab !== 'all') {
+        filteredBriefs = allBriefs.filter(b => b.status === currentTab);
+      }
+
+      // Xử lý Empty State
+      if (filteredBriefs.length === 0) {
+        emptyState.classList.remove('hidden');
+        emptyState.classList.add('flex');
+        ordersList.innerHTML = '';
+
+        const emptyTitle = document.getElementById('emptyTitle');
+        const emptyDesc = document.getElementById('emptyDesc');
+        const emptyActions = document.getElementById('emptyActions');
+
+        if (allBriefs.length === 0) {
+          emptyTitle.innerText = "Bạn chưa có yêu cầu nào";
+          emptyDesc.innerText = "Hãy mô tả ý tưởng của bạn để các nghệ nhân của CraftLink biến nó thành hiện thực nhé.";
+          emptyActions.innerHTML = `
+            <a href="buyer-custom-brief.html"
+              class="px-6 py-2.5 bg-secondary text-white rounded-lg font-medium hover:bg-secondary/90 transition-colors shadow-sm inline-flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px]">add_circle</span>
+              Tạo Brief Ngay
+            </a>
+          `;
+        } else {
+          emptyTitle.innerText = "Không có đơn hàng nào";
+          emptyDesc.innerText = "Không tìm thấy yêu cầu nào ở trạng thái này.";
+          emptyActions.innerHTML = `
+            <button onclick="switchTab('all')"
+              class="px-6 py-2.5 bg-gray-900 text-white rounded-lg font-medium hover:bg-gray-800 transition-colors shadow-sm inline-flex items-center gap-2 cursor-pointer">
+              <span class="material-symbols-outlined text-[18px]">list_alt</span>
+              Xem tất cả yêu cầu (${allBriefs.length})
+            </button>
+          `;
+        }
+      } else {
+        emptyState.classList.add('hidden');
+        emptyState.classList.remove('flex');
+
+        // Render từng Card đơn hàng
+        ordersList.innerHTML = filteredBriefs.map(brief => `
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-all flex flex-col h-full group">
+            <div class="flex items-start justify-between mb-4">
+              <div>
+                <span class="text-xs font-bold text-gray-400 tracking-wider">${brief.id}</span>
+                <h3 class="text-lg font-bold text-gray-900 mt-1 line-clamp-2">${brief.title}</h3>
+              </div>
+            </div>
+            
+            ${renderStatusBadge(brief.status)}
+
+            <div class="mt-5 space-y-2 text-sm flex-1">
+              <div class="flex justify-between border-b border-gray-50 pb-2">
+                <span class="text-gray-500">Thể loại:</span>
+                <span class="font-medium text-gray-900">${brief.category || 'Thổ cẩm & Dệt may'}</span>
+              </div>
+              <div class="flex justify-between border-b border-gray-50 pb-2">
+                <span class="text-gray-500">Ngân sách:</span>
+                <span class="font-medium text-secondary font-semibold">${brief.budget}</span>
+              </div>
+              <div class="flex justify-between border-b border-gray-50 pb-2">
+                <span class="text-gray-500">Số lượng:</span>
+                <span class="font-medium text-gray-900">${brief.quantity} SP</span>
+              </div>
+              <div class="flex justify-between pb-2">
+                <span class="text-gray-500">Hạn chót:</span>
+                <span class="font-medium text-gray-900">${brief.deadline}</span>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-3">
+              ${brief.status === 'producing' ?
+                `<button onclick="openAiSummary()" class="text-xs font-semibold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-lg hover:bg-blue-100 transition-colors flex items-center gap-1 cursor-pointer">
+                  <span class="material-symbols-outlined text-[16px]">auto_awesome</span> Tóm tắt AI
+                </button>` : '<div></div>'
+              }
+              
+              <div class="flex items-center gap-2 ml-auto">
+                ${brief.status === 'pending' ? `
+                  <a href="buyer-custom-brief.html?edit=${brief.id}" class="p-2 text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors" title="Chỉnh sửa yêu cầu">
+                    <span class="material-symbols-outlined text-[20px]">edit</span>
+                  </a>
+                  <button onclick="cancelOrder('${brief.id}')" class="p-2 text-amber-600 bg-amber-50 hover:bg-amber-100 rounded-lg transition-colors cursor-pointer" title="Hủy yêu cầu">
+                    <span class="material-symbols-outlined text-[20px]">block</span>
+                  </button>
+                  <button onclick="deleteOrderPermanently('${brief.id}')" class="p-2 text-red-500 bg-red-50 hover:bg-red-100 rounded-lg transition-colors cursor-pointer" title="Xóa vĩnh viễn">
+                    <span class="material-symbols-outlined text-[20px]">delete</span>
+                  </button>
+                ` : ''}
+
+                ${brief.status === 'cancelled' ? `
+                  <button onclick="reactivateOrder('${brief.id}')" class="p-2 text-green-600 bg-green-50 hover:bg-green-100 rounded-lg transition-colors cursor-pointer" title="Khôi phục yêu cầu">
+                    <span class="material-symbols-outlined text-[20px]">restore</span>
+                  </button>
+                  <button onclick="deleteOrderPermanently('${brief.id}')" class="p-2 text-red-500 bg-red-50 hover:bg-red-100 rounded-lg transition-colors cursor-pointer" title="Xóa vĩnh viễn">
+                    <span class="material-symbols-outlined text-[20px]">delete_forever</span>
+                  </button>
+                ` : ''}
+
+                <button onclick="openOrderDetail('${brief.id}')" class="px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors flex items-center gap-1.5 cursor-pointer">
+                  <span class="material-symbols-outlined text-[16px]">visibility</span>
+                  Chi tiết
+                </button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+    };
+
+    // Chạy khi load trang
+    document.addEventListener('DOMContentLoaded', renderOrders);
+  </script>
+</body>
+
+</html>
