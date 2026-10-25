@@ -42,6 +42,12 @@
         </div>
 
         <div class="flex items-center gap-2">
+          <!-- Nút chuyển đổi Giao diện Sáng / Tối (Dark / Light Mode) -->
+          <button id="theme-toggle-btn" type="button" onclick="CraftlinkTheme.toggle()"
+            class="theme-toggle-btn p-2 rounded-xl border border-surface-container-highest text-primary font-semibold text-xs sm:text-sm hover:bg-surface-container transition-colors flex items-center justify-center shadow-2xs cursor-pointer"
+            title="Chuyển sang Chế độ Tối" aria-label="Chuyển chế độ Sáng / Tối">
+            <span class="material-symbols-outlined theme-toggle-icon text-[20px]">dark_mode</span>
+          </button>
           <button id="btn-refresh-briefs" class="px-3.5 py-2 rounded-xl border border-surface-container-highest text-primary font-semibold text-xs sm:text-sm hover:bg-surface-container transition-colors flex items-center gap-1.5 shadow-2xs">
             <span class="material-symbols-outlined text-[18px]">refresh</span>
             <span>Làm mới</span>
@@ -649,9 +655,19 @@
         SellerApp.showToast('Đã làm mới danh sách yêu cầu tùy biến', 'success');
       });
 
+      // Xuất renderBriefs ra toàn cục để realtime-sync có thể gọi tự động khi Tab Buyer tạo brief
+      window.renderBriefs = renderBriefs;
+
       // Khởi chạy render lần đầu
       renderBriefs();
     });
   </script>
+
+  <!-- Mở rộng 3: Quản lý Chế độ Sáng / Tối toàn hệ thống -->
+  <script src="../assets/js/theme-switcher.js"></script>
+  <!-- Mở rộng 1: Đồng bộ dữ liệu liên thông Real-time giữa các Role -->
+  <script src="../assets/js/realtime-sync.js"></script>
+  <!-- Widget chuyển đổi vai trò (Buyer / Maker / Admin / Moderator) -->
+  <script src="../assets/js/role-switcher.js"></script>
 </body>
 </html>

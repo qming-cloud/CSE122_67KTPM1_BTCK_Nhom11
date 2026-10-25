@@ -710,17 +710,27 @@ window.SellerData = {
       buyerBriefs.forEach(b => {
         const id = b.id || ('BR-' + (b.title ? b.title.slice(0, 3).toUpperCase() : 'BUY') + '-01');
         if (!briefs.some(item => item.id === id || (b.title && item.title === b.title))) {
+          const budgetNum = typeof b.budget === 'number' ? b.budget : (parseInt(String(b.budget || '').replace(/\D/g, ''), 10) || 1850000);
           briefs.unshift({
             id: id,
-            customerName: b.customerName || b.buyerName || 'Khách hàng Buyer',
-            customerAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80',
+            customerName: b.customerName || b.buyerName || 'Khách hàng (Tùy biến)',
+            buyerName: b.buyerName || b.customerName || 'Khách hàng (Tùy biến)',
+            customerAvatar: b.buyerAvatar || b.customerAvatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80',
+            buyerAvatar: b.buyerAvatar || b.customerAvatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80',
+            buyerPhone: b.buyerPhone || '0912 345 678',
+            buyerEmail: b.buyerEmail || 'khachhang@craftlink.vn',
             title: b.title || b.productName || 'Yêu cầu đặt làm riêng theo yêu cầu',
-            category: b.category || 'Dệt may thổ cẩm',
-            budget: b.budget || '1.500.000 - 3.500.000 đ',
+            category: b.category || 'Thổ cẩm & Dệt may',
+            budget: budgetNum,
             deadline: b.deadline || '25 ngày tới',
-            status: 'pending',
-            statusText: 'Mới gửi',
+            status: b.status || 'pending',
+            statusText: b.statusText || 'Mới gửi',
+            dimensions: b.dimensions || 'Theo tiêu chuẩn nghệ nhân',
+            materialRequired: b.materialRequired || b.material || 'Nguyên liệu tự nhiên bản địa',
             description: b.description || b.requirements || b.aiSummary || 'Khách hàng gửi yêu cầu tùy biến chi tiết từ AI Creative Brief Builder.',
+            referenceImages: b.referenceImages && b.referenceImages.length ? b.referenceImages : [
+              'https://images.unsplash.com/photo-1606744888344-498238f0173d?auto=format&fit=crop&w=600&q=80'
+            ],
             createdAt: b.createdAt || 'Vừa xong'
           });
         }

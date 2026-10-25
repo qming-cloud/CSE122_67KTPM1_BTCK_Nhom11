@@ -70,6 +70,12 @@
             <span
               class="absolute top-0 right-0 w-4 h-4 rounded-full bg-[#E5484D] text-white text-[10px] font-bold flex items-center justify-center border-2 border-white shadow-sm">3</span>
           </a>
+          <!-- Nút chuyển đổi Giao diện Sáng / Tối (Dark / Light Mode) -->
+          <button id="theme-toggle-btn" type="button" onclick="CraftlinkTheme.toggle()"
+            class="theme-toggle-btn relative p-2 text-gray-600 hover:text-primary hover:bg-primary/10 rounded-full transition-all cursor-pointer flex items-center justify-center"
+            title="Chuyển sang Chế độ Tối" aria-label="Chuyển chế độ Sáng / Tối">
+            <span class="material-symbols-outlined theme-toggle-icon text-[22px]">dark_mode</span>
+          </button>
           <!-- Account Dropdown -->
           <div class="relative group">
             <a href="login.html"
@@ -1164,6 +1170,8 @@
     </div>
   <!-- Widget chuyển đổi vai trò (Buyer / Maker / Admin / Moderator) -->
   <script src="../assets/js/role-switcher.js"></script>
+  <!-- Đồng bộ Theme Sáng / Tối toàn hệ thống (Mở rộng 3) -->
+  <script src="../assets/js/theme-switcher.js"></script>
 </body>
 
 </html>

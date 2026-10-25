@@ -166,11 +166,11 @@
 
           <!-- Footer Switcher -->
           <div class="p-3 bg-gray-50 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
-            <span class="flex items-center gap-1">
-              <span class="material-symbols-outlined text-[14px] text-green-600">check_circle</span>
-              Đồng bộ dữ liệu LocalStorage
-            </span>
-            <a href="${prefix}pages/login.html" class="text-primary font-semibold hover:underline">Trang Đăng nhập</a>
+            <button type="button" onclick="window.CraftlinkTheme && window.CraftlinkTheme.toggle()" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white border border-gray-200 text-gray-700 font-semibold hover:bg-gray-100 transition-colors cursor-pointer">
+              <span class="material-symbols-outlined text-[16px] theme-toggle-icon">dark_mode</span>
+              <span class="theme-toggle-label">Giao diện Sáng / Tối</span>
+            </button>
+            <a href="${prefix}pages/login.html" class="text-primary font-semibold hover:underline">Đăng nhập</a>
           </div>
         </div>
       </div>
