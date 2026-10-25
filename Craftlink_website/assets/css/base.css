@@ -1,0 +1,161 @@
+/* ==========================================================================
+   CRAFT LINK - BASE & RESPONSIVE FOUNDATION
+   Chống tràn ngang 320px, tối ưu zoom 200%, drawer & tables responsive
+   ========================================================================== */
+
+/* 1. Global Box Sizing & Fluid Resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  scroll-behavior: smooth;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* 2. Fluid Media - Không bao giờ tràn container */
+img, svg, video, canvas, audio, iframe, embed, object {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 3. Phóng to 200% (Ctrl + +) không làm mất nội dung */
+@media (min-resolution: 2dppx), (max-width: 768px) {
+  body {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+}
+
+/* 4. Table Responsive & Chuyển sang Card trên màn hình nhỏ */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 640px) {
+  .table-cards-mobile thead {
+    display: none;
+  }
+  .table-cards-mobile tbody,
+  .table-cards-mobile tr,
+  .table-cards-mobile td {
+    display: block;
+    width: 100%;
+  }
+  .table-cards-mobile tr {
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color, #E5E0D8);
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: #FFFFFF;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+  .table-cards-mobile td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed #E5E0D8;
+    text-align: right;
+  }
+  .table-cards-mobile td:last-child {
+    border-bottom: none;
+  }
+  .table-cards-mobile td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    text-align: left;
+    color: var(--text-muted, #5A6B61);
+    font-size: 0.85rem;
+  }
+}
+
+/* 5. Mobile Drawer & Backdrop */
+.mobile-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(21, 37, 29, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mobile-drawer-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(340px, 86vw);
+  background: #FAF9F4;
+  z-index: 999;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  box-shadow: -8px 0 30px rgba(0, 0, 0, 0.15);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-drawer.active {
+  transform: translateX(0);
+}
+
+/* Ẩn scrollbar khi đang mở menu mobile */
+body.drawer-open {
+  overflow: hidden !important;
+}
+
+/* Scrollbar tùy chỉnh thanh lịch cho danh sách tabs */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ==========================================================================
+   MODAL & POPUP OVERLAY FIX
+   Đảm bảo các modal có class .modal-hidden luôn ẩn hoàn toàn,
+   không bị ghi đè bởi Tailwind display utilities (.flex, .grid, .block).
+   LƯU Ý: Tuyệt đối KHÔNG gán !important cho .hidden vì sẽ phá vỡ các class
+   responsive của Tailwind như `hidden lg:flex`, `hidden sm:block`.
+   ========================================================================== */
+.modal-hidden {
+  display: none !important;
+}
+
+

@@ -33,6 +33,13 @@ window.SellerApp = (function () {
     const briefs = window.SellerData && window.SellerData.getBriefs ? window.SellerData.getBriefs() : [];
     const pendingBriefsCount = briefs.filter(b => b.status === 'pending' || b.status === 'revision_requested').length;
 
+    // Tự động nạp role-switcher.js cho toàn bộ giao diện Seller/Maker
+    if (!document.querySelector('script[src*="role-switcher.js"]')) {
+      const roleScript = document.createElement('script');
+      roleScript.src = '../assets/js/role-switcher.js';
+      document.head.appendChild(roleScript);
+    }
+
     // 1. Tạo Toast Container nếu chưa có
     if (!document.getElementById('seller-toast-container')) {
       const toastContainer = document.createElement('div');
@@ -138,6 +145,14 @@ window.SellerApp = (function () {
               </button>
             </div>
 
+            <!-- Nút Switch Personal (Đổi vai trò) chuẩn Craft Link -->
+            <button type="button" onclick="document.getElementById('role-switcher-toggle')?.click()"
+              class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/10 hover:bg-amber-500/20 text-amber-900 border border-amber-300/80 transition-all text-xs font-semibold cursor-pointer group shadow-2xs"
+              title="Chuyển đổi vai trò">
+              <span class="material-symbols-outlined text-[17px] text-amber-600 group-hover:rotate-180 transition-transform duration-500">sync_alt</span>
+              <span>Switch Persona</span>
+            </button>
+
             <!-- Avatar & Tài khoản xưởng -->
             <div class="flex items-center gap-2 pl-2 sm:border-l border-surface-container-high">
               <a href="shop-profile.html" class="flex items-center gap-2.5 group">
@@ -147,7 +162,7 @@ window.SellerApp = (function () {
                   <span class="text-[11px] text-on-surface-variant">Chủ xưởng thủ công</span>
                 </div>
               </a>
-              <a href="login.html" title="Đăng xuất" class="p-1.5 rounded-lg text-outline hover:text-error hover:bg-error-container/30 transition-colors" aria-label="Đăng xuất">
+              <a href="../pages/login.html" title="Đăng xuất" class="p-1.5 rounded-lg text-outline hover:text-error hover:bg-error-container/30 transition-colors" aria-label="Đăng xuất">
                 <span class="material-symbols-outlined text-[20px]">logout</span>
               </a>
             </div>
@@ -218,7 +233,7 @@ window.SellerApp = (function () {
     }
   }
 
-  // Thiết lập sự kiện Drawer Mobile (Hỗ trợ phím Esc & Backdrop)
+  // Thiết lập sự kiện Drawer Mobile
   function setupMobileDrawer() {
     const btnOpen = document.getElementById('btn-mobile-menu');
     const drawer = document.getElementById('seller-mobile-drawer');
@@ -246,13 +261,6 @@ window.SellerApp = (function () {
     if (btnClose) btnClose.addEventListener('click', closeDrawer);
     drawer.addEventListener('click', (e) => {
       if (e.target === drawer) closeDrawer();
-    });
-
-    // A11y: Thoát Drawer bằng phím Escape
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !drawer.classList.contains('hidden')) {
-        closeDrawer();
-      }
     });
   }
 
@@ -291,7 +299,7 @@ window.SellerApp = (function () {
     }, 3500);
   }
 
-  // Hộp thoại xác nhận hành động (Hỗ trợ A11y: Esc, Backdrop click, ARIA)
+  // Hộp thoại xác nhận hành động (Xóa sản phẩm, hủy đơn, v.v.)
   function confirmAction(options = {}) {
     const {
       title = 'Xác nhận hành động',
@@ -307,26 +315,23 @@ window.SellerApp = (function () {
       modal = document.createElement('div');
       modal.id = 'seller-confirm-modal';
       modal.className = 'seller-modal-backdrop';
-      modal.setAttribute('role', 'dialog');
-      modal.setAttribute('aria-modal', 'true');
-      modal.setAttribute('aria-labelledby', 'modal-confirm-title');
       document.body.appendChild(modal);
     }
 
     modal.innerHTML = `
-      <div class="seller-modal-box p-6" role="document">
+      <div class="seller-modal-box p-6">
         <div class="flex items-center gap-3 mb-4">
           <div class="w-10 h-10 rounded-full ${isDanger ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-700'} flex items-center justify-center shrink-0">
             <span class="material-symbols-outlined text-[22px]">${isDanger ? 'warning' : 'help'}</span>
           </div>
-          <h3 id="modal-confirm-title" class="font-serif-craft font-bold text-lg text-primary">${title}</h3>
+          <h3 class="font-serif-craft font-bold text-lg text-primary">${title}</h3>
         </div>
         <p class="text-body-md text-on-surface-variant mb-6 leading-relaxed">${message}</p>
         <div class="flex items-center justify-end gap-3">
-          <button type="button" id="modal-btn-cancel" class="px-4 py-2.5 rounded-xl border border-surface-container-highest text-on-surface font-semibold text-sm hover:bg-surface-container transition-colors focus-visible:ring-2 focus-visible:ring-secondary">
+          <button id="modal-btn-cancel" class="px-4 py-2.5 rounded-xl border border-surface-container-highest text-on-surface font-semibold text-sm hover:bg-surface-container transition-colors">
             ${cancelText}
           </button>
-          <button type="button" id="modal-btn-confirm" class="px-5 py-2.5 rounded-xl ${isDanger ? 'bg-error hover:bg-error/90 text-on-error' : 'bg-primary hover:bg-primary/90 text-on-primary'} font-semibold text-sm shadow-sm transition-all focus-visible:ring-2 focus-visible:ring-offset-2">
+          <button id="modal-btn-confirm" class="px-5 py-2.5 rounded-xl ${isDanger ? 'bg-error hover:bg-error/90 text-on-error' : 'bg-primary hover:bg-primary/90 text-on-primary'} font-semibold text-sm shadow-sm transition-all">
             ${confirmText}
           </button>
         </div>
@@ -338,26 +343,15 @@ window.SellerApp = (function () {
     const btnConfirm = modal.querySelector('#modal-btn-confirm');
     const btnCancel = modal.querySelector('#modal-btn-cancel');
 
-    const handleKeyEsc = (e) => {
-      if (e.key === 'Escape') closeModal();
-    };
-
     const closeModal = () => {
       modal.classList.remove('active');
-      document.removeEventListener('keydown', handleKeyEsc);
     };
 
     btnCancel.onclick = closeModal;
-    modal.onclick = (e) => {
-      if (e.target === modal) closeModal();
-    };
     btnConfirm.onclick = () => {
       closeModal();
       onConfirm();
     };
-
-    document.addEventListener('keydown', handleKeyEsc);
-    setTimeout(() => btnConfirm.focus(), 50);
   }
 
   // Chuyển đổi trạng thái đơn hàng sang badge HTML

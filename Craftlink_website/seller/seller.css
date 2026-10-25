@@ -245,33 +245,6 @@
   border: 1px solid #fecaca;
 }
 
-/* --- A11Y FOCUS VISIBLE ENHANCEMENT --- */
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-  outline: 2px solid #9a4526 !important;
-  outline-offset: 2px !important;
-  box-shadow: 0 0 0 3px rgba(154, 69, 38, 0.25) !important;
-}
-
-/* --- SKELETON PLACEHOLDER LOADING --- */
-.skeleton-row {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem;
-}
-
-.skeleton-cell {
-  height: 1.25rem;
-  background: linear-gradient(90deg, #efeee9 25%, #f7f6f2 50%, #efeee9 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-  border-radius: 0.5rem;
-}
-
 /* --- Print Stylesheet cho In Phiếu Giao Hàng --- */
 @media print {
   body {

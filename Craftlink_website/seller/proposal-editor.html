@@ -398,6 +398,8 @@
         pageTitle: 'Soạn Đề Xuất & Báo Giá (Proposal)'
       });
 
+      const safe = (str) => typeof escapeHtml === 'function' ? escapeHtml(str) : String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+
       function formatMoney(amount) {
         return SellerApp.formatVND ? SellerApp.formatVND(amount) : new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
       }
@@ -451,7 +453,7 @@
         const briefs = window.SellerData.getBriefs();
         selectBrief.innerHTML = briefs.map(b => `
           <option value="${b.id}" ${b.id === selectedBriefId ? 'selected' : ''}>
-            #${b.id} - ${b.buyerName}
+            #${b.id} - ${safe(b.buyerName)}
           </option>
         `).join('');
       }
@@ -465,13 +467,13 @@
 
         briefSummaryBox.innerHTML = `
           <div class="space-y-3">
-            <h4 class="font-serif-craft text-sm font-bold text-primary">${brief.title}</h4>
+            <h4 class="font-serif-craft text-sm font-bold text-primary">${safe(brief.title)}</h4>
             
             <div class="flex items-center gap-2.5 p-2.5 rounded-xl bg-surface-container-low">
-              <img src="${brief.buyerAvatar}" alt="${brief.buyerName}" class="w-8 h-8 rounded-full object-cover" />
+              <img src="${brief.buyerAvatar}" alt="${safe(brief.buyerName)}" class="w-8 h-8 rounded-full object-cover" />
               <div>
-                <strong class="text-primary block font-bold">${brief.buyerName}</strong>
-                <span class="text-[11px] text-on-surface-variant">${brief.buyerPhone}</span>
+                <strong class="text-primary block font-bold">${safe(brief.buyerName)}</strong>
+                <span class="text-[11px] text-on-surface-variant">${safe(brief.buyerPhone)}</span>
               </div>
             </div>
 
@@ -482,17 +484,17 @@
               </div>
               <div class="flex justify-between">
                 <span class="text-on-surface-variant">Hạn chót cần hàng:</span>
-                <strong class="text-primary font-bold">${brief.deadline}</strong>
+                <strong class="text-primary font-bold">${safe(brief.deadline)}</strong>
               </div>
               <div class="flex justify-between">
                 <span class="text-on-surface-variant">Kích thước:</span>
-                <strong class="text-primary font-bold">${brief.dimensions || 'Tiêu chuẩn'}</strong>
+                <strong class="text-primary font-bold">${safe(brief.dimensions || 'Tiêu chuẩn')}</strong>
               </div>
             </div>
 
             <div class="pt-2 border-t border-surface-container">
               <span class="text-on-surface-variant block text-[11px] font-semibold mb-1">Chất liệu yêu cầu:</span>
-              <p class="text-primary bg-surface-container-low p-2 rounded-lg text-[11px]">${brief.materialRequired || 'Nguyên liệu tự nhiên'}</p>
+              <p class="text-primary bg-surface-container-low p-2 rounded-lg text-[11px]">${safe(brief.materialRequired || 'Nguyên liệu tự nhiên')}</p>
             </div>
 
             ${brief.referenceImages && brief.referenceImages.length > 0 ? `
@@ -689,13 +691,13 @@
 
           // Render checklist items
           aiChecklistItems.innerHTML = structuredItems.map(item => `
-            <div class="p-3 rounded-xl bg-purple-50/60 border border-purple-200/60 flex items-start gap-3 ai-item-row">
+            <div class="p-3 rounded-xl bg-purple-50/60 border border-purple-200/60 flex items-start gap-3">
               <span class="material-symbols-outlined text-purple-700 text-[18px] shrink-0 mt-0.5">${item.icon}</span>
               <div class="flex-1">
-                <span class="font-bold text-purple-950 block text-xs uppercase tracking-wide ai-item-type">${item.type}</span>
-                <p class="ai-item-desc text-purple-900 text-xs mt-0.5 leading-relaxed">${item.desc}</p>
+                <span class="font-bold text-purple-950 block text-xs uppercase tracking-wide">${safe(item.type)}</span>
+                <p class="text-purple-900 text-xs mt-0.5 leading-relaxed">${safe(item.desc)}</p>
               </div>
-              <input type="checkbox" checked aria-label="Chọn mục này" class="ai-item-checkbox w-4 h-4 rounded text-purple-700 border-purple-300 focus:ring-purple-600 mt-1 cursor-pointer" />
+              <input type="checkbox" checked class="w-4 h-4 rounded text-purple-700 border-purple-300 focus:ring-purple-600 mt-1 cursor-pointer" />
             </div>
           `).join('');
 
@@ -719,52 +721,11 @@
         SellerApp.showToast('Bạn có thể nhập phương án kỹ thuật thủ công vào ô bên dưới', 'info');
       });
 
-      // BƯỚC 5: NGƯỜI DÙNG CHỈNH SỬA CÁC ĐẦU VIỆC DO AI GỢI Ý (User Control)
-      const btnEditAi = document.getElementById('btn-edit-ai-checklist');
-      let isEditingChecklist = false;
-
-      btnEditAi.addEventListener('click', () => {
-        isEditingChecklist = !isEditingChecklist;
-        const descs = aiChecklistItems.querySelectorAll('.ai-item-desc');
-        
-        if (isEditingChecklist) {
-          btnEditAi.textContent = 'Hoàn tất sửa đổi';
-          btnEditAi.className = 'px-3.5 py-2 rounded-xl bg-purple-700 text-white font-semibold text-xs shadow-xs';
-          descs.forEach(p => {
-            p.contentEditable = "true";
-            p.classList.add('bg-white', 'p-1.5', 'border', 'border-purple-300', 'rounded-lg', 'outline-none', 'ring-1', 'ring-purple-500');
-          });
-          SellerApp.showToast('Bạn có thể nhấp trực tiếp vào từng dòng để chỉnh sửa nội dung chi tiết!', 'info');
-        } else {
-          btnEditAi.textContent = 'Sửa đổi các mục';
-          btnEditAi.className = 'px-3.5 py-2 rounded-xl border border-purple-300 text-purple-900 font-semibold text-xs hover:bg-purple-100 transition-colors';
-          descs.forEach(p => {
-            p.contentEditable = "false";
-            p.classList.remove('bg-white', 'p-1.5', 'border', 'border-purple-300', 'rounded-lg', 'outline-none', 'ring-1', 'ring-purple-500');
-          });
-          SellerApp.showToast('Đã lưu các điều chỉnh của bạn vào checklist!', 'success');
-        }
-      });
-
       // BƯỚC 5: NGƯỜI DÙNG CHẤP NHẬN GỢI Ý AI
       btnAcceptAi.addEventListener('click', () => {
-        // Tự động thu thập các mục đã được chọn (checked)
-        const rows = aiChecklistItems.querySelectorAll('.ai-item-row');
-        const selectedChanges = [];
-
-        rows.forEach(row => {
-          const chk = row.querySelector('.ai-item-checkbox');
-          if (!chk || chk.checked) {
-            const type = row.querySelector('.ai-item-type') ? row.querySelector('.ai-item-type').textContent.trim() : '';
-            const desc = row.querySelector('.ai-item-desc') ? row.querySelector('.ai-item-desc').textContent.trim() : '';
-            selectedChanges.push(`- 🪡 ${type}: ${desc}`);
-          }
-        });
-
+        // Tự động điền checklist vào ô Phương án kỹ thuật
         const currentSolution = propSolution.value;
-        const aiAppend = selectedChanges.length > 0 
-          ? `\n\n[CẬP NHẬT THEO AI REVISION SUMMARIZER]:\n` + selectedChanges.join('\n')
-          : `\n\n[CẬP NHẬT THEO AI REVISION SUMMARIZER]:\n- 🎨 Màu sắc: Nhuộm chàm thêm 2 nước tạo độ trầm xanh đen sâu lắng.\n- 🪡 Hoa văn: Vẽ sáp ong họa tiết móc câu đôi cổ truyền thay cho răng bừa.\n- 📐 Kích thước: Điều chỉnh chiều dài thân áo 76cm theo form dáng riêng.\n- ⏱️ Bàn giao: Đẩy nhanh hoàn thành trước 02/11/2026.`;
+        const aiAppend = `\n\n[CẬP NHẬT THEO AI REVISION SUMMARIZER]:\n- 🎨 Màu sắc: Nhuộm chàm thêm 2 nước tạo độ trầm xanh đen sâu lắng.\n- 🪡 Hoa văn: Vẽ sáp ong họa tiết móc câu đôi cổ truyền thay cho răng bừa.\n- 📐 Kích thước: Điều chỉnh chiều dài thân áo 76cm theo form dáng riêng.\n- ⏱️ Bàn giao: Đẩy nhanh hoàn thành trước 02/11/2026.`;
         
         propSolution.value = currentSolution + aiAppend;
         propDeliveryDate.value = "02/11/2026";

@@ -1,0 +1,51 @@
+/* ==========================================================================
+   CRAFT LINK - MOSS & CLAY THEME (TRE TRÚC & MÂY DẠI)
+   A soft, organic color system for traditional handicraft e-commerce.
+   ========================================================================== */
+
+:root {
+  /* --- 1. CORE BRAND PALETTE --- */
+  --color-soft-oat: #F4F3EE;      /* Main Background (60%) */
+  --color-pebble-warm: #E5E0D8;   /* Card Background & Surfaces (20%) */
+  --color-deep-forest: #2A3B32;   /* Primary Typography & Structures (15%) */
+  --color-earthen-red: #B85B3A;   /* Primary Call-to-Action (5%) */
+  --color-ochre-gold: #D4A359;    /* Secondary Accent & Ratings */
+  --color-moss-green: #42574A;    /* Interactive Links & Hovers */
+  --color-muted-text: #5A6B61;    /* Supporting Text & Metadata */
+
+  /* --- 2. BACKGROUND & SURFACES --- */
+  --bg-main: var(--color-soft-oat);
+  --bg-card: var(--color-pebble-warm);
+  --bg-surface-light: #FAF9F6;
+  --bg-dark: var(--color-deep-forest);
+
+  /* --- 3. TYPOGRAPHY --- */
+  --text-primary: var(--color-deep-forest);
+  --text-secondary: var(--color-muted-text);
+  --text-on-dark: var(--color-soft-oat);
+  --text-muted: #7E8C82;
+
+  /* --- 4. BUTTONS & INTERACTIVES --- */
+  --btn-primary-bg: var(--color-earthen-red);
+  --btn-primary-hover: #9E4A2E;
+  --btn-primary-text: #FFFFFF;
+
+  --btn-secondary-bg: var(--color-deep-forest);
+  --btn-secondary-hover: var(--color-moss-green);
+  --btn-secondary-text: var(--color-soft-oat);
+
+  /* --- 5. ACCENTS & BADGES --- */
+  --accent-gold: var(--color-ochre-gold);
+  --accent-moss: var(--color-moss-green);
+  --badge-impact-bg: var(--color-deep-forest);
+  --badge-impact-text: var(--color-soft-oat);
+
+  /* --- 6. BORDERS & SEPARATORS --- */
+  --border-color: #D6D0C5;
+  --border-focus: var(--color-earthen-red);
+
+  /* --- 7. SYSTEM STATES --- */
+  --state-success: #3B6E4C;
+  --state-warning: var(--color-ochre-gold);
+  --state-error: var(--color-earthen-red);
+}

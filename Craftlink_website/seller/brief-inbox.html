@@ -121,19 +121,19 @@
       </div>
 
       <!-- Thanh Tìm Kiếm & Bộ Lọc Nâng Cao -->
-      <section aria-label="Bộ lọc yêu cầu tùy biến" class="bg-surface-container-lowest p-4 rounded-2xl border border-surface-container-high shadow-2xs space-y-3">
+      <div class="bg-surface-container-lowest p-4 rounded-2xl border border-surface-container-high shadow-2xs space-y-3">
         <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
           
           <!-- Ô tìm kiếm -->
           <div class="sm:col-span-6 relative">
             <span class="material-symbols-outlined absolute left-3.5 top-2.5 text-[20px] text-outline">search</span>
-            <input type="text" id="brief-search-input" aria-label="Tìm kiếm yêu cầu brief theo mã, tên khách, hoặc chất liệu" placeholder="Tìm theo mã brief (#BR-...), tên khách hoặc chất liệu..." 
+            <input type="text" id="brief-search-input" placeholder="Tìm theo mã brief (#BR-...), tên khách hoặc chất liệu..." 
               class="w-full h-10 pl-10 pr-4 rounded-xl bg-surface-container-low text-on-surface text-sm border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none transition-all placeholder:text-outline" />
           </div>
 
           <!-- Lọc danh mục -->
           <div class="sm:col-span-3">
-            <select id="select-category" aria-label="Lọc theo danh mục thủ công" class="w-full h-10 px-3 rounded-xl bg-surface-container-low text-on-surface text-xs sm:text-sm border border-transparent focus:border-primary focus:outline-none">
+            <select id="select-category" class="w-full h-10 px-3 rounded-xl bg-surface-container-low text-on-surface text-xs sm:text-sm border border-transparent focus:border-primary focus:outline-none">
               <option value="">Tất cả danh mục thủ công</option>
               <option value="Thổ cẩm & Dệt may">Thổ cẩm & Dệt may</option>
               <option value="Gốm mộc & Men tro">Gốm mộc & Men tro</option>
@@ -144,7 +144,7 @@
 
           <!-- Lọc ngân sách -->
           <div class="sm:col-span-3">
-            <select id="select-budget" aria-label="Lọc theo mức ngân sách" class="w-full h-10 px-3 rounded-xl bg-surface-container-low text-on-surface text-xs sm:text-sm border border-transparent focus:border-primary focus:outline-none">
+            <select id="select-budget" class="w-full h-10 px-3 rounded-xl bg-surface-container-low text-on-surface text-xs sm:text-sm border border-transparent focus:border-primary focus:outline-none">
               <option value="">Mọi mức ngân sách</option>
               <option value="under_2m">Dưới 2.000.000 đ</option>
               <option value="2m_to_5m">Từ 2.000.000 đ - 5.000.000 đ</option>
@@ -158,48 +158,6 @@
           <span>Tìm thấy <strong class="text-primary font-bold" id="brief-count-display">0</strong> yêu cầu</span>
           <button id="btn-reset-filter" class="hover:text-secondary underline cursor-pointer">Xóa bộ lọc</button>
         </div>
-      </section>
-
-      <!-- Trạng Thái Đang Tải (Skeleton Shimmer Loading) -->
-      <div id="brief-skeleton-state" class="hidden space-y-4">
-        <div class="p-6 rounded-3xl bg-surface-container-lowest border border-surface-container-high space-y-3">
-          <div class="flex justify-between items-center">
-            <div class="w-24 h-5 skeleton rounded-lg"></div>
-            <div class="w-28 h-6 skeleton rounded-full"></div>
-          </div>
-          <div class="w-2/3 h-6 skeleton rounded-md"></div>
-          <div class="grid grid-cols-4 gap-2 pt-2">
-            <div class="h-12 skeleton rounded-xl"></div>
-            <div class="h-12 skeleton rounded-xl"></div>
-            <div class="h-12 skeleton rounded-xl"></div>
-            <div class="h-12 skeleton rounded-xl"></div>
-          </div>
-        </div>
-        <div class="p-6 rounded-3xl bg-surface-container-lowest border border-surface-container-high space-y-3">
-          <div class="flex justify-between items-center">
-            <div class="w-24 h-5 skeleton rounded-lg"></div>
-            <div class="w-28 h-6 skeleton rounded-full"></div>
-          </div>
-          <div class="w-1/2 h-6 skeleton rounded-md"></div>
-          <div class="grid grid-cols-4 gap-2 pt-2">
-            <div class="h-12 skeleton rounded-xl"></div>
-            <div class="h-12 skeleton rounded-xl"></div>
-            <div class="h-12 skeleton rounded-xl"></div>
-            <div class="h-12 skeleton rounded-xl"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Trạng Thái Lỗi (Error State) -->
-      <div id="brief-error-state" class="hidden bg-rose-50 border border-rose-200 rounded-3xl p-8 sm:p-12 text-center space-y-3">
-        <div class="w-14 h-14 rounded-2xl bg-rose-100 text-rose-700 flex items-center justify-center mx-auto">
-          <span class="material-symbols-outlined text-[32px]">error</span>
-        </div>
-        <h3 class="font-serif-craft text-lg font-bold text-rose-950">Không thể tải dữ liệu yêu cầu tùy biến</h3>
-        <p class="text-xs text-rose-900 max-w-sm mx-auto">Đã xảy ra sự cố khi truy xuất dữ liệu từ LocalStorage. Vui lòng bấm thử lại.</p>
-        <button id="btn-retry-briefs" class="px-4 py-2 rounded-xl bg-rose-700 text-white text-xs font-semibold hover:bg-rose-800">
-          Tải lại danh sách
-        </button>
       </div>
 
       <!-- Danh Sách Brief Cards -->
@@ -237,7 +195,7 @@
           <span class="material-symbols-outlined text-secondary">palette</span>
           <h3 class="font-serif-craft text-lg font-bold text-primary" id="modal-brief-title">Chi Tiết Yêu Cầu Tùy Biến</h3>
         </div>
-        <button id="btn-close-modal" aria-label="Đóng cửa sổ chi tiết" class="p-1.5 rounded-lg text-outline hover:bg-surface-container transition-colors">
+        <button id="btn-close-modal" class="p-1 rounded-lg text-outline hover:bg-surface-container">
           <span class="material-symbols-outlined">close</span>
         </button>
       </div>
@@ -270,8 +228,6 @@
 
       const container = document.getElementById('brief-list-container');
       const emptyState = document.getElementById('brief-empty-state');
-      const skeletonState = document.getElementById('brief-skeleton-state');
-      const errorState = document.getElementById('brief-error-state');
       const countDisplay = document.getElementById('brief-count-display');
 
       const statPending = document.getElementById('stat-pending');
@@ -331,32 +287,7 @@
         tabCountProgress.textContent = progressCount;
       }
 
-      function renderBriefs(showLoading = false) {
-        try {
-          if (showLoading) {
-            skeletonState.classList.remove('hidden');
-            container.classList.add('hidden');
-            emptyState.classList.add('hidden');
-            errorState.classList.add('hidden');
-            setTimeout(() => {
-              skeletonState.classList.add('hidden');
-              container.classList.remove('hidden');
-              executeFilterAndRender();
-            }, 300);
-            return;
-          }
-          executeFilterAndRender();
-        } catch (err) {
-          console.error("Lỗi khi tải danh sách Briefs:", err);
-          container.classList.add('hidden');
-          skeletonState.classList.add('hidden');
-          emptyState.classList.add('hidden');
-          errorState.classList.remove('hidden');
-        }
-      }
-
-      function executeFilterAndRender() {
-        errorState.classList.add('hidden');
+      function renderBriefs() {
         const allBriefs = window.SellerData.getBriefs();
         updateStats();
 
@@ -401,6 +332,8 @@
 
         emptyState.classList.add('hidden');
 
+        const safe = (str) => typeof escapeHtml === 'function' ? escapeHtml(str) : String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+
         container.innerHTML = filtered.map(brief => {
           const hasFeedback = brief.latestCustomerFeedback && (brief.status === 'revision_requested' || brief.status === 'pending');
 
@@ -410,10 +343,10 @@
               <!-- Header của Card -->
               <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-surface-container">
                 <div class="flex items-center gap-3">
-                  <span class="font-mono text-xs font-bold text-secondary bg-secondary/10 px-2.5 py-1 rounded-lg">#${brief.id}</span>
+                  <span class="font-mono text-xs font-bold text-secondary bg-secondary/10 px-2.5 py-1 rounded-lg">#${safe(brief.id)}</span>
                   <span class="text-xs text-on-surface-variant flex items-center gap-1">
                     <span class="material-symbols-outlined text-[16px]">schedule</span>
-                    <span>Gửi lúc: ${brief.createdAt}</span>
+                    <span>Gửi lúc: ${safe(brief.createdAt)}</span>
                   </span>
                 </div>
                 <div>
@@ -426,15 +359,15 @@
                 
                 <!-- Cột thông tin khách & nội dung brief (9 Cột) -->
                 <div class="lg:col-span-8 space-y-3">
-                  <h3 class="font-serif-craft text-lg sm:text-xl font-bold text-primary">${brief.title}</h3>
+                  <h3 class="font-serif-craft text-lg sm:text-xl font-bold text-primary">${safe(brief.title)}</h3>
 
                   <div class="flex items-center gap-3 text-xs text-on-surface-variant">
-                    <img src="${brief.buyerAvatar}" alt="${brief.buyerName}" class="w-7 h-7 rounded-full object-cover ring-1 ring-surface-container-high" />
-                    <span class="font-semibold text-primary">${brief.buyerName}</span>
+                    <img src="${brief.buyerAvatar}" alt="${safe(brief.buyerName)}" class="w-7 h-7 rounded-full object-cover ring-1 ring-surface-container-high" />
+                    <span class="font-semibold text-primary">${safe(brief.buyerName)}</span>
                     <span>•</span>
-                    <span>${brief.buyerPhone}</span>
+                    <span>${safe(brief.buyerPhone)}</span>
                     <span class="hidden sm:inline">•</span>
-                    <span class="hidden sm:inline">${brief.buyerEmail}</span>
+                    <span class="hidden sm:inline">${safe(brief.buyerEmail)}</span>
                   </div>
 
                   <!-- Thông số kỹ thuật nhanh -->
@@ -445,21 +378,21 @@
                     </div>
                     <div class="p-2.5 rounded-xl bg-surface-container-low border border-surface-container">
                       <span class="text-[10px] text-on-surface-variant block uppercase font-medium">Hạn chót cần hàng</span>
-                      <strong class="text-primary font-bold text-sm">${brief.deadline}</strong>
+                      <strong class="text-primary font-bold text-sm">${safe(brief.deadline)}</strong>
                     </div>
                     <div class="p-2.5 rounded-xl bg-surface-container-low border border-surface-container">
                       <span class="text-[10px] text-on-surface-variant block uppercase font-medium">Kích thước</span>
-                      <strong class="text-primary font-bold">${brief.dimensions || 'Theo tiêu chuẩn'}</strong>
+                      <strong class="text-primary font-bold">${safe(brief.dimensions || 'Theo tiêu chuẩn')}</strong>
                     </div>
                     <div class="p-2.5 rounded-xl bg-surface-container-low border border-surface-container">
                       <span class="text-[10px] text-on-surface-variant block uppercase font-medium">Danh mục</span>
-                      <strong class="text-primary font-bold truncate block">${brief.category}</strong>
+                      <strong class="text-primary font-bold truncate block">${safe(brief.category)}</strong>
                     </div>
                   </div>
 
                   <!-- Mô tả yêu cầu -->
                   <div class="text-xs sm:text-sm text-on-surface-variant line-clamp-2">
-                    <strong class="text-primary font-medium">Yêu cầu chi tiết:</strong> ${brief.description}
+                    <strong class="text-primary font-medium">Yêu cầu chi tiết:</strong> ${safe(brief.description)}
                   </div>
 
                   <!-- Khối Highlight Phản hồi của khách (Revision Box) -->
@@ -472,7 +405,7 @@
                         </span>
                         <span class="text-[11px] bg-purple-200 text-purple-800 px-2 py-0.5 rounded-full">Revision Round</span>
                       </div>
-                      <p class="italic text-purple-900/90 leading-relaxed">"${brief.latestCustomerFeedback}"</p>
+                      <p class="italic text-purple-900/90 leading-relaxed">"${safe(brief.latestCustomerFeedback)}"</p>
                       <div class="pt-1 flex items-center gap-2">
                         <a href="proposal-editor.html?briefId=${brief.id}&mode=ai-revision" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-purple-700 text-white font-semibold text-xs hover:bg-purple-800 transition-all shadow-xs">
                           <span class="material-symbols-outlined text-[16px]">psychology</span>
@@ -533,15 +466,17 @@
         const brief = window.SellerData.getBriefById(id);
         if (!brief) return;
 
-        modalTitle.textContent = `Yêu cầu #${brief.id} - ${brief.title}`;
+        const safe = (str) => typeof escapeHtml === 'function' ? escapeHtml(str) : String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+
+        modalTitle.textContent = `Yêu cầu #${safe(brief.id)} - ${safe(brief.title)}`;
         modalBody.innerHTML = `
           <div class="space-y-4">
             <div class="flex items-center justify-between pb-3 border-b border-surface-container">
               <div class="flex items-center gap-3">
-                <img src="${brief.buyerAvatar}" alt="${brief.buyerName}" class="w-10 h-10 rounded-full object-cover" />
+                <img src="${brief.buyerAvatar}" alt="${safe(brief.buyerName)}" class="w-10 h-10 rounded-full object-cover" />
                 <div>
-                  <h4 class="font-bold text-primary">${brief.buyerName}</h4>
-                  <p class="text-xs text-on-surface-variant">${brief.buyerPhone} • ${brief.buyerEmail}</p>
+                  <h4 class="font-bold text-primary">${safe(brief.buyerName)}</h4>
+                  <p class="text-xs text-on-surface-variant">${safe(brief.buyerPhone)} • ${safe(brief.buyerEmail)}</p>
                 </div>
               </div>
               <div>${getStatusBadge(brief.status, brief.statusText)}</div>
@@ -554,23 +489,23 @@
               </div>
               <div class="p-3 rounded-xl bg-surface-container-low">
                 <span class="text-on-surface-variant block uppercase text-[10px]">Hạn chót hoàn thành</span>
-                <strong class="text-primary text-base font-bold">${brief.deadline}</strong>
+                <strong class="text-primary text-base font-bold">${safe(brief.deadline)}</strong>
               </div>
             </div>
 
             <div>
               <h5 class="font-bold text-xs uppercase text-primary mb-1">Quy cách & Kích thước mong muốn:</h5>
-              <p class="p-3 rounded-xl bg-surface-container-low text-xs">${brief.dimensions || 'Tùy biến theo tiêu chuẩn làng nghề'}</p>
+              <p class="p-3 rounded-xl bg-surface-container-low text-xs">${safe(brief.dimensions || 'Tùy biến theo tiêu chuẩn làng nghề')}</p>
             </div>
 
             <div>
               <h5 class="font-bold text-xs uppercase text-primary mb-1">Yêu cầu chất liệu & Kỹ thuật:</h5>
-              <p class="p-3 rounded-xl bg-surface-container-low text-xs">${brief.materialRequired || 'Nguyên liệu tự nhiên bản địa'}</p>
+              <p class="p-3 rounded-xl bg-surface-container-low text-xs">${safe(brief.materialRequired || 'Nguyên liệu tự nhiên bản địa')}</p>
             </div>
 
             <div>
               <h5 class="font-bold text-xs uppercase text-primary mb-1">Mô tả chi tiết ý tưởng:</h5>
-              <p class="p-3.5 rounded-xl bg-surface-container-low text-xs sm:text-sm leading-relaxed">${brief.description}</p>
+              <p class="p-3.5 rounded-xl bg-surface-container-low text-xs sm:text-sm leading-relaxed">${safe(brief.description)}</p>
             </div>
 
             ${brief.latestCustomerFeedback ? `
@@ -579,7 +514,7 @@
                   <span class="material-symbols-outlined text-[16px]">rate_review</span>
                   <span>Phản hồi sửa đổi của khách (Revision Feedback):</span>
                 </h5>
-                <p class="italic text-purple-950 text-xs">"${brief.latestCustomerFeedback}"</p>
+                <p class="italic text-purple-950 text-xs">"${safe(brief.latestCustomerFeedback)}"</p>
               </div>
             ` : ''}
 
@@ -616,18 +551,12 @@
         const btnReject = document.getElementById('btn-reject-brief');
         if (btnReject) {
           btnReject.addEventListener('click', () => {
-            SellerApp.confirmAction({
-              title: `Từ chối yêu cầu #${brief.id}?`,
-              message: `Bạn có chắc muốn từ chối yêu cầu từ khách hàng ${brief.buyerName}? Thao tác này sẽ chuyển trạng thái sang "Đã từ chối".`,
-              confirmText: 'Từ chối yêu cầu',
-              isDanger: true,
-              onConfirm: () => {
-                window.SellerData.updateBriefStatus(brief.id, 'rejected', 'Đã từ chối');
-                SellerApp.showToast('Đã từ chối yêu cầu của khách hàng', 'info');
-                closeModal();
-                renderBriefs();
-              }
-            });
+            if (confirm(`Bạn có chắc muốn từ chối yêu cầu #${brief.id}?`)) {
+              window.SellerData.updateBriefStatus(brief.id, 'rejected', 'Đã từ chối');
+              SellerApp.showToast('Đã từ chối yêu cầu của khách hàng', 'info');
+              closeModal();
+              renderBriefs();
+            }
           });
         }
 
@@ -636,19 +565,11 @@
           modal.classList.remove('opacity-0');
           modal.querySelector('div').classList.remove('scale-95');
         }, 10);
-        document.addEventListener('keydown', handleModalEsc);
-      }
-
-      function handleModalEsc(e) {
-        if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-          closeModal();
-        }
       }
 
       function closeModal() {
         modal.classList.add('opacity-0');
         modal.querySelector('div').classList.add('scale-95');
-        document.removeEventListener('keydown', handleModalEsc);
         setTimeout(() => {
           modal.classList.add('hidden');
         }, 250);
@@ -659,7 +580,7 @@
         if (e.target === modal) closeModal();
       });
 
-      // Tab lọc (Có hiệu ứng Skeleton loading chuyển mượt)
+      // Tab lọc
       document.querySelectorAll('#brief-tabs .tab-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           document.querySelectorAll('#brief-tabs .tab-btn').forEach(b => {
@@ -670,7 +591,7 @@
           btn.classList.remove('border-transparent', 'text-on-surface-variant');
 
           currentTab = btn.getAttribute('data-tab');
-          renderBriefs(true);
+          renderBriefs();
         });
       });
 
@@ -684,21 +605,13 @@
       // Lọc danh mục & ngân sách
       document.getElementById('select-category').addEventListener('change', (e) => {
         selectedCategory = e.target.value;
-        renderBriefs(true);
+        renderBriefs();
       });
 
       document.getElementById('select-budget').addEventListener('change', (e) => {
         selectedBudget = e.target.value;
-        renderBriefs(true);
+        renderBriefs();
       });
-
-      // Nút thử lại khi gặp lỗi
-      const btnRetry = document.getElementById('btn-retry-briefs');
-      if (btnRetry) {
-        btnRetry.addEventListener('click', () => {
-          renderBriefs(true);
-        });
-      }
 
       // Nút reset
       document.getElementById('btn-reset-filter').addEventListener('click', () => {
@@ -708,7 +621,7 @@
         selectedCategory = '';
         document.getElementById('select-budget').value = '';
         selectedBudget = '';
-        renderBriefs(true);
+        renderBriefs();
       });
 
       document.getElementById('btn-empty-reset').addEventListener('click', () => {
@@ -728,16 +641,16 @@
             b.classList.add('border-transparent', 'text-on-surface-variant');
           }
         });
-        renderBriefs(true);
+        renderBriefs();
       });
 
       document.getElementById('btn-refresh-briefs').addEventListener('click', () => {
-        renderBriefs(true);
+        renderBriefs();
         SellerApp.showToast('Đã làm mới danh sách yêu cầu tùy biến', 'success');
       });
 
-      // Khởi chạy render lần đầu với hiệu ứng loading
-      renderBriefs(true);
+      // Khởi chạy render lần đầu
+      renderBriefs();
     });
   </script>
 </body>

@@ -45,19 +45,19 @@
       </div>
 
       <!-- Bộ Lọc & Tìm Kiếm -->
-      <section aria-label="Bộ lọc tác phẩm" class="bg-surface-container-lowest p-4 sm:p-5 rounded-2xl border border-surface-container-high shadow-2xs space-y-4">
+      <div class="bg-surface-container-lowest p-4 sm:p-5 rounded-2xl border border-surface-container-high shadow-2xs space-y-4">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3 sm:gap-4">
           
           <!-- Tìm kiếm ô input -->
           <div class="lg:col-span-5 relative">
             <span class="material-symbols-outlined absolute left-3.5 top-3 text-[20px] text-outline">search</span>
-            <input type="text" id="input-search" aria-label="Tìm theo tên sản phẩm, mã hoặc làng nghề" placeholder="Tìm theo tên sản phẩm, mã hoặc làng nghề..." 
+            <input type="text" id="input-search" placeholder="Tìm theo tên sản phẩm, mã hoặc làng nghề..." 
               class="w-full h-11 pl-11 pr-4 rounded-xl bg-surface-container-low text-on-surface text-sm border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none transition-all placeholder:text-outline" />
           </div>
 
           <!-- Lọc theo Danh mục -->
           <div class="lg:col-span-4">
-            <select id="select-category" aria-label="Lọc theo danh mục thủ công" class="w-full h-11 px-3.5 rounded-xl bg-surface-container-low text-on-surface text-sm border border-transparent focus:border-primary focus:outline-none">
+            <select id="select-category" class="w-full h-11 px-3.5 rounded-xl bg-surface-container-low text-on-surface text-sm border border-transparent focus:border-primary focus:outline-none">
               <option value="">Tất cả danh mục thủ công</option>
               <option value="Thổ cẩm & Dệt may">Thổ cẩm & Dệt may</option>
               <option value="Gốm mộc & Men tro">Gốm mộc & Men tro</option>
@@ -69,7 +69,7 @@
 
           <!-- Lọc theo Trạng thái -->
           <div class="lg:col-span-3">
-            <select id="select-status" aria-label="Lọc theo trạng thái mở bán" class="w-full h-11 px-3.5 rounded-xl bg-surface-container-low text-on-surface text-sm border border-transparent focus:border-primary focus:outline-none">
+            <select id="select-status" class="w-full h-11 px-3.5 rounded-xl bg-surface-container-low text-on-surface text-sm border border-transparent focus:border-primary focus:outline-none">
               <option value="">Tất cả trạng thái</option>
               <option value="active">Đang mở bán</option>
               <option value="hidden">Tạm ẩn</option>
@@ -83,10 +83,10 @@
           <span>Tìm thấy <strong class="text-primary font-bold" id="product-count-display">0</strong> tác phẩm</span>
           <button id="btn-reset-filter" class="hover:text-secondary underline cursor-pointer">Xóa bộ lọc</button>
         </div>
-      </section>
+      </div>
 
       <!-- Danh Sách Sản Phẩm (Bảng trên Desktop & Card trên Mobile) -->
-      <section aria-label="Danh sách tác phẩm thủ công" class="bg-surface-container-lowest rounded-2xl border border-surface-container-high shadow-2xs overflow-hidden">
+      <div class="bg-surface-container-lowest rounded-2xl border border-surface-container-high shadow-2xs overflow-hidden">
         
         <!-- View Desktop Table -->
         <div class="hidden md:block overflow-x-auto">
@@ -101,33 +101,6 @@
                 <th class="py-3.5 px-4 text-right">Thao tác</th>
               </tr>
             </thead>
-            <!-- Skeleton Loading Tbody -->
-            <tbody id="desktop-products-skeleton" class="hidden divide-y divide-surface-container-low">
-              <tr>
-                <td colspan="6" class="p-4">
-                  <div class="space-y-4">
-                    <div class="flex items-center gap-4">
-                      <div class="w-14 h-14 skeleton rounded-xl shrink-0"></div>
-                      <div class="flex-1 space-y-2">
-                        <div class="w-1/3 h-4 skeleton rounded"></div>
-                        <div class="w-1/4 h-3 skeleton rounded"></div>
-                      </div>
-                      <div class="w-24 h-4 skeleton rounded"></div>
-                      <div class="w-20 h-4 skeleton rounded"></div>
-                    </div>
-                    <div class="flex items-center gap-4">
-                      <div class="w-14 h-14 skeleton rounded-xl shrink-0"></div>
-                      <div class="flex-1 space-y-2">
-                        <div class="w-2/5 h-4 skeleton rounded"></div>
-                        <div class="w-1/4 h-3 skeleton rounded"></div>
-                      </div>
-                      <div class="w-24 h-4 skeleton rounded"></div>
-                      <div class="w-20 h-4 skeleton rounded"></div>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
             <tbody id="desktop-products-tbody" class="divide-y divide-surface-container-low">
               <!-- Render bằng JS -->
             </tbody>
@@ -137,18 +110,6 @@
         <!-- View Mobile Cards -->
         <div id="mobile-products-container" class="md:hidden p-4 space-y-4">
           <!-- Render bằng JS dạng card -->
-        </div>
-
-        <!-- Trạng Thái Lỗi (Error State) -->
-        <div id="product-error-state" class="hidden p-8 text-center flex-col items-center justify-center space-y-3 bg-rose-50 border-t border-rose-200">
-          <div class="w-12 h-12 rounded-full bg-rose-100 text-rose-700 flex items-center justify-center mx-auto">
-            <span class="material-symbols-outlined text-[28px]">error</span>
-          </div>
-          <h4 class="font-serif-craft text-base font-bold text-rose-950">Không thể tải danh sách tác phẩm</h4>
-          <p class="text-xs text-rose-800 max-w-sm mx-auto">Đã xảy ra sự cố khi truy xuất kho dữ liệu. Vui lòng bấm thử lại.</p>
-          <button id="btn-retry-products" class="mt-2 px-4 py-2 rounded-xl bg-rose-700 text-white text-xs font-semibold hover:bg-rose-800">
-            Tải lại tác phẩm
-          </button>
         </div>
 
         <!-- Trạng Thái Trống (Empty State) -->
@@ -162,7 +123,7 @@
             Đăng tác phẩm mới ngay
           </a>
         </div>
-      </section>
+      </div>
 
     </main>
 
@@ -178,53 +139,14 @@
         pageTitle: 'Quản Lý Tác Phẩm'
       });
 
-      let products = [];
-      try {
-        products = SellerData.getProducts();
-      } catch (e) {
-        console.error("Lỗi khi đọc danh sách sản phẩm:", e);
-      }
+      let products = SellerData.getProducts();
 
       const searchInput = document.getElementById('input-search');
       const categorySelect = document.getElementById('select-category');
       const statusSelect = document.getElementById('select-status');
       const resetBtn = document.getElementById('btn-reset-filter');
-      const errorState = document.getElementById('product-error-state');
-      const desktopSkeleton = document.getElementById('desktop-products-skeleton');
-      const desktopTbody = document.getElementById('desktop-products-tbody');
-      const mobileContainer = document.getElementById('mobile-products-container');
-      const emptyState = document.getElementById('empty-state');
-      const countDisplay = document.getElementById('product-count-display');
 
-      function filterAndRender(showLoading = false) {
-        try {
-          if (showLoading) {
-            desktopSkeleton.classList.remove('hidden');
-            desktopTbody.classList.add('hidden');
-            mobileContainer.classList.add('hidden');
-            emptyState.classList.add('hidden');
-            errorState.classList.add('hidden');
-            setTimeout(() => {
-              desktopSkeleton.classList.add('hidden');
-              desktopTbody.classList.remove('hidden');
-              mobileContainer.classList.remove('hidden');
-              executeFilter();
-            }, 250);
-            return;
-          }
-          executeFilter();
-        } catch (err) {
-          console.error("Lỗi giao diện sản phẩm:", err);
-          desktopTbody.innerHTML = '';
-          mobileContainer.innerHTML = '';
-          desktopSkeleton.classList.add('hidden');
-          emptyState.classList.add('hidden');
-          errorState.classList.remove('hidden');
-        }
-      }
-
-      function executeFilter() {
-        errorState.classList.add('hidden');
+      function filterAndRender() {
         const keyword = searchInput.value.trim().toLowerCase();
         const cat = categorySelect.value;
         const stat = statusSelect.value;
@@ -243,8 +165,13 @@
         renderProducts(filtered);
       }
 
+      const safe = (str) => typeof escapeHtml === 'function' ? escapeHtml(str) : String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+
       function renderProducts(list) {
-        countDisplay.textContent = list.length;
+        document.getElementById('product-count-display').textContent = list.length;
+        const emptyState = document.getElementById('empty-state');
+        const desktopTbody = document.getElementById('desktop-products-tbody');
+        const mobileContainer = document.getElementById('mobile-products-container');
 
         if (list.length === 0) {
           emptyState.classList.remove('hidden');
@@ -260,12 +187,12 @@
           <tr class="hover:bg-surface-container-low/70 transition-colors">
             <td class="py-3.5 px-4">
               <div class="flex items-center gap-3">
-                <img src="${p.images[0]}" alt="${p.name}" class="w-14 h-14 rounded-xl object-cover shrink-0 border border-surface-container" />
+                <img src="${p.images[0]}" alt="${safe(p.name)}" class="w-14 h-14 rounded-xl object-cover shrink-0 border border-surface-container" />
                 <div class="min-w-0 max-w-xs">
                   <div class="flex items-center gap-1.5 flex-wrap">
-                    <span class="text-xs font-semibold text-primary hover:text-secondary cursor-pointer">${p.name}</span>
+                    <span class="text-xs font-semibold text-primary hover:text-secondary cursor-pointer">${safe(p.name)}</span>
                   </div>
-                  <div class="text-[11px] text-on-surface-variant mt-0.5">Mã: #${p.id}</div>
+                  <div class="text-[11px] text-on-surface-variant mt-0.5">Mã: #${safe(p.id)}</div>
                   <div class="mt-1 flex gap-1">
                     ${p.isFairTrade ? '<span class="badge-fair-trade text-[10px]">Fair Trade</span>' : ''}
                     ${p.isBestSeller ? '<span class="px-1.5 py-0.2 bg-amber-100 text-amber-800 rounded text-[10px] font-semibold">Bán chạy</span>' : ''}
@@ -274,10 +201,10 @@
               </div>
             </td>
             <td class="py-3.5 px-4">
-              <div class="font-medium text-xs text-primary">${p.category}</div>
+              <div class="font-medium text-xs text-primary">${safe(p.category)}</div>
               <div class="text-[11px] text-on-surface-variant flex items-center gap-1 mt-0.5">
                 <span class="material-symbols-outlined text-[13px]">location_on</span>
-                <span class="truncate max-w-[180px]">${p.village || 'Việt Nam'}</span>
+                <span class="truncate max-w-[180px]">${safe(p.village || 'Việt Nam')}</span>
               </div>
             </td>
             <td class="py-3.5 px-4">
@@ -294,13 +221,13 @@
             </td>
             <td class="py-3.5 px-4 text-right">
               <div class="flex items-center justify-end gap-1.5">
-                <a href="product-form.html?id=${p.id}" class="p-1.5 rounded-lg text-outline hover:text-primary hover:bg-surface-container transition-colors" title="Chỉnh sửa" aria-label="Chỉnh sửa ${p.name}">
+                <a href="product-form.html?id=${p.id}" class="p-1.5 rounded-lg text-outline hover:text-primary hover:bg-surface-container transition-colors" title="Chỉnh sửa">
                   <span class="material-symbols-outlined text-[18px]">edit</span>
                 </a>
-                <button onclick="toggleVisibility('${p.id}')" class="p-1.5 rounded-lg text-outline hover:text-secondary hover:bg-surface-container transition-colors" title="${p.status === 'hidden' ? 'Mở bán lại' : 'Tạm ẩn tác phẩm'}" aria-label="${p.status === 'hidden' ? 'Mở bán lại' : 'Tạm ẩn'} ${p.name}">
+                <button onclick="toggleVisibility('${p.id}')" class="p-1.5 rounded-lg text-outline hover:text-secondary hover:bg-surface-container transition-colors" title="${p.status === 'hidden' ? 'Mở bán lại' : 'Tạm ẩn tác phẩm'}">
                   <span class="material-symbols-outlined text-[18px]">${p.status === 'hidden' ? 'visibility' : 'visibility_off'}</span>
                 </button>
-                <button onclick="deleteProduct('${p.id}')" class="p-1.5 rounded-lg text-outline hover:text-error hover:bg-error-container/30 transition-colors" title="Xóa tác phẩm" aria-label="Xóa tác phẩm ${p.name}">
+                <button onclick="deleteProduct('${p.id}')" class="p-1.5 rounded-lg text-outline hover:text-error hover:bg-error-container/30 transition-colors" title="Xóa tác phẩm">
                   <span class="material-symbols-outlined text-[18px]">delete</span>
                 </button>
               </div>
@@ -312,13 +239,13 @@
         mobileContainer.innerHTML = list.map(p => `
           <div class="p-4 rounded-xl border border-surface-container bg-surface-container-lowest shadow-2xs space-y-3">
             <div class="flex gap-3">
-              <img src="${p.images[0]}" alt="${p.name}" class="w-20 h-20 rounded-xl object-cover shrink-0 border border-surface-container" />
+              <img src="${p.images[0]}" alt="${safe(p.name)}" class="w-20 h-20 rounded-xl object-cover shrink-0 border border-surface-container" />
               <div class="flex-1 min-w-0">
                 <div class="flex items-center justify-between gap-2">
-                  <span class="text-[10px] text-outline">#${p.id}</span>
+                  <span class="text-[10px] text-outline">#${safe(p.id)}</span>
                   ${getStatusBadge(p.status, p.stock)}
                 </div>
-                <h4 class="font-semibold text-sm text-primary line-clamp-2 mt-0.5">${p.name}</h4>
+                <h4 class="font-semibold text-sm text-primary line-clamp-2 mt-0.5">${safe(p.name)}</h4>
                 <div class="text-xs font-bold text-secondary mt-1">${SellerApp.formatVND(p.price)}</div>
               </div>
             </div>
@@ -326,10 +253,10 @@
             <div class="flex items-center justify-between text-xs pt-2 border-t border-surface-container text-on-surface-variant">
               <span>Tồn kho: <strong class="${p.stock <= 5 ? 'text-error font-bold' : 'text-primary'}">${p.stock}</strong></span>
               <div class="flex items-center gap-2">
-                <a href="product-form.html?id=${p.id}" class="px-3 py-1.5 rounded-lg bg-surface-container text-primary font-semibold text-xs flex items-center gap-1" aria-label="Chỉnh sửa ${p.name}">
+                <a href="product-form.html?id=${p.id}" class="px-3 py-1.5 rounded-lg bg-surface-container text-primary font-semibold text-xs flex items-center gap-1">
                   <span class="material-symbols-outlined text-[15px]">edit</span> Sửa
                 </a>
-                <button onclick="deleteProduct('${p.id}')" class="p-1.5 rounded-lg text-error hover:bg-error-container/30" aria-label="Xóa tác phẩm ${p.name}">
+                <button onclick="deleteProduct('${p.id}')" class="p-1.5 rounded-lg text-error hover:bg-error-container/30" aria-label="Xóa">
                   <span class="material-symbols-outlined text-[18px]">delete</span>
                 </button>
               </div>
@@ -348,23 +275,15 @@
         return '<span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">Đang bán</span>';
       }
 
-      searchInput.addEventListener('input', () => filterAndRender(false));
-      categorySelect.addEventListener('change', () => filterAndRender(true));
-      statusSelect.addEventListener('change', () => filterAndRender(true));
+      searchInput.addEventListener('input', filterAndRender);
+      categorySelect.addEventListener('change', filterAndRender);
+      statusSelect.addEventListener('change', filterAndRender);
       resetBtn.addEventListener('click', () => {
         searchInput.value = '';
         categorySelect.value = '';
         statusSelect.value = '';
-        filterAndRender(true);
+        filterAndRender();
       });
-
-      const btnRetry = document.getElementById('btn-retry-products');
-      if (btnRetry) {
-        btnRetry.addEventListener('click', () => {
-          products = SellerData.getProducts();
-          filterAndRender(true);
-        });
-      }
 
       // Thao tác ẩn/hiện sản phẩm
       window.toggleVisibility = function(id) {
@@ -373,10 +292,10 @@
         item.status = item.status === 'hidden' ? 'active' : 'hidden';
         SellerData.saveProducts(products);
         SellerApp.showToast(`Đã ${item.status === 'hidden' ? 'ẩn' : 'mở bán lại'} tác phẩm!`);
-        filterAndRender(false);
+        filterAndRender();
       };
 
-      // Thao tác xóa sản phẩm có hộp thoại xác nhận chuẩn A11y
+      // Thao tác xóa sản phẩm có hộp thoại xác nhận
       window.deleteProduct = function(id) {
         const item = products.find(p => p.id === id);
         if (!item) return;
@@ -390,13 +309,12 @@
             products = products.filter(p => p.id !== id);
             SellerData.saveProducts(products);
             SellerApp.showToast('Đã xóa tác phẩm thành công!', 'success');
-            filterAndRender(false);
+            filterAndRender();
           }
         });
       };
 
-      // Nạp lần đầu với hiệu ứng loading skeleton
-      filterAndRender(true);
+      filterAndRender();
     });
   </script>
 </body>

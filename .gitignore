@@ -1,0 +1,6 @@
+# System & temporary files
+.DS_Store
+Thumbs.db
+repomix-output.*
+repomix-output.txt
+node_modules/

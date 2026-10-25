@@ -702,10 +702,35 @@ window.SellerData = {
   // ========================================================================
   // METHODS CHO BRIEFS & PROPOSALS (VAI TRÒ 2 - MAKER)
   // ========================================================================
-  getBriefs: () => SellerStorage.get(STORAGE_KEYS.BRIEFS, DEFAULT_BRIEFS),
+  getBriefs: () => {
+    let briefs = SellerStorage.get(STORAGE_KEYS.BRIEFS, DEFAULT_BRIEFS);
+    // Tự động đồng bộ các brief do Buyer tạo mới qua localStorage
+    try {
+      const buyerBriefs = JSON.parse(localStorage.getItem('craftlink_briefs')) || [];
+      buyerBriefs.forEach(b => {
+        const id = b.id || ('BR-' + (b.title ? b.title.slice(0, 3).toUpperCase() : 'BUY') + '-01');
+        if (!briefs.some(item => item.id === id || (b.title && item.title === b.title))) {
+          briefs.unshift({
+            id: id,
+            customerName: b.customerName || b.buyerName || 'Khách hàng Buyer',
+            customerAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80',
+            title: b.title || b.productName || 'Yêu cầu đặt làm riêng theo yêu cầu',
+            category: b.category || 'Dệt may thổ cẩm',
+            budget: b.budget || '1.500.000 - 3.500.000 đ',
+            deadline: b.deadline || '25 ngày tới',
+            status: 'pending',
+            statusText: 'Mới gửi',
+            description: b.description || b.requirements || b.aiSummary || 'Khách hàng gửi yêu cầu tùy biến chi tiết từ AI Creative Brief Builder.',
+            createdAt: b.createdAt || 'Vừa xong'
+          });
+        }
+      });
+    } catch(e) {}
+    return briefs;
+  },
   saveBriefs: (data) => SellerStorage.set(STORAGE_KEYS.BRIEFS, data),
   getBriefById: (id) => {
-    const list = SellerStorage.get(STORAGE_KEYS.BRIEFS, DEFAULT_BRIEFS);
+    const list = window.SellerData.getBriefs();
     return list.find(b => b.id === id);
   },
   updateBriefStatus: (id, newStatus, newStatusText) => {
