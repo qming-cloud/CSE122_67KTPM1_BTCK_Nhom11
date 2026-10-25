@@ -18,7 +18,7 @@
 
 ## 🌐 Demo trực tuyến
 
-🔗 **GitHub Pages:** [https://qming-cloud.github.io/CSE122_67KTPM1_BTCK_Nhom11/](https://qming-cloud.github.io/CSE122_67KTPM1_BTCK_Nhom11/)
+🔗 **GitHub Pages:** [https://KhanhNguyen3010.github.io/CSE_BTCK_2551170903/](https://KhanhNguyen3010.github.io/CSE_BTCK_2551170903/)
 
 > Nếu link trên chưa hoạt động, hãy làm theo hướng dẫn bên dưới để bật GitHub Pages.
 
@@ -34,8 +34,8 @@
 
 ```bash
 # Clone repository
-git clone https://github.com/tpn1411-tech/Craftlink-web.git
-cd Craftlink-web
+git clone https://github.com/KhanhNguyen3010/CSE_BTCK_2551170903.git
+cd CSE_BTCK_2551170903
 
 # Mở file trong trình duyệt
 open Craftlink_website/index.html        # macOS
@@ -92,7 +92,7 @@ git push origin main
 2. Trong phần **Build and deployment**:
    - **Source:** chọn **GitHub Actions**
 3. Workflow sẽ tự động chạy khi push lên `main`
-4. Sau khi deploy thành công, truy cập: `https://qming-cloud.github.io/CSE122_67KTPM1_BTCK_Nhom11/`
+4. Sau khi deploy thành công, truy cập: `https://KhanhNguyen3010.github.io/CSE_BTCK_2551170903/`
 
 ### Bước 3 (Tùy chọn): Trigger deploy thủ công
 
