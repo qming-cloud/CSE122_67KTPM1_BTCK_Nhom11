@@ -1,206 +1,70 @@
-# 🧶 CraftLink – Sàn Sản Phẩm Sáng Tạo Tùy Biến
+# CraftLink - Kênh Người Sáng Tạo (Maker Portal)
 
-<p align="center">
-  <strong>Di sản thủ công Việt • Creator Commerce Platform</strong><br/>
-  Kết nối nghệ nhân dân tộc thiểu số Việt Nam với người yêu handmade toàn cầu
-</p>
-
----
-
-## 📋 Thông tin dự án
-
-| | |
-|---|---|
-| **Học phần** | Phát triển ứng dụng web cơ bản – CSE122 |
-| **Đề tài** | BTL-11 – CraftLink |
-| **Loại** | Web Frontend (nguyên mẫu) |
-| **Nhóm** | 3 sinh viên |
-
-## 🌐 Demo trực tuyến
-
-🔗 **GitHub Pages:** [https://KhanhNguyen3010.github.io/CSE_BTCK_2551170903/](https://KhanhNguyen3010.github.io/CSE_BTCK_2551170903/)
-
-> Nếu link trên chưa hoạt động, hãy làm theo hướng dẫn bên dưới để bật GitHub Pages.
+> **Học phần:** PHÁT TRIỂN ỨNG DỤNG WEB CƠ BẢN – CSE122  
+> **Đề tài:** BTL-11 – CraftLink – Sàn sản phẩm sáng tạo tùy biến (Creator Commerce)  
+> **Vai trò triển khai:** Vai trò 2 – Người sáng tạo (Maker / Nghệ nhân)
 
 ---
 
-## 🚀 Hướng dẫn chạy cục bộ (Local Development)
+## 📌 Giới thiệu
 
-### Yêu cầu
-- Trình duyệt web hiện đại (Chrome, Firefox, Safari, Edge)
-- Không cần cài đặt Node.js hay bất kỳ backend nào
+Thư mục này chứa toàn bộ mã nguồn giao diện Frontend và nghiệp vụ của **Vai trò 2: Người sáng tạo (Maker)** trên nền tảng CraftLink. Hệ thống cho phép nghệ nhân làng nghề quản lý các tác phẩm trưng bày, tiếp nhận yêu cầu đặt làm thủ công theo yêu cầu riêng (Custom Briefs), và soạn thảo đề xuất báo giá (Proposals) tích hợp trí tuệ nhân tạo **AI-3: Revision Summarizer**.
 
-### Cách 1: Mở trực tiếp (Đơn giản nhất)
+## 📂 Cấu trúc thư mục
 
-```bash
-# Clone repository
-git clone https://github.com/KhanhNguyen3010/CSE_BTCK_2551170903.git
-cd CSE_BTCK_2551170903
-
-# Mở file trong trình duyệt
-open Craftlink_website/index.html        # macOS
-xdg-open Craftlink_website/index.html    # Linux
-start Craftlink_website/index.html       # Windows
+```text
+CraftLink/
+├── seller/
+│   ├── dashboard.html          # Bảng điều khiển tổng quan nghệ nhân & thống kê
+│   ├── brief-inbox.html        # Giao diện 5: Hộp thư tiếp nhận yêu cầu tùy biến (Brief Inbox)
+│   ├── proposal-editor.html    # Giao diện 6: Soạn đề xuất & báo giá tích hợp AI-3 Revision Summarizer
+│   ├── products.html           # Giao diện 4: Quản lý danh sách tác phẩm (Listing Management)
+│   ├── product-form.html       # Đăng / chỉnh sửa tác phẩm thủ công (CRUD)
+│   ├── orders.html             # Quản lý đơn hàng (5 tab trạng thái chuẩn E-commerce)
+│   ├── order-detail.html       # Chi tiết hóa đơn và tiến độ giao hàng
+│   ├── inventory.html          # Kiểm kê và điều chỉnh tồn kho
+│   ├── revenue.html            # Báo cáo doanh thu & rút tiền về tài khoản ngân hàng
+│   ├── reviews-messages.html   # Quản lý đánh giá và chat trao đổi với khách
+│   ├── promotions.html         # Tạo và quản lý mã giảm giá
+│   ├── shop-profile.html       # Hồ sơ câu chuyện làng nghề & chứng nhận WFTO
+│   ├── settings.html           # Cài đặt gian hàng
+│   ├── login.html              # Đăng nhập kênh người sáng tạo
+│   ├── seller-data.js          # Dữ liệu giả lập chuẩn LocalStorage (CRUD đầy đủ)
+│   ├── seller.js               # App Shell dùng chung (Sidebar, Header, Toast, Modal, Format VND)
+│   └── seller.css              # Tùy biến kiểu dáng kênh người bán
+├── assets/
+│   ├── css/
+│   │   ├── base.css            # Reset CSS & thanh cuộn tùy biến
+│   │   └── colors.css          # Hệ màu di sản (Heritage Design Tokens)
+│   └── js/
+│       └── tailwind-config.js  # Cấu hình Tailwind theme dùng chung
+├── maker-listing-management.html # Alias Giao diện 4 theo chuẩn đề bài BTL-11
+├── maker-brief-inbox.html        # Alias Giao diện 5 theo chuẩn đề bài BTL-11
+└── maker-proposal-editor.html    # Alias Giao diện 6 theo chuẩn đề bài BTL-11
 ```
 
-### Cách 2: Dùng Live Server (Khuyến khích)
+## 🚀 Các màn hình nghiệp vụ chính (Tối thiểu 3 màn hình theo Đề bài)
 
-```bash
-# Cài VS Code extension "Live Server" (Ritwick Dey)
-# Hoặc dùng npx:
-npx -y live-server Craftlink_website --port=3000 --open
+1. **Giao diện 4: Maker Listing Management (`seller/products.html` hoặc `maker-listing-management.html`)**
+   - Quản lý danh mục tác phẩm: Thổ cẩm, gốm mộc, mây tre đan, sơn mài.
+   - Thao tác CRUD: Thêm mới, chỉnh sửa, xóa/ẩn sản phẩm lưu trực tiếp vào `LocalStorage`.
+   - Tìm kiếm theo tên/làng nghề và lọc theo trạng thái (Đang mở bán, Tạm ẩn, Hết hàng).
 
-# Truy cập: http://localhost:3000
-```
+2. **Giao diện 5: Maker Brief Inbox (`seller/brief-inbox.html` hoặc `maker-brief-inbox.html`)**
+   - Hộp thư nhận yêu cầu tùy biến gửi từ khách hàng.
+   - Phân loại theo 5 trạng thái nghiệp vụ: Chờ xử lý (`pending`), Cần sửa đổi (`revision_requested`), Đã gửi đề xuất (`proposed`), Đang chế tác (`in_progress`), Đã hoàn thành (`completed`).
+   - Xem chi tiết ngân sách, kích thước, chất liệu yêu cầu, hạn chót và ảnh phác thảo của khách.
 
-### Cách 3: Dùng Python HTTP Server
+3. **Giao diện 6: Maker Proposal Editor (`seller/proposal-editor.html` hoặc `maker-proposal-editor.html`)**
+   - Soạn thảo đề xuất gửi cho khách hàng dựa trên Brief được chọn.
+   - Bóc tách chi phí tự động: Tiền nguyên vật liệu + Công nghệ nhân + Hộp quà di sản $\rightarrow$ Tổng báo giá & đối chiếu ngân sách khách.
+   - **Tích hợp AI-3: Revision Summarizer:** Tự động đọc và bóc tách các yêu cầu sửa đổi dài dòng/lộn xộn của khách hàng thành Checklist công việc rõ ràng (Màu sắc, Họa tiết, Kích thước, Tiến độ), có khối giải thích *"Vì sao có kết quả này?"* và xử lý kịch bản lỗi/fallback an toàn.
 
-```bash
-cd Craftlink_website
-python3 -m http.server 3000
+## 💻 Hướng dẫn chạy thử nghiệm
 
-# Truy cập: http://localhost:3000
-```
-
-### Cách 4: Dùng Node.js HTTP Server
-
-```bash
-npx -y http-server Craftlink_website -p 3000 -o
-
-# Truy cập: http://localhost:3000
-```
-
-> **Lưu ý:** Một số tính năng (Mock API, CORS) cần chạy qua HTTP server thay vì mở trực tiếp file.
-
----
-
-## 🏗️ Triển khai lên GitHub Pages
-
-### Bước 1: Push code lên branch `main`
-
-```bash
-git add .
-git commit -m "docs: add screen inventory, AI usage report, GitHub Pages config"
-git checkout main
-git merge feat/buyer
-git push origin main
-```
-
-### Bước 2: Bật GitHub Pages
-
-1. Vào repository trên GitHub → **Settings** → **Pages**
-2. Trong phần **Build and deployment**:
-   - **Source:** chọn **GitHub Actions**
-3. Workflow sẽ tự động chạy khi push lên `main`
-4. Sau khi deploy thành công, truy cập: `https://KhanhNguyen3010.github.io/CSE_BTCK_2551170903/`
-
-### Bước 3 (Tùy chọn): Trigger deploy thủ công
-
-1. Vào tab **Actions** trên GitHub
-2. Chọn workflow **"Deploy to GitHub Pages"**
-3. Click **"Run workflow"** → chọn branch `main` → **"Run workflow"**
-
----
-
-## 📁 Cấu trúc dự án
-
-```
-Craftlink-web/
-├── index.html                              ← Redirect → Craftlink_website/
-├── README.md                               ← Hướng dẫn (file này)
-├── .github/workflows/deploy.yml            ← GitHub Actions auto-deploy
-│
-└── Craftlink_website/
-    ├── index.html                          ← Trang chủ
-    ├── pages/
-    │   ├── login.html                      ← Đăng nhập / Đăng ký
-    │   ├── buyer-marketplace.html          ← Sàn Khám Phá
-    │   ├── buyer-custom-brief.html         ← Tạo Yêu Cầu Tùy Biến
-    │   ├── buyer-orders.html               ← Đơn Hàng Tùy Biến
-    │   ├── buyer-cart.html                 ← Giỏ Hàng
-    │   ├── product.html                    ← Chi Tiết Sản Phẩm
-    │   └── impact.html                     ← Về Chúng Tôi & Tác Động
-    ├── assets/
-    │   ├── css/
-    │   │   ├── colors.css                  ← Design tokens (màu)
-    │   │   └── base.css                    ← Typography
-    │   └── js/
-    │       ├── data.js                     ← Mock data sản phẩm
-    │       ├── thocam.js                   ← Logic marketplace
-    │       ├── product.js                  ← Logic chi tiết SP
-    │       └── tailwind-config.js          ← Cấu hình Tailwind
-    └── docs/
-        ├── assignment-craftlink.md         ← Đề bài BTL
-        ├── design-system.md                ← Hệ thống thiết kế
-        ├── screen-inventory.md             ← Bảng kiểm kê màn hình
-        ├── ai-usage-report.md              ← Báo cáo sử dụng AI
-        └── mockups/                        ← Ảnh mockup
-```
-
----
-
-## 🎭 Vai trò & Màn hình
-
-| Vai trò | Màn hình | Trạng thái |
-|---|---|:---:|
-| **Dùng chung** | Trang chủ, Đăng nhập, Tác động, Chi tiết SP, Giỏ hàng | ✅ |
-| **Khách hàng** | Sàn Khám Phá, Tạo Brief, Đơn hàng, Giỏ hàng | ✅ |
-| **Người sáng tạo** | Listing Management, Brief Inbox, Proposal Editor | 🔲 |
-| **Kiểm duyệt viên** | Moderation Queue, Report Center, Content Guidelines | 🔲 |
-| **Quản trị viên** | Category Mgmt, User Mgmt, Platform Dashboard | 🔲 |
-
-> Chi tiết xem: [`docs/screen-inventory.md`](Craftlink_website/docs/screen-inventory.md)
-
----
-
-## 🤖 Tính năng AI
-
-| # | Tính năng | Mô tả | Cách mô phỏng |
-|:---:|---|---|---|
-| AI-1 | **Brief Builder** | Chuyển mô tả tự do → creative brief | JS timeout + JSON response |
-| AI-2 | **Style Matcher** | Ghép brief với listing phù hợp | Rule-based filter algorithm |
-| AI-3 | **Revision Summarizer** | Tóm tắt revision cần làm | Canned responses |
-
-> Chi tiết xem: [`docs/ai-usage-report.md`](Craftlink_website/docs/ai-usage-report.md)
-
----
-
-## 🛠️ Công nghệ sử dụng
-
-| Công nghệ | Mục đích |
-|---|---|
-| **HTML5** | Cấu trúc semantic |
-| **Tailwind CSS** (CDN v3) | Styling utility-first |
-| **Vanilla JavaScript** | DOM manipulation, events, LocalStorage |
-| **Google Material Symbols** | Icon system |
-| **Google Fonts** | Playfair Display + Plus Jakarta Sans |
-| **Postman Mock API** | API giả lập sản phẩm |
-| **LocalStorage** | Lưu trữ briefs, giỏ hàng |
-| **GitHub Actions** | Auto-deploy GitHub Pages |
-
----
-
-## 📖 Tài liệu dự án
-
-| Tài liệu | Đường dẫn |
-|---|---|
-| Đề bài BTL | [`docs/assignment-craftlink.md`](Craftlink_website/docs/assignment-craftlink.md) |
-| Hệ thống thiết kế | [`docs/design-system.md`](Craftlink_website/docs/design-system.md) |
-| Bảng kiểm kê màn hình | [`docs/screen-inventory.md`](Craftlink_website/docs/screen-inventory.md) |
-| Báo cáo sử dụng AI | [`docs/ai-usage-report.md`](Craftlink_website/docs/ai-usage-report.md) |
-
----
-
-## 👥 Phân công nhóm
-
-| Thành viên | Vai trò chính | Trách nhiệm chéo |
-|---|---|---|
-| **SV1** | Khách hàng (Buyer) | Responsive, giao diện dùng chung |
-| **SV2** | Người sáng tạo (Maker) | JavaScript, dữ liệu giả lập |
-| **SV3** | Kiểm duyệt + Quản trị | Tích hợp, điều hướng, phát hành |
-
----
-
-## 📝 License
-
-Dự án này được thực hiện cho mục đích học tập tại UIT – Trường Đại học Công nghệ Thông tin, ĐHQG-HCM.
+1. Mở bất kỳ file `.html` nào trực tiếp bằng trình duyệt Web (Chrome, Edge, Firefox), hoặc sử dụng extension **Live Server** trong VS Code.
+2. Có thể bắt đầu từ:
+   - `seller/login.html`: Bấm nút **"Điền nhanh"** để đăng nhập tài khoản nghệ nhân mẫu.
+   - `seller/dashboard.html`: Xem bảng điều khiển tổng quan và các yêu cầu Brief mới.
+   - `seller/brief-inbox.html`: Xem danh sách yêu cầu tùy biến.
+   - `seller/proposal-editor.html`: Trải nghiệm tính năng AI Revision Summarizer.
