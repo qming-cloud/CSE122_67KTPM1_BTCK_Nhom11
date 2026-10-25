@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <title>Hồ Sơ Xưởng & Nghệ Nhân | Kênh Người Bán Craft Link</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  
+  <link href="../assets/css/colors.css" rel="stylesheet"/>
+  <link href="../assets/css/base.css" rel="stylesheet"/>
+  <link href="seller.css" rel="stylesheet"/>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../assets/js/tailwind-config.js"></script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+
+  <div id="seller-sidebar"></div>
+
+  <div class="lg:pl-64 flex flex-col min-h-screen">
+    <div id="seller-header"></div>
+
+    <main class="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 max-w-5xl mx-auto w-full pb-24 lg:pb-12">
+      
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="font-serif-craft text-2xl sm:text-3xl font-bold text-primary">Hồ Sơ Xưởng & Câu Chuyện Nghệ Nhân</h2>
+          <p class="text-sm text-on-surface-variant">Tôn vinh nguồn cội văn hóa làng nghề và chứng nhận thương mại công bằng</p>
+        </div>
+        <button type="button" id="btn-save-shop-profile" class="px-5 py-2.5 rounded-xl bg-secondary text-on-secondary font-semibold text-sm hover:opacity-95 shadow-sm transition-all flex items-center gap-2">
+          <span class="material-symbols-outlined text-[18px]">save</span>
+          <span>Lưu thông tin hồ sơ</span>
+        </button>
+      </div>
+
+      <!-- Ảnh Bìa & Avatar Xưởng Thủ Công -->
+      <div class="bg-surface-container-lowest rounded-2xl border border-surface-container-high shadow-2xs overflow-hidden">
+        
+        <!-- Ảnh Bìa -->
+        <div class="relative h-48 sm:h-64 bg-surface-container overflow-hidden group">
+          <img id="shop-cover-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCn6Mod7HwcwbLvZp07ozudATDYxeidZxR-QS4uNS1ToADHUlFu6VNniMTudCWf1FfvFVFcy40tjcXN-xsmp6AHmEzg9LxsxAjTNtYvULx69YHTeTlhJ8qO_NrFYcXT3KgZlBVoaHE9dtacSc60jzPIzIHVdz8edwhCjnI2TAif_g12SsVhf5d5TP6DPbxnUKEwNXs6QeDCpGU04qE6jN9r5TQT-ODdhKXN3sfnvOzWRcb-0eN7-38" 
+            alt="Ảnh bìa xưởng dệt" class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-primary/25"></div>
+        </div>
+
+        <!-- Avatar & Tên Xưởng Đè Lên Ảnh Bìa -->
+        <div class="px-6 pb-6 pt-0 relative flex flex-col sm:flex-row items-center sm:items-end justify-between gap-4 -mt-16 sm:-mt-20">
+          <div class="flex flex-col sm:flex-row items-center sm:items-end gap-4 text-center sm:text-left">
+            <img id="shop-avatar-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAfeDcjbel9PgaOPKsXiTnmmt9HzUNMRNarcvfjPFi7lg-OfC5dHFtTQ9wh06mybenJZqJ3EpEeoUfDwx2Hl2450M6j4AH8rzyPmLCIsufOV4CxyEAN6vwTDOENjcStpLHb2rQeoZCCqyBPUPiu5pKJwG7z8yzcr2tSEFQNdJipk6iLyhcphGRHWeLTmgZnILx14Lp1fFMsgIzZLIqqfOxAXJ74cKdjYCsT381x8Biu5hgbhW7jBVo" 
+              alt="Avatar nghệ nhân" class="w-28 h-28 sm:w-32 sm:h-32 rounded-full object-cover border-4 border-surface-container-lowest shadow-md ring-2 ring-secondary" />
+            <div class="space-y-1">
+              <div class="flex items-center gap-2 justify-center sm:justify-start">
+                <h3 class="font-serif-craft font-bold text-xl sm:text-2xl text-primary" id="profile-display-name">Xưởng Dệt Chàm & Thêu Tay Bản Phố</h3>
+                <span class="material-symbols-outlined text-secondary text-[20px]" title="Gian hàng xác minh">verified</span>
+              </div>
+              <p class="text-xs text-on-surface-variant font-medium" id="profile-display-artisan">Đại diện: Nghệ nhân Vàng Thị Mai • Dân tộc H'Mông Hoa</p>
+            </div>
+          </div>
+
+          <div class="badge-fair-trade text-xs py-1 px-3 shadow-xs">
+            <span class="material-symbols-outlined text-[16px] text-tertiary-fixed">eco</span>
+            <span>WFTO Fair Trade Certified</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Form Cập Nhật Chi Tiết -->
+      <div class="bg-surface-container-lowest rounded-2xl border border-surface-container-high shadow-2xs p-6 space-y-6">
+        
+        <div class="space-y-4">
+          <h4 class="font-serif-craft font-bold text-base text-primary flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary text-[20px]">store</span>
+            <span>1. Thông Tin Nhận Diện Gian Hàng</span>
+          </h4>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-primary uppercase mb-1">Tên Gian Hàng / Xưởng Thủ Công</label>
+              <input type="text" id="shop-name-input" class="w-full h-11 px-4 rounded-xl bg-surface-container-low border border-transparent focus:border-primary text-sm font-semibold" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-primary uppercase mb-1">Họ Tên Nghệ Nhân Đại Diện</label>
+              <input type="text" id="artisan-name-input" class="w-full h-11 px-4 rounded-xl bg-surface-container-low border border-transparent focus:border-primary text-sm" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-primary uppercase mb-1">Dân Tộc</label>
+              <input type="text" id="ethnic-input" class="w-full h-11 px-4 rounded-xl bg-surface-container-low border border-transparent focus:border-primary text-sm" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-primary uppercase mb-1">Địa Chỉ Bản Làng / Làng Nghề</label>
+              <input type="text" id="village-input" class="w-full h-11 px-4 rounded-xl bg-surface-container-low border border-transparent focus:border-primary text-sm" />
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-surface-container space-y-4">
+          <h4 class="font-serif-craft font-bold text-base text-primary flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary text-[20px]">history_edu</span>
+            <span>2. Câu Chuyện Di Sản & Sứ Mệnh Cộng Đồng</span>
+          </h4>
+
+          <div>
+            <label class="block text-xs font-semibold text-primary uppercase mb-1">Lời giới thiệu ngắn (Bio)</label>
+            <textarea id="shop-bio-input" rows="2" class="w-full p-3 rounded-xl bg-surface-container-low border border-transparent focus:border-primary text-xs leading-relaxed"></textarea>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-primary uppercase mb-1">Câu chuyện cội nguồn & Kỹ thuật truyền đời</label>
+            <textarea id="shop-story-input" rows="4" class="w-full p-3 rounded-xl bg-surface-container-low border border-transparent focus:border-primary text-xs leading-relaxed"></textarea>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-surface-container space-y-4">
+          <h4 class="font-serif-craft font-bold text-base text-primary flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary text-[20px]">contact_phone</span>
+            <span>3. Thông Tin Liên Hệ & Kênh Kết Nối</span>
+          </h4>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-primary uppercase mb-1">Số Điện Thoại Nghệ Nhân</label>
+              <input type="text" id="shop-phone-input" class="w-full h-11 px-4 rounded-xl bg-surface-container-low border border-transparent focus:border-primary text-sm" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-primary uppercase mb-1">Email Liên Hệ</label>
+              <input type="email" id="shop-email-input" class="w-full h-11 px-4 rounded-xl bg-surface-container-low border border-transparent focus:border-primary text-sm" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+    <div id="seller-bottom-nav"></div>
+  </div>
+
+  <script src="seller-data.js"></script>
+  <script src="seller.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      SellerApp.initLayout({
+        activeNav: 'shop-profile',
+        pageTitle: 'Hồ Sơ Xưởng Thủ Công'
+      });
+
+      let shop = SellerData.getShopInfo();
+
+      // Điền form
+      document.getElementById('shop-name-input').value = shop.name;
+      document.getElementById('artisan-name-input').value = shop.artisanName;
+      document.getElementById('ethnic-input').value = shop.ethnicGroup || "Dân tộc H'Mông";
+      document.getElementById('village-input').value = shop.village;
+      document.getElementById('shop-bio-input').value = shop.bio || '';
+      document.getElementById('shop-story-input').value = shop.story || '';
+      document.getElementById('shop-phone-input').value = shop.phone;
+      document.getElementById('shop-email-input').value = shop.email;
+
+      // Lưu cập nhật
+      document.getElementById('btn-save-shop-profile').addEventListener('click', () => {
+        shop.name = document.getElementById('shop-name-input').value.trim();
+        shop.artisanName = document.getElementById('artisan-name-input').value.trim();
+        shop.ethnicGroup = document.getElementById('ethnic-input').value.trim();
+        shop.village = document.getElementById('village-input').value.trim();
+        shop.bio = document.getElementById('shop-bio-input').value.trim();
+        shop.story = document.getElementById('shop-story-input').value.trim();
+        shop.phone = document.getElementById('shop-phone-input').value.trim();
+        shop.email = document.getElementById('shop-email-input').value.trim();
+
+        SellerData.saveShopInfo(shop);
+        SellerApp.showToast('Đã lưu thông tin hồ sơ xưởng thành công!');
+
+        document.getElementById('profile-display-name').textContent = shop.name;
+        document.getElementById('profile-display-artisan').textContent = `Đại diện: ${shop.artisanName} • ${shop.ethnicGroup}`;
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <title>Quản Lý Đơn Hàng | Kênh Người Bán Craft Link</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  
+  <link href="../assets/css/colors.css" rel="stylesheet"/>
+  <link href="../assets/css/base.css" rel="stylesheet"/>
+  <link href="seller.css" rel="stylesheet"/>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../assets/js/tailwind-config.js"></script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+
+  <div id="seller-sidebar"></div>
+
+  <div class="lg:pl-64 flex flex-col min-h-screen">
+    <div id="seller-header"></div>
+
+    <main class="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 max-w-7xl mx-auto w-full pb-24 lg:pb-12">
+      
+      <!-- Tiêu đề trang -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="font-serif-craft text-2xl sm:text-3xl font-bold text-primary">Quản Lý Đơn Hàng</h2>
+          <p class="text-sm text-on-surface-variant">Theo dõi tiến độ đóng gói tác phẩm và bàn giao cho đơn vị vận chuyển</p>
+        </div>
+      </div>
+
+      <!-- 5 Tab Trạng Thái Đơn Hàng Chuẩn E-Commerce -->
+      <div class="flex items-center gap-2 overflow-x-auto border-b border-surface-container-high pb-px scrollbar-none" id="order-tabs-container">
+        <button data-tab="all" class="tab-btn px-4 py-3 font-semibold text-sm border-b-2 border-primary text-primary flex items-center gap-2 whitespace-nowrap">
+          <span>Tất cả</span>
+          <span class="px-2 py-0.5 rounded-full text-xs bg-surface-container-high text-primary" id="tab-count-all">0</span>
+        </button>
+        <button data-tab="pending" class="tab-btn px-4 py-3 font-medium text-sm border-b-2 border-transparent text-on-surface-variant hover:text-primary flex items-center gap-2 whitespace-nowrap">
+          <span>Chờ xác nhận</span>
+          <span class="px-2 py-0.5 rounded-full text-xs bg-amber-100 text-amber-800 font-bold" id="tab-count-pending">0</span>
+        </button>
+        <button data-tab="preparing" class="tab-btn px-4 py-3 font-medium text-sm border-b-2 border-transparent text-on-surface-variant hover:text-primary flex items-center gap-2 whitespace-nowrap">
+          <span>Đang chuẩn bị</span>
+          <span class="px-2 py-0.5 rounded-full text-xs bg-sky-100 text-sky-800" id="tab-count-preparing">0</span>
+        </button>
+        <button data-tab="shipping" class="tab-btn px-4 py-3 font-medium text-sm border-b-2 border-transparent text-on-surface-variant hover:text-primary flex items-center gap-2 whitespace-nowrap">
+          <span>Đang giao</span>
+          <span class="px-2 py-0.5 rounded-full text-xs bg-purple-100 text-purple-800" id="tab-count-shipping">0</span>
+        </button>
+        <button data-tab="completed" class="tab-btn px-4 py-3 font-medium text-sm border-b-2 border-transparent text-on-surface-variant hover:text-primary flex items-center gap-2 whitespace-nowrap">
+          <span>Hoàn thành</span>
+          <span class="px-2 py-0.5 rounded-full text-xs bg-emerald-100 text-emerald-800" id="tab-count-completed">0</span>
+        </button>
+        <button data-tab="cancelled" class="tab-btn px-4 py-3 font-medium text-sm border-b-2 border-transparent text-on-surface-variant hover:text-primary flex items-center gap-2 whitespace-nowrap">
+          <span>Đã hủy</span>
+          <span class="px-2 py-0.5 rounded-full text-xs bg-rose-100 text-rose-800" id="tab-count-cancelled">0</span>
+        </button>
+      </div>
+
+      <!-- Tìm kiếm & Bộ lọc đơn -->
+      <div class="bg-surface-container-lowest p-4 rounded-2xl border border-surface-container-high shadow-2xs flex flex-col sm:flex-row gap-3 items-center justify-between">
+        <div class="relative w-full sm:w-80">
+          <span class="material-symbols-outlined absolute left-3.5 top-2.5 text-[20px] text-outline">search</span>
+          <input type="text" id="order-search-input" placeholder="Tìm theo mã đơn (#CL-...) hoặc tên khách..." 
+            class="w-full h-10 pl-10 pr-4 rounded-xl bg-surface-container-low text-on-surface text-sm border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none" />
+        </div>
+        <div class="text-xs text-on-surface-variant">
+          Hiển thị <span class="font-bold text-primary" id="orders-shown-count">0</span> đơn hàng
+        </div>
+      </div>
+
+      <!-- Danh Sách Đơn Hàng (Card Thông Minh) -->
+      <div class="space-y-4" id="orders-list-container">
+        <!-- Render tự động bằng Javascript -->
+      </div>
+
+      <!-- Trạng Thái Trống (Empty State) -->
+      <div id="orders-empty-state" class="hidden p-16 text-center flex flex-col items-center justify-center space-y-3 bg-surface-container-lowest rounded-2xl border border-surface-container-high">
+        <div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center text-outline">
+          <span class="material-symbols-outlined text-[32px]">receipt_long</span>
+        </div>
+        <h4 class="font-serif-craft text-lg font-bold text-primary">Không có đơn hàng nào trong mục này</h4>
+        <p class="text-xs text-on-surface-variant max-w-sm">Hiện chưa có đơn phát sinh ở trạng thái này hoặc từ khóa tìm kiếm không khớp.</p>
+      </div>
+
+    </main>
+
+    <div id="seller-bottom-nav"></div>
+  </div>
+
+  <script src="seller-data.js"></script>
+  <script src="seller.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      SellerApp.initLayout({
+        activeNav: 'orders',
+        pageTitle: 'Quản Lý Đơn Hàng'
+      });
+
+      let orders = SellerData.getOrders();
+      let activeTab = 'all';
+
+      const searchInput = document.getElementById('order-search-input');
+      const tabs = document.querySelectorAll('.tab-btn');
+
+      // Cập nhật số lượng trên các tab
+      function updateTabCounts() {
+        document.getElementById('tab-count-all').textContent = orders.length;
+        document.getElementById('tab-count-pending').textContent = orders.filter(o => o.status === 'pending').length;
+        document.getElementById('tab-count-preparing').textContent = orders.filter(o => o.status === 'preparing').length;
+        document.getElementById('tab-count-shipping').textContent = orders.filter(o => o.status === 'shipping').length;
+        document.getElementById('tab-count-completed').textContent = orders.filter(o => o.status === 'completed').length;
+        document.getElementById('tab-count-cancelled').textContent = orders.filter(o => o.status === 'cancelled').length;
+      }
+
+      function filterAndRenderOrders() {
+        const keyword = searchInput.value.trim().toLowerCase();
+
+        const filtered = orders.filter(o => {
+          const matchTab = activeTab === 'all' || o.status === activeTab;
+          const matchKeyword = !keyword || 
+            o.id.toLowerCase().includes(keyword) || 
+            o.customerName.toLowerCase().includes(keyword) || 
+            o.phone.includes(keyword);
+
+          return matchTab && matchKeyword;
+        });
+
+        renderOrders(filtered);
+      }
+
+      function renderOrders(list) {
+        document.getElementById('orders-shown-count').textContent = list.length;
+        const container = document.getElementById('orders-list-container');
+        const emptyState = document.getElementById('orders-empty-state');
+
+        if (list.length === 0) {
+          container.innerHTML = '';
+          emptyState.classList.remove('hidden');
+          return;
+        }
+
+        emptyState.classList.add('hidden');
+
+        container.innerHTML = list.map(o => {
+          const itemsHtml = o.items.map(item => `
+            <div class="flex items-center gap-3 py-2">
+              <img src="${item.image}" alt="${item.productName}" class="w-12 h-12 rounded-lg object-cover shrink-0 border border-surface-container" />
+              <div class="flex-1 min-w-0">
+                <h5 class="text-xs sm:text-sm font-semibold text-primary truncate" title="${item.productName}">${item.productName}</h5>
+                <div class="flex items-center gap-2 text-xs text-on-surface-variant mt-0.5">
+                  <span>${SellerApp.formatVND(item.price)}</span>
+                  <span>x ${item.quantity}</span>
+                </div>
+              </div>
+              <div class="font-bold text-xs sm:text-sm text-primary shrink-0">
+                ${SellerApp.formatVND(item.price * item.quantity)}
+              </div>
+            </div>
+          `).join('');
+
+          // Các nút hành động tùy theo trạng thái
+          let actionButtons = '';
+          if (o.status === 'pending') {
+            actionButtons = `
+              <button onclick="updateOrderStatus('${o.id}', 'preparing')" class="px-4 py-2 rounded-xl bg-primary text-on-primary text-xs font-semibold hover:opacity-90 transition-all flex items-center gap-1.5 shadow-2xs">
+                <span class="material-symbols-outlined text-[16px]">check</span>
+                <span>Xác nhận đơn</span>
+              </button>
+              <button onclick="cancelOrderPrompt('${o.id}')" class="px-3.5 py-2 rounded-xl border border-surface-container-highest text-error text-xs font-semibold hover:bg-error-container/20 transition-all">
+                Từ chối đơn
+              </button>
+            `;
+          } else if (o.status === 'preparing') {
+            actionButtons = `
+              <button onclick="updateOrderStatus('${o.id}', 'shipping')" class="px-4 py-2 rounded-xl bg-secondary text-on-secondary text-xs font-semibold hover:opacity-90 transition-all flex items-center gap-1.5 shadow-2xs">
+                <span class="material-symbols-outlined text-[16px]">local_shipping</span>
+                <span>Giao cho Shipper</span>
+              </button>
+            `;
+          } else if (o.status === 'shipping') {
+            actionButtons = `
+              <button onclick="updateOrderStatus('${o.id}', 'completed')" class="px-4 py-2 rounded-xl bg-emerald-800 text-white text-xs font-semibold hover:opacity-90 transition-all flex items-center gap-1.5 shadow-2xs">
+                <span class="material-symbols-outlined text-[16px]">done_all</span>
+                <span>Xác nhận đã giao</span>
+              </button>
+            `;
+          }
+
+          return `
+            <div class="bg-surface-container-lowest rounded-2xl border border-surface-container-high shadow-2xs p-5 space-y-4 hover:border-surface-container-highest transition-colors">
+              <!-- Header của Thẻ Đơn Hàng -->
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-surface-container gap-2">
+                <div class="flex items-center gap-2.5 flex-wrap">
+                  <span class="font-serif-craft font-bold text-base text-primary">#${o.id}</span>
+                  <span class="text-xs text-on-surface-variant">• ${o.createdAt}</span>
+                  <span class="text-xs text-outline">• ${o.shippingProvider}</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  ${SellerApp.getOrderStatusBadge(o.status)}
+                </div>
+              </div>
+
+              <!-- Nội dung sản phẩm trong đơn -->
+              <div class="divide-y divide-surface-container-low">
+                ${itemsHtml}
+              </div>
+
+              <!-- Thông tin người nhận & Tổng thanh toán -->
+              <div class="pt-3 border-t border-surface-container flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div class="text-xs text-on-surface-variant space-y-1">
+                  <div class="flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[16px] text-outline">person</span>
+                    <strong class="text-primary">${o.customerName}</strong>
+                    <span>(${o.phone})</span>
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[16px] text-outline">location_on</span>
+                    <span class="truncate max-w-md">${o.address}</span>
+                  </div>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-between md:justify-end gap-4 shrink-0">
+                  <div class="text-left md:text-right">
+                    <span class="text-[11px] text-on-surface-variant block">Tổng thanh toán</span>
+                    <span class="font-serif-craft font-bold text-base sm:text-lg text-secondary">${SellerApp.formatVND(o.totalAmount)}</span>
+                  </div>
+
+                  <div class="flex items-center gap-2">
+                    <a href="order-detail.html?id=${o.id}" class="px-3.5 py-2 rounded-xl bg-surface-container text-primary text-xs font-semibold hover:bg-surface-container-high transition-colors flex items-center gap-1">
+                      <span class="material-symbols-outlined text-[16px]">visibility</span>
+                      <span>Chi tiết</span>
+                    </a>
+                    ${actionButtons}
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // Xử lý chuyển tab
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => {
+            t.className = 'tab-btn px-4 py-3 font-medium text-sm border-b-2 border-transparent text-on-surface-variant hover:text-primary flex items-center gap-2 whitespace-nowrap';
+          });
+          tab.className = 'tab-btn px-4 py-3 font-semibold text-sm border-b-2 border-primary text-primary flex items-center gap-2 whitespace-nowrap';
+
+          activeTab = tab.getAttribute('data-tab');
+          filterAndRenderOrders();
+        });
+      });
+
+      searchInput.addEventListener('input', filterAndRenderOrders);
+
+      // Cập nhật trạng thái đơn hàng
+      window.updateOrderStatus = function(id, nextStatus) {
+        const order = orders.find(o => o.id === id);
+        if (!order) return;
+
+        let statusText = 'Đang chuẩn bị';
+        if (nextStatus === 'shipping') statusText = 'Đang giao hàng';
+        if (nextStatus === 'completed') statusText = 'Hoàn thành';
+
+        SellerApp.confirmAction({
+          title: `Chuyển đơn #${id}?`,
+          message: `Xác nhận chuyển trạng thái đơn hàng sang "${statusText}"?`,
+          confirmText: 'Cập nhật',
+          onConfirm: () => {
+            order.status = nextStatus;
+            SellerData.saveOrders(orders);
+            SellerApp.showToast(`Đã chuyển đơn #${id} sang trạng thái: ${statusText}!`);
+            updateTabCounts();
+            filterAndRenderOrders();
+          }
+        });
+      };
+
+      // Từ chối / Hủy đơn
+      window.cancelOrderPrompt = function(id) {
+        SellerApp.confirmAction({
+          title: `Từ chối đơn #${id}?`,
+          message: 'Bạn có chắc chắn muốn hủy đơn hàng này không? Khách hàng sẽ nhận được thông báo giải thích.',
+          confirmText: 'Hủy đơn này',
+          isDanger: true,
+          onConfirm: () => {
+            const order = orders.find(o => o.id === id);
+            if (order) {
+              order.status = 'cancelled';
+              SellerData.saveOrders(orders);
+              SellerApp.showToast(`Đã hủy đơn hàng #${id}!`, 'info');
+              updateTabCounts();
+              filterAndRenderOrders();
+            }
+          }
+        });
+      };
+
+      updateTabCounts();
+      filterAndRenderOrders();
+    });
+  </script>
+</body>
+</html>

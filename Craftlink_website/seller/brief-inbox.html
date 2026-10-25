@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <title>Hộp Thư Yêu Cầu Tùy Biến (Brief Inbox) | Kênh Người Sáng Tạo Craft Link</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  
+  <link href="../assets/css/colors.css" rel="stylesheet"/>
+  <link href="../assets/css/base.css" rel="stylesheet"/>
+  <link href="seller.css" rel="stylesheet"/>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../assets/js/tailwind-config.js"></script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+
+  <div id="seller-sidebar"></div>
+
+  <div class="lg:pl-64 flex flex-col min-h-screen">
+    <div id="seller-header"></div>
+
+    <main class="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 max-w-7xl mx-auto w-full pb-24 lg:pb-12">
+      
+      <!-- Tiêu đề trang & Hành động nhanh -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-secondary/10 text-secondary">
+              Vai trò 2: Người sáng tạo (Maker)
+            </span>
+            <span class="text-xs text-on-surface-variant">• Giao diện 5: Brief Inbox</span>
+          </div>
+          <h2 class="font-serif-craft text-2xl sm:text-3xl font-bold text-primary">Hộp Thư Yêu Cầu Tùy Biến (Briefs)</h2>
+          <p class="text-xs sm:text-sm text-on-surface-variant">
+            Tiếp nhận các yêu cầu đặt may đo, dệt thêu riêng và gửi đề xuất báo giá (Proposal) cho khách hàng
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button id="btn-refresh-briefs" class="px-3.5 py-2 rounded-xl border border-surface-container-highest text-primary font-semibold text-xs sm:text-sm hover:bg-surface-container transition-colors flex items-center gap-1.5 shadow-2xs">
+            <span class="material-symbols-outlined text-[18px]">refresh</span>
+            <span>Làm mới</span>
+          </button>
+          <a href="proposal-editor.html" class="px-4 py-2 rounded-xl bg-secondary text-on-secondary font-semibold text-xs sm:text-sm hover:opacity-95 shadow-sm transition-all flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[18px]">edit_document</span>
+            <span>Soạn đề xuất mới</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Thống kê nhanh theo trạng thái -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+        <div class="bg-surface-container-lowest p-4 rounded-2xl border border-surface-container-high shadow-2xs flex items-center gap-3">
+          <div class="w-11 h-11 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-[22px]">pending_actions</span>
+          </div>
+          <div>
+            <div class="text-xl sm:text-2xl font-bold text-primary" id="stat-pending">0</div>
+            <div class="text-[11px] sm:text-xs text-on-surface-variant font-medium">Chờ gửi đề xuất</div>
+          </div>
+        </div>
+
+        <div class="bg-surface-container-lowest p-4 rounded-2xl border border-surface-container-high shadow-2xs flex items-center gap-3">
+          <div class="w-11 h-11 rounded-xl bg-purple-100 text-purple-800 flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-[22px]">rate_review</span>
+          </div>
+          <div>
+            <div class="text-xl sm:text-2xl font-bold text-primary" id="stat-revision">0</div>
+            <div class="text-[11px] sm:text-xs text-on-surface-variant font-medium">Cần sửa đổi (Revision)</div>
+          </div>
+        </div>
+
+        <div class="bg-surface-container-lowest p-4 rounded-2xl border border-surface-container-high shadow-2xs flex items-center gap-3">
+          <div class="w-11 h-11 rounded-xl bg-sky-100 text-sky-800 flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-[22px]">send</span>
+          </div>
+          <div>
+            <div class="text-xl sm:text-2xl font-bold text-primary" id="stat-proposed">0</div>
+            <div class="text-[11px] sm:text-xs text-on-surface-variant font-medium">Đã gửi đề xuất</div>
+          </div>
+        </div>
+
+        <div class="bg-surface-container-lowest p-4 rounded-2xl border border-surface-container-high shadow-2xs flex items-center gap-3">
+          <div class="w-11 h-11 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-[22px]">handyman</span>
+          </div>
+          <div>
+            <div class="text-xl sm:text-2xl font-bold text-primary" id="stat-progress">0</div>
+            <div class="text-[11px] sm:text-xs text-on-surface-variant font-medium">Đang chế tác</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bộ lọc Tabs Trạng Thái -->
+      <div class="flex items-center gap-2 overflow-x-auto border-b border-surface-container-high pb-px scrollbar-none" id="brief-tabs">
+        <button data-tab="all" class="tab-btn px-4 py-3 font-semibold text-sm border-b-2 border-primary text-primary flex items-center gap-2 whitespace-nowrap">
+          <span>Tất cả yêu cầu</span>
+          <span class="px-2 py-0.5 rounded-full text-xs bg-surface-container-high text-primary" id="tab-count-all">0</span>
+        </button>
+        <button data-tab="pending" class="tab-btn px-4 py-3 font-medium text-sm border-b-2 border-transparent text-on-surface-variant hover:text-primary flex items-center gap-2 whitespace-nowrap">
+          <span>Chờ xử lý</span>
+          <span class="px-2 py-0.5 rounded-full text-xs bg-amber-100 text-amber-800 font-bold" id="tab-count-pending">0</span>
+        </button>
+        <button data-tab="revision_requested" class="tab-btn px-4 py-3 font-medium text-sm border-b-2 border-transparent text-on-surface-variant hover:text-primary flex items-center gap-2 whitespace-nowrap">
+          <span>Khách yêu cầu sửa</span>
+          <span class="px-2 py-0.5 rounded-full text-xs bg-purple-100 text-purple-800 font-bold" id="tab-count-revision">0</span>
+        </button>
+        <button data-tab="proposed" class="tab-btn px-4 py-3 font-medium text-sm border-b-2 border-transparent text-on-surface-variant hover:text-primary flex items-center gap-2 whitespace-nowrap">
+          <span>Đã gửi đề xuất</span>
+          <span class="px-2 py-0.5 rounded-full text-xs bg-sky-100 text-sky-800" id="tab-count-proposed">0</span>
+        </button>
+        <button data-tab="in_progress" class="tab-btn px-4 py-3 font-medium text-sm border-b-2 border-transparent text-on-surface-variant hover:text-primary flex items-center gap-2 whitespace-nowrap">
+          <span>Đang chế tác</span>
+          <span class="px-2 py-0.5 rounded-full text-xs bg-emerald-100 text-emerald-800" id="tab-count-progress">0</span>
+        </button>
+      </div>
+
+      <!-- Thanh Tìm Kiếm & Bộ Lọc Nâng Cao -->
+      <div class="bg-surface-container-lowest p-4 rounded-2xl border border-surface-container-high shadow-2xs space-y-3">
+        <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
+          
+          <!-- Ô tìm kiếm -->
+          <div class="sm:col-span-6 relative">
+            <span class="material-symbols-outlined absolute left-3.5 top-2.5 text-[20px] text-outline">search</span>
+            <input type="text" id="brief-search-input" placeholder="Tìm theo mã brief (#BR-...), tên khách hoặc chất liệu..." 
+              class="w-full h-10 pl-10 pr-4 rounded-xl bg-surface-container-low text-on-surface text-sm border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none transition-all placeholder:text-outline" />
+          </div>
+
+          <!-- Lọc danh mục -->
+          <div class="sm:col-span-3">
+            <select id="select-category" class="w-full h-10 px-3 rounded-xl bg-surface-container-low text-on-surface text-xs sm:text-sm border border-transparent focus:border-primary focus:outline-none">
+              <option value="">Tất cả danh mục thủ công</option>
+              <option value="Thổ cẩm & Dệt may">Thổ cẩm & Dệt may</option>
+              <option value="Gốm mộc & Men tro">Gốm mộc & Men tro</option>
+              <option value="Mây tre đan">Mây tre đan</option>
+              <option value="Sơn mài & Khảm trai">Sơn mài & Khảm trai</option>
+            </select>
+          </div>
+
+          <!-- Lọc ngân sách -->
+          <div class="sm:col-span-3">
+            <select id="select-budget" class="w-full h-10 px-3 rounded-xl bg-surface-container-low text-on-surface text-xs sm:text-sm border border-transparent focus:border-primary focus:outline-none">
+              <option value="">Mọi mức ngân sách</option>
+              <option value="under_2m">Dưới 2.000.000 đ</option>
+              <option value="2m_to_5m">Từ 2.000.000 đ - 5.000.000 đ</option>
+              <option value="above_5m">Trên 5.000.000 đ</option>
+            </select>
+          </div>
+
+        </div>
+
+        <div class="flex items-center justify-between pt-2 border-t border-surface-container text-xs text-on-surface-variant font-medium">
+          <span>Tìm thấy <strong class="text-primary font-bold" id="brief-count-display">0</strong> yêu cầu</span>
+          <button id="btn-reset-filter" class="hover:text-secondary underline cursor-pointer">Xóa bộ lọc</button>
+        </div>
+      </div>
+
+      <!-- Danh Sách Brief Cards -->
+      <div id="brief-list-container" class="space-y-4">
+        <!-- Render tự động qua JavaScript -->
+      </div>
+
+      <!-- Trạng Thái Rỗng (Empty State) -->
+      <div id="brief-empty-state" class="hidden bg-surface-container-lowest rounded-3xl border border-surface-container-high p-8 sm:p-12 text-center space-y-4">
+        <div class="w-16 h-16 rounded-2xl bg-surface-container-low flex items-center justify-center text-outline mx-auto">
+          <span class="material-symbols-outlined text-[36px]">inbox</span>
+        </div>
+        <div class="space-y-1">
+          <h3 class="font-serif-craft text-lg font-bold text-primary">Không tìm thấy yêu cầu tùy biến nào</h3>
+          <p class="text-xs text-on-surface-variant max-w-sm mx-auto">
+            Hiện tại không có brief nào phù hợp với bộ lọc hoặc từ khóa bạn vừa tìm kiếm.
+          </p>
+        </div>
+        <button id="btn-empty-reset" class="px-4 py-2 rounded-xl bg-primary text-on-primary text-xs font-semibold hover:opacity-90">
+          Xem lại tất cả yêu cầu
+        </button>
+      </div>
+
+    </main>
+  </div>
+
+  <div id="seller-bottom-nav"></div>
+
+  <!-- Modal Chi Tiết Brief Đầy Đủ -->
+  <div id="modal-brief-detail" class="fixed inset-0 bg-primary/60 backdrop-blur-xs z-50 hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
+    <div class="bg-surface rounded-3xl border border-surface-container-high shadow-2xl max-w-2xl w-full max-h-[90vh] flex flex-col overflow-hidden transform scale-95 transition-transform duration-300">
+      
+      <div class="p-5 border-b border-surface-container-high flex items-center justify-between bg-surface-container-low">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-secondary">palette</span>
+          <h3 class="font-serif-craft text-lg font-bold text-primary" id="modal-brief-title">Chi Tiết Yêu Cầu Tùy Biến</h3>
+        </div>
+        <button id="btn-close-modal" class="p-1 rounded-lg text-outline hover:bg-surface-container">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <div class="p-6 overflow-y-auto space-y-5 text-sm" id="modal-brief-body">
+        <!-- Render chi tiết -->
+      </div>
+
+      <div class="p-4 border-t border-surface-container-high bg-surface-container-lowest flex items-center justify-end gap-3" id="modal-brief-footer">
+        <!-- Nút hành động trong modal -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="seller-data.js"></script>
+  <script src="seller.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Khởi tạo Layout Kênh Người Sáng Tạo
+      SellerApp.initLayout({
+        activeNav: 'briefs',
+        pageTitle: 'Hộp Thư Yêu Cầu Tùy Biến (Briefs)'
+      });
+
+      let currentTab = 'all';
+      let searchQuery = '';
+      let selectedCategory = '';
+      let selectedBudget = '';
+
+      const container = document.getElementById('brief-list-container');
+      const emptyState = document.getElementById('brief-empty-state');
+      const countDisplay = document.getElementById('brief-count-display');
+
+      const statPending = document.getElementById('stat-pending');
+      const statRevision = document.getElementById('stat-revision');
+      const statProposed = document.getElementById('stat-proposed');
+      const statProgress = document.getElementById('stat-progress');
+
+      const tabCountAll = document.getElementById('tab-count-all');
+      const tabCountPending = document.getElementById('tab-count-pending');
+      const tabCountRevision = document.getElementById('tab-count-revision');
+      const tabCountProposed = document.getElementById('tab-count-proposed');
+      const tabCountProgress = document.getElementById('tab-count-progress');
+
+      const modal = document.getElementById('modal-brief-detail');
+      const modalTitle = document.getElementById('modal-brief-title');
+      const modalBody = document.getElementById('modal-brief-body');
+      const modalFooter = document.getElementById('modal-brief-footer');
+      const btnCloseModal = document.getElementById('btn-close-modal');
+
+      function formatMoney(amount) {
+        return SellerApp.formatVND ? SellerApp.formatVND(amount) : new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
+      }
+
+      function getStatusBadge(status, text) {
+        switch (status) {
+          case 'pending':
+            return `<span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>${text || 'Chờ gửi đề xuất'}</span>`;
+          case 'revision_requested':
+            return `<span class="px-3 py-1 rounded-full text-xs font-bold bg-purple-100 text-purple-900 border border-purple-300 flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px]">rate_review</span>${text || 'Khách yêu cầu sửa'}</span>`;
+          case 'proposed':
+            return `<span class="px-3 py-1 rounded-full text-xs font-bold bg-sky-100 text-sky-900 border border-sky-300 flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px]">send</span>${text || 'Đã gửi đề xuất'}</span>`;
+          case 'in_progress':
+            return `<span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-900 border border-emerald-300 flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px]">handyman</span>${text || 'Đang chế tác'}</span>`;
+          case 'rejected':
+            return `<span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-800 border border-rose-300">${text || 'Đã từ chối'}</span>`;
+          default:
+            return `<span class="px-3 py-1 rounded-full text-xs font-bold bg-surface-container-high text-on-surface">${text || status}</span>`;
+        }
+      }
+
+      function updateStats() {
+        const briefs = window.SellerData.getBriefs();
+        const pendingCount = briefs.filter(b => b.status === 'pending').length;
+        const revisionCount = briefs.filter(b => b.status === 'revision_requested').length;
+        const proposedCount = briefs.filter(b => b.status === 'proposed').length;
+        const progressCount = briefs.filter(b => b.status === 'in_progress').length;
+
+        statPending.textContent = pendingCount;
+        statRevision.textContent = revisionCount;
+        statProposed.textContent = proposedCount;
+        statProgress.textContent = progressCount;
+
+        tabCountAll.textContent = briefs.length;
+        tabCountPending.textContent = pendingCount;
+        tabCountRevision.textContent = revisionCount;
+        tabCountProposed.textContent = proposedCount;
+        tabCountProgress.textContent = progressCount;
+      }
+
+      function renderBriefs() {
+        const allBriefs = window.SellerData.getBriefs();
+        updateStats();
+
+        // Lọc theo tab
+        let filtered = allBriefs;
+        if (currentTab !== 'all') {
+          filtered = filtered.filter(b => b.status === currentTab);
+        }
+
+        // Lọc theo tìm kiếm
+        if (searchQuery) {
+          const q = searchQuery.toLowerCase();
+          filtered = filtered.filter(b => 
+            b.id.toLowerCase().includes(q) ||
+            b.title.toLowerCase().includes(q) ||
+            b.buyerName.toLowerCase().includes(q) ||
+            (b.materialRequired && b.materialRequired.toLowerCase().includes(q))
+          );
+        }
+
+        // Lọc theo danh mục
+        if (selectedCategory) {
+          filtered = filtered.filter(b => b.category === selectedCategory);
+        }
+
+        // Lọc theo ngân sách
+        if (selectedBudget === 'under_2m') {
+          filtered = filtered.filter(b => b.budget < 2000000);
+        } else if (selectedBudget === '2m_to_5m') {
+          filtered = filtered.filter(b => b.budget >= 2000000 && b.budget <= 5000000);
+        } else if (selectedBudget === 'above_5m') {
+          filtered = filtered.filter(b => b.budget > 5000000);
+        }
+
+        countDisplay.textContent = filtered.length;
+
+        if (filtered.length === 0) {
+          container.innerHTML = '';
+          emptyState.classList.remove('hidden');
+          return;
+        }
+
+        emptyState.classList.add('hidden');
+
+        const safe = (str) => typeof escapeHtml === 'function' ? escapeHtml(str) : String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+
+        container.innerHTML = filtered.map(brief => {
+          const hasFeedback = brief.latestCustomerFeedback && (brief.status === 'revision_requested' || brief.status === 'pending');
+
+          return `
+            <div class="bg-surface-container-lowest rounded-3xl border border-surface-container-high shadow-2xs p-5 sm:p-6 space-y-4 hover:border-secondary/40 transition-all">
+              
+              <!-- Header của Card -->
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-surface-container">
+                <div class="flex items-center gap-3">
+                  <span class="font-mono text-xs font-bold text-secondary bg-secondary/10 px-2.5 py-1 rounded-lg">#${safe(brief.id)}</span>
+                  <span class="text-xs text-on-surface-variant flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[16px]">schedule</span>
+                    <span>Gửi lúc: ${safe(brief.createdAt)}</span>
+                  </span>
+                </div>
+                <div>
+                  ${getStatusBadge(brief.status, brief.statusText)}
+                </div>
+              </div>
+
+              <!-- Thân Card -->
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+                
+                <!-- Cột thông tin khách & nội dung brief (9 Cột) -->
+                <div class="lg:col-span-8 space-y-3">
+                  <h3 class="font-serif-craft text-lg sm:text-xl font-bold text-primary">${safe(brief.title)}</h3>
+
+                  <div class="flex items-center gap-3 text-xs text-on-surface-variant">
+                    <img src="${brief.buyerAvatar}" alt="${safe(brief.buyerName)}" class="w-7 h-7 rounded-full object-cover ring-1 ring-surface-container-high" />
+                    <span class="font-semibold text-primary">${safe(brief.buyerName)}</span>
+                    <span>•</span>
+                    <span>${safe(brief.buyerPhone)}</span>
+                    <span class="hidden sm:inline">•</span>
+                    <span class="hidden sm:inline">${safe(brief.buyerEmail)}</span>
+                  </div>
+
+                  <!-- Thông số kỹ thuật nhanh -->
+                  <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 text-xs">
+                    <div class="p-2.5 rounded-xl bg-surface-container-low border border-surface-container">
+                      <span class="text-[10px] text-on-surface-variant block uppercase font-medium">Ngân sách dự kiến</span>
+                      <strong class="text-secondary font-bold text-sm">${formatMoney(brief.budget)}</strong>
+                    </div>
+                    <div class="p-2.5 rounded-xl bg-surface-container-low border border-surface-container">
+                      <span class="text-[10px] text-on-surface-variant block uppercase font-medium">Hạn chót cần hàng</span>
+                      <strong class="text-primary font-bold text-sm">${safe(brief.deadline)}</strong>
+                    </div>
+                    <div class="p-2.5 rounded-xl bg-surface-container-low border border-surface-container">
+                      <span class="text-[10px] text-on-surface-variant block uppercase font-medium">Kích thước</span>
+                      <strong class="text-primary font-bold">${safe(brief.dimensions || 'Theo tiêu chuẩn')}</strong>
+                    </div>
+                    <div class="p-2.5 rounded-xl bg-surface-container-low border border-surface-container">
+                      <span class="text-[10px] text-on-surface-variant block uppercase font-medium">Danh mục</span>
+                      <strong class="text-primary font-bold truncate block">${safe(brief.category)}</strong>
+                    </div>
+                  </div>
+
+                  <!-- Mô tả yêu cầu -->
+                  <div class="text-xs sm:text-sm text-on-surface-variant line-clamp-2">
+                    <strong class="text-primary font-medium">Yêu cầu chi tiết:</strong> ${safe(brief.description)}
+                  </div>
+
+                  <!-- Khối Highlight Phản hồi của khách (Revision Box) -->
+                  ${hasFeedback ? `
+                    <div class="p-3.5 rounded-2xl bg-purple-50 border border-purple-200 text-xs text-purple-950 space-y-2">
+                      <div class="flex items-center justify-between font-bold text-purple-900">
+                        <span class="flex items-center gap-1.5">
+                          <span class="material-symbols-outlined text-[18px]">chat</span>
+                          <span>Ý kiến phản hồi / Yêu cầu sửa đổi đợt mới từ khách hàng:</span>
+                        </span>
+                        <span class="text-[11px] bg-purple-200 text-purple-800 px-2 py-0.5 rounded-full">Revision Round</span>
+                      </div>
+                      <p class="italic text-purple-900/90 leading-relaxed">"${safe(brief.latestCustomerFeedback)}"</p>
+                      <div class="pt-1 flex items-center gap-2">
+                        <a href="proposal-editor.html?briefId=${brief.id}&mode=ai-revision" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-purple-700 text-white font-semibold text-xs hover:bg-purple-800 transition-all shadow-xs">
+                          <span class="material-symbols-outlined text-[16px]">psychology</span>
+                          <span>Mở AI Tóm Tắt Ý Kiến & Cập Nhật Proposal</span>
+                        </a>
+                      </div>
+                    </div>
+                  ` : ''}
+                </div>
+
+                <!-- Cột Ảnh tham khảo của khách (4 Cột) -->
+                <div class="lg:col-span-4 flex flex-col items-start lg:items-end space-y-3">
+                  <div class="w-full sm:w-48 h-32 rounded-2xl overflow-hidden bg-surface-container-low border border-surface-container relative group">
+                    <img src="${(brief.referenceImages && brief.referenceImages[0]) || 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300'}" 
+                      alt="Ảnh tham khảo khách gửi" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-on-primary text-xs font-semibold">
+                      <span>Xem ảnh mẫu</span>
+                    </div>
+                  </div>
+
+                  <!-- Nút Thao Tác -->
+                  <div class="flex flex-wrap items-center gap-2 w-full justify-start lg:justify-end pt-2">
+                    <button data-id="${brief.id}" class="btn-view-detail px-3.5 py-2 rounded-xl border border-surface-container-highest text-primary font-semibold text-xs hover:bg-surface-container transition-colors">
+                      Xem chi tiết
+                    </button>
+
+                    ${brief.status === 'pending' || brief.status === 'revision_requested' ? `
+                      <a href="proposal-editor.html?briefId=${brief.id}" class="px-4 py-2 rounded-xl bg-secondary text-on-secondary font-semibold text-xs hover:opacity-95 shadow-sm transition-all flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[16px]">edit_document</span>
+                        <span>${brief.status === 'revision_requested' ? 'Sửa Proposal' : 'Soạn Proposal'}</span>
+                      </a>
+                    ` : `
+                      <a href="proposal-editor.html?briefId=${brief.id}" class="px-3.5 py-2 rounded-xl bg-surface-container-high text-primary font-semibold text-xs hover:bg-surface-container-highest transition-colors flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[16px]">visibility</span>
+                        <span>Xem Proposal</span>
+                      </a>
+                    `}
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+          `;
+        }).join('');
+
+        // Gắn sự kiện xem chi tiết
+        document.querySelectorAll('.btn-view-detail').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-id');
+            openDetailModal(id);
+          });
+        });
+      }
+
+      function openDetailModal(id) {
+        const brief = window.SellerData.getBriefById(id);
+        if (!brief) return;
+
+        const safe = (str) => typeof escapeHtml === 'function' ? escapeHtml(str) : String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+
+        modalTitle.textContent = `Yêu cầu #${safe(brief.id)} - ${safe(brief.title)}`;
+        modalBody.innerHTML = `
+          <div class="space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b border-surface-container">
+              <div class="flex items-center gap-3">
+                <img src="${brief.buyerAvatar}" alt="${safe(brief.buyerName)}" class="w-10 h-10 rounded-full object-cover" />
+                <div>
+                  <h4 class="font-bold text-primary">${safe(brief.buyerName)}</h4>
+                  <p class="text-xs text-on-surface-variant">${safe(brief.buyerPhone)} • ${safe(brief.buyerEmail)}</p>
+                </div>
+              </div>
+              <div>${getStatusBadge(brief.status, brief.statusText)}</div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 text-xs">
+              <div class="p-3 rounded-xl bg-surface-container-low">
+                <span class="text-on-surface-variant block uppercase text-[10px]">Ngân sách dự kiến</span>
+                <strong class="text-secondary text-base font-bold">${formatMoney(brief.budget)}</strong>
+              </div>
+              <div class="p-3 rounded-xl bg-surface-container-low">
+                <span class="text-on-surface-variant block uppercase text-[10px]">Hạn chót hoàn thành</span>
+                <strong class="text-primary text-base font-bold">${safe(brief.deadline)}</strong>
+              </div>
+            </div>
+
+            <div>
+              <h5 class="font-bold text-xs uppercase text-primary mb-1">Quy cách & Kích thước mong muốn:</h5>
+              <p class="p-3 rounded-xl bg-surface-container-low text-xs">${safe(brief.dimensions || 'Tùy biến theo tiêu chuẩn làng nghề')}</p>
+            </div>
+
+            <div>
+              <h5 class="font-bold text-xs uppercase text-primary mb-1">Yêu cầu chất liệu & Kỹ thuật:</h5>
+              <p class="p-3 rounded-xl bg-surface-container-low text-xs">${safe(brief.materialRequired || 'Nguyên liệu tự nhiên bản địa')}</p>
+            </div>
+
+            <div>
+              <h5 class="font-bold text-xs uppercase text-primary mb-1">Mô tả chi tiết ý tưởng:</h5>
+              <p class="p-3.5 rounded-xl bg-surface-container-low text-xs sm:text-sm leading-relaxed">${safe(brief.description)}</p>
+            </div>
+
+            ${brief.latestCustomerFeedback ? `
+              <div class="p-3.5 rounded-xl bg-purple-50 border border-purple-200">
+                <h5 class="font-bold text-xs uppercase text-purple-900 mb-1 flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-[16px]">rate_review</span>
+                  <span>Phản hồi sửa đổi của khách (Revision Feedback):</span>
+                </h5>
+                <p class="italic text-purple-950 text-xs">"${safe(brief.latestCustomerFeedback)}"</p>
+              </div>
+            ` : ''}
+
+            ${brief.referenceImages && brief.referenceImages.length > 0 ? `
+              <div>
+                <h5 class="font-bold text-xs uppercase text-primary mb-2">Hình ảnh phác thảo khách gửi kèm:</h5>
+                <div class="flex gap-3">
+                  ${brief.referenceImages.map(img => `
+                    <img src="${img}" class="w-32 h-24 rounded-xl object-cover border border-surface-container shadow-xs" alt="Ảnh mẫu" />
+                  `).join('')}
+                </div>
+              </div>
+            ` : ''}
+          </div>
+        `;
+
+        modalFooter.innerHTML = `
+          <button type="button" id="btn-modal-close-action" class="px-4 py-2 rounded-xl border border-surface-container-highest text-on-surface font-semibold text-xs hover:bg-surface-container">
+            Đóng
+          </button>
+          ${brief.status === 'pending' ? `
+            <button type="button" id="btn-reject-brief" class="px-4 py-2 rounded-xl bg-rose-100 text-rose-800 font-semibold text-xs hover:bg-rose-200">
+              Từ chối yêu cầu
+            </button>
+          ` : ''}
+          <a href="proposal-editor.html?briefId=${brief.id}" class="px-5 py-2 rounded-xl bg-secondary text-on-secondary font-semibold text-xs hover:opacity-95 shadow-sm flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[16px]">edit_document</span>
+            <span>Soạn Đề Xuất (Proposal)</span>
+          </a>
+        `;
+
+        // Sự kiện nút trong modal
+        document.getElementById('btn-modal-close-action').addEventListener('click', closeModal);
+        const btnReject = document.getElementById('btn-reject-brief');
+        if (btnReject) {
+          btnReject.addEventListener('click', () => {
+            if (confirm(`Bạn có chắc muốn từ chối yêu cầu #${brief.id}?`)) {
+              window.SellerData.updateBriefStatus(brief.id, 'rejected', 'Đã từ chối');
+              SellerApp.showToast('Đã từ chối yêu cầu của khách hàng', 'info');
+              closeModal();
+              renderBriefs();
+            }
+          });
+        }
+
+        modal.classList.remove('hidden');
+        setTimeout(() => {
+          modal.classList.remove('opacity-0');
+          modal.querySelector('div').classList.remove('scale-95');
+        }, 10);
+      }
+
+      function closeModal() {
+        modal.classList.add('opacity-0');
+        modal.querySelector('div').classList.add('scale-95');
+        setTimeout(() => {
+          modal.classList.add('hidden');
+        }, 250);
+      }
+
+      btnCloseModal.addEventListener('click', closeModal);
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+
+      // Tab lọc
+      document.querySelectorAll('#brief-tabs .tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('#brief-tabs .tab-btn').forEach(b => {
+            b.classList.remove('border-primary', 'text-primary', 'font-semibold');
+            b.classList.add('border-transparent', 'text-on-surface-variant');
+          });
+          btn.classList.add('border-primary', 'text-primary', 'font-semibold');
+          btn.classList.remove('border-transparent', 'text-on-surface-variant');
+
+          currentTab = btn.getAttribute('data-tab');
+          renderBriefs();
+        });
+      });
+
+      // Tìm kiếm
+      const searchInput = document.getElementById('brief-search-input');
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value.trim();
+        renderBriefs();
+      });
+
+      // Lọc danh mục & ngân sách
+      document.getElementById('select-category').addEventListener('change', (e) => {
+        selectedCategory = e.target.value;
+        renderBriefs();
+      });
+
+      document.getElementById('select-budget').addEventListener('change', (e) => {
+        selectedBudget = e.target.value;
+        renderBriefs();
+      });
+
+      // Nút reset
+      document.getElementById('btn-reset-filter').addEventListener('click', () => {
+        searchInput.value = '';
+        searchQuery = '';
+        document.getElementById('select-category').value = '';
+        selectedCategory = '';
+        document.getElementById('select-budget').value = '';
+        selectedBudget = '';
+        renderBriefs();
+      });
+
+      document.getElementById('btn-empty-reset').addEventListener('click', () => {
+        searchInput.value = '';
+        searchQuery = '';
+        document.getElementById('select-category').value = '';
+        selectedCategory = '';
+        document.getElementById('select-budget').value = '';
+        selectedBudget = '';
+        currentTab = 'all';
+        document.querySelectorAll('#brief-tabs .tab-btn').forEach(b => {
+          if (b.getAttribute('data-tab') === 'all') {
+            b.classList.add('border-primary', 'text-primary', 'font-semibold');
+            b.classList.remove('border-transparent', 'text-on-surface-variant');
+          } else {
+            b.classList.remove('border-primary', 'text-primary', 'font-semibold');
+            b.classList.add('border-transparent', 'text-on-surface-variant');
+          }
+        });
+        renderBriefs();
+      });
+
+      document.getElementById('btn-refresh-briefs').addEventListener('click', () => {
+        renderBriefs();
+        SellerApp.showToast('Đã làm mới danh sách yêu cầu tùy biến', 'success');
+      });
+
+      // Khởi chạy render lần đầu
+      renderBriefs();
+    });
+  </script>
+</body>
+</html>

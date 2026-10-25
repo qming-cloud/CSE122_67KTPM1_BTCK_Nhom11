@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <title>Khuyến Mãi & Voucher | Kênh Người Bán Craft Link</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  
+  <link href="../assets/css/colors.css" rel="stylesheet"/>
+  <link href="../assets/css/base.css" rel="stylesheet"/>
+  <link href="seller.css" rel="stylesheet"/>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../assets/js/tailwind-config.js"></script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+
+  <div id="seller-sidebar"></div>
+
+  <div class="lg:pl-64 flex flex-col min-h-screen">
+    <div id="seller-header"></div>
+
+    <main class="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 max-w-7xl mx-auto w-full pb-24 lg:pb-12">
+      
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="font-serif-craft text-2xl sm:text-3xl font-bold text-primary">Chương Trình Khuyến Mãi & Tri Ân</h2>
+          <p class="text-sm text-on-surface-variant">Tạo mã giảm giá và voucher trợ giá nhằm kích cầu và tri ân khách hàng yêu di sản</p>
+        </div>
+        <button type="button" id="btn-open-create-promo" class="px-5 py-2.5 rounded-xl bg-secondary text-on-secondary font-semibold text-sm hover:opacity-95 shadow-sm transition-all flex items-center gap-2">
+          <span class="material-symbols-outlined text-[20px]">add_circle</span>
+          <span>Tạo mã giảm giá mới</span>
+        </button>
+      </div>
+
+      <!-- Danh Sách Mã Khuyến Mãi Hiện Có -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="promotions-grid">
+        <!-- Render bằng JS -->
+      </div>
+
+    </main>
+
+    <!-- Modal Tạo Mã Khuyến Mãi Mới -->
+    <div id="modal-promo" class="seller-modal-backdrop">
+      <div class="seller-modal-box p-6 space-y-4 max-w-lg">
+        <div class="flex items-center justify-between border-b border-surface-container pb-3">
+          <h3 class="font-serif-craft font-bold text-lg text-primary flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary">local_offer</span>
+            <span>Tạo Mã Khuyến Mãi Mới</span>
+          </h3>
+          <button type="button" id="btn-close-promo" class="text-outline hover:text-primary">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+
+        <form id="form-create-promo" class="space-y-4 text-xs">
+          <div>
+            <label class="block font-semibold text-primary uppercase mb-1">Mã Giảm Giá (Code) *</label>
+            <input type="text" id="promo-code" required placeholder="Ví dụ: DISAN20, CRAFT10..." 
+              class="w-full h-10 px-3 rounded-xl bg-surface-container-low border border-surface-container focus:border-primary uppercase font-bold text-sm" />
+          </div>
+
+          <div>
+            <label class="block font-semibold text-primary uppercase mb-1">Tên Chương Trình *</label>
+            <input type="text" id="promo-title" required placeholder="Ví dụ: Tri ân khách hàng thân thiết tháng 10" 
+              class="w-full h-10 px-3 rounded-xl bg-surface-container-low border border-surface-container focus:border-primary text-sm" />
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block font-semibold text-primary uppercase mb-1">Loại giảm *</label>
+              <select id="promo-type" class="w-full h-10 px-2 rounded-xl bg-surface-container-low border border-surface-container text-xs">
+                <option value="percentage">Theo phần trăm (%)</option>
+                <option value="fixed">Số tiền cố định (đ)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block font-semibold text-primary uppercase mb-1">Mức giảm *</label>
+              <input type="number" id="promo-value" required min="1" placeholder="10 (nếu là %) hoặc 50000" 
+                class="w-full h-10 px-3 rounded-xl bg-surface-container-low border border-surface-container focus:border-primary font-bold text-sm" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block font-semibold text-primary uppercase mb-1">Đơn tối thiểu (đ)</label>
+              <input type="number" id="promo-min-order" min="0" step="50000" placeholder="500000" 
+                class="w-full h-10 px-3 rounded-xl bg-surface-container-low border border-surface-container focus:border-primary" />
+            </div>
+            <div>
+              <label class="block font-semibold text-primary uppercase mb-1">Số lượt dùng tối đa</label>
+              <input type="number" id="promo-limit" min="1" placeholder="100" 
+                class="w-full h-10 px-3 rounded-xl bg-surface-container-low border border-surface-container focus:border-primary" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block font-semibold text-primary uppercase mb-1">Hạn sử dụng</label>
+            <input type="date" id="promo-end-date" class="w-full h-10 px-3 rounded-xl bg-surface-container-low border border-surface-container focus:border-primary text-xs" />
+          </div>
+
+          <div class="flex items-center justify-end gap-3 pt-3 border-t border-surface-container">
+            <button type="button" id="btn-cancel-promo" class="px-4 py-2.5 rounded-xl border border-surface-container text-on-surface font-semibold text-xs">
+              Hủy
+            </button>
+            <button type="submit" class="px-5 py-2.5 rounded-xl bg-secondary text-on-secondary font-semibold text-xs shadow-sm hover:opacity-90">
+              Kích hoạt mã
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="seller-bottom-nav"></div>
+  </div>
+
+  <script src="seller-data.js"></script>
+  <script src="seller.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      SellerApp.initLayout({
+        activeNav: 'promotions',
+        pageTitle: 'Khuyến Mãi & Voucher'
+      });
+
+      let promotions = SellerData.getPromotions();
+
+      function renderPromotions() {
+        const grid = document.getElementById('promotions-grid');
+        grid.innerHTML = promotions.map(p => `
+          <div class="bg-surface-container-lowest rounded-2xl border border-surface-container-high shadow-2xs overflow-hidden flex flex-col justify-between p-5 space-y-4">
+            <div class="flex items-start justify-between">
+              <div class="space-y-1">
+                <span class="font-mono font-extrabold text-base text-secondary bg-secondary/10 px-2.5 py-1 rounded-lg">
+                  ${p.code}
+                </span>
+                <h4 class="font-bold text-sm text-primary pt-2">${p.title}</h4>
+              </div>
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold ${p.status === 'active' ? 'bg-emerald-100 text-emerald-800' : 'bg-gray-100 text-gray-600'}">
+                ${p.status === 'active' ? 'Đang hiệu lực' : 'Đã hết hạn'}
+              </span>
+            </div>
+
+            <div class="space-y-1 text-xs text-on-surface-variant">
+              <div>Ưu đãi: <strong class="text-primary font-bold">${p.type === 'percentage' ? `Giảm ${p.value}%` : `Giảm ${SellerApp.formatVND(p.value)}`}</strong></div>
+              <div>Đơn tối thiểu: <strong>${SellerApp.formatVND(p.minOrder || 0)}</strong></div>
+              <div>Hạn dùng đến: <strong>${p.endDate}</strong></div>
+            </div>
+
+            <div class="pt-3 border-t border-surface-container flex items-center justify-between text-xs">
+              <span class="text-on-surface-variant">Đã dùng: <strong class="text-primary">${p.usedCount}/${p.limit}</strong></span>
+              <button onclick="deletePromotion('${p.id}')" class="text-error hover:underline flex items-center gap-1">
+                <span class="material-symbols-outlined text-[15px]">delete</span>
+                <span>Xóa mã</span>
+              </button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      window.deletePromotion = function(id) {
+        SellerApp.confirmAction({
+          title: 'Xóa mã khuyến mãi?',
+          message: 'Bạn có chắc chắn muốn gỡ bỏ voucher này không?',
+          confirmText: 'Xóa',
+          isDanger: true,
+          onConfirm: () => {
+            promotions = promotions.filter(p => p.id !== id);
+            SellerData.savePromotions(promotions);
+            SellerApp.showToast('Đã xóa mã khuyến mãi!');
+            renderPromotions();
+          }
+        });
+      };
+
+      // Modal tạo mã
+      const modal = document.getElementById('modal-promo');
+      const openBtn = document.getElementById('btn-open-create-promo');
+      const closeBtn = document.getElementById('btn-close-promo');
+      const cancelBtn = document.getElementById('btn-cancel-promo');
+      const form = document.getElementById('form-create-promo');
+
+      openBtn.onclick = () => modal.classList.add('active');
+      const closeModal = () => modal.classList.remove('active');
+      closeBtn.onclick = closeModal;
+      cancelBtn.onclick = closeModal;
+
+      form.onsubmit = (e) => {
+        e.preventDefault();
+        const code = document.getElementById('promo-code').value.trim().toUpperCase();
+        const title = document.getElementById('promo-title').value.trim();
+        const type = document.getElementById('promo-type').value;
+        const val = Number(document.getElementById('promo-value').value);
+        const minOrder = Number(document.getElementById('promo-min-order').value) || 0;
+        const limit = Number(document.getElementById('promo-limit').value) || 100;
+        const endDate = document.getElementById('promo-end-date').value || '31/12/2026';
+
+        const newPromo = {
+          id: 'KM-' + (promotions.length + 1),
+          code,
+          title,
+          type,
+          value: val,
+          minOrder,
+          limit,
+          usedCount: 0,
+          endDate,
+          status: 'active'
+        };
+
+        promotions.unshift(newPromo);
+        SellerData.savePromotions(promotions);
+        SellerApp.showToast(`Đã kích hoạt mã ${code} thành công!`);
+        closeModal();
+        renderPromotions();
+      };
+
+      renderPromotions();
+    });
+  </script>
+</body>
+</html>

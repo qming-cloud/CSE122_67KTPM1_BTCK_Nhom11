@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <title>Cài Đặt Gian Hàng | Kênh Người Bán Craft Link</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  
+  <link href="../assets/css/colors.css" rel="stylesheet"/>
+  <link href="../assets/css/base.css" rel="stylesheet"/>
+  <link href="seller.css" rel="stylesheet"/>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../assets/js/tailwind-config.js"></script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+
+  <div id="seller-sidebar"></div>
+
+  <div class="lg:pl-64 flex flex-col min-h-screen">
+    <div id="seller-header"></div>
+
+    <main class="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 max-w-4xl mx-auto w-full pb-24 lg:pb-12">
+      
+      <div>
+        <h2 class="font-serif-craft text-2xl sm:text-3xl font-bold text-primary">Cài Đặt Gian Hàng</h2>
+        <p class="text-sm text-on-surface-variant">Tùy biến tài khoản xưởng, thông báo đơn và cấu hình bưu tá vận chuyển</p>
+      </div>
+
+      <!-- 1. Đổi Mật Khẩu & Bảo Mật -->
+      <div class="bg-surface-container-lowest rounded-2xl border border-surface-container-high shadow-2xs p-6 space-y-4">
+        <h3 class="font-serif-craft font-bold text-lg text-primary flex items-center gap-2">
+          <span class="material-symbols-outlined text-secondary text-[20px]">lock</span>
+          <span>1. Mật Khẩu & Đăng Nhập</span>
+        </h3>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-primary uppercase mb-1">Mật khẩu hiện tại</label>
+            <input type="password" placeholder="••••••••" class="w-full h-10 px-3 rounded-xl bg-surface-container-low border border-transparent focus:border-primary text-sm" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-primary uppercase mb-1">Mật khẩu mới</label>
+            <input type="password" placeholder="Tối thiểu 6 ký tự" class="w-full h-10 px-3 rounded-xl bg-surface-container-low border border-transparent focus:border-primary text-sm" />
+          </div>
+        </div>
+
+        <button type="button" onclick="SellerApp.showToast('Đã cập nhật mật khẩu mới thành công!')" class="px-4 py-2 rounded-xl bg-primary text-on-primary text-xs font-semibold hover:opacity-90">
+          Đổi mật khẩu
+        </button>
+      </div>
+
+      <!-- 2. Cài Đặt Đơn Vị Vận Chuyển -->
+      <div class="bg-surface-container-lowest rounded-2xl border border-surface-container-high shadow-2xs p-6 space-y-4">
+        <h3 class="font-serif-craft font-bold text-lg text-primary flex items-center gap-2">
+          <span class="material-symbols-outlined text-secondary text-[20px]">local_shipping</span>
+          <span>2. Cấu Hình Đơn Vị Vận Chuyển Làng Nghề</span>
+        </h3>
+        <p class="text-xs text-on-surface-variant">Chọn các nhà vận chuyển có trạm bưu tá hỗ trợ lấy hàng tận bản làng của bạn</p>
+
+        <div class="space-y-3">
+          <label class="flex items-center justify-between p-3.5 rounded-xl border border-surface-container bg-surface-container-low/40 cursor-pointer">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-secondary">mark_chat_unread</span>
+              <div>
+                <strong class="text-xs sm:text-sm text-primary block">Giao Hàng Tiết Kiệm (GHTK)</strong>
+                <span class="text-[11px] text-on-surface-variant">Lấy hàng tận nơi, hỗ trợ thu hộ COD</span>
+              </div>
+            </div>
+            <input type="checkbox" checked class="w-4 h-4 accent-secondary" />
+          </label>
+
+          <label class="flex items-center justify-between p-3.5 rounded-xl border border-surface-container bg-surface-container-low/40 cursor-pointer">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-secondary">local_post_office</span>
+              <div>
+                <strong class="text-xs sm:text-sm text-primary block">Viettel Post Chuyển Phát Nhanh</strong>
+                <span class="text-[11px] text-on-surface-variant">Mạng lưới bưu cục rộng khắp các xã vùng cao</span>
+              </div>
+            </div>
+            <input type="checkbox" checked class="w-4 h-4 accent-secondary" />
+          </label>
+
+          <label class="flex items-center justify-between p-3.5 rounded-xl border border-surface-container bg-surface-container-low/40 cursor-pointer">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-secondary">flight_takeoff</span>
+              <div>
+                <strong class="text-xs sm:text-sm text-primary block">VNPost Nhanh EMS (Hỗ trợ quốc tế)</strong>
+                <span class="text-[11px] text-on-surface-variant">Gửi tác phẩm di sản ra nước ngoài</span>
+              </div>
+            </div>
+            <input type="checkbox" checked class="w-4 h-4 accent-secondary" />
+          </label>
+        </div>
+      </div>
+
+      <!-- 3. Cài Đặt Thông Báo -->
+      <div class="bg-surface-container-lowest rounded-2xl border border-surface-container-high shadow-2xs p-6 space-y-4">
+        <h3 class="font-serif-craft font-bold text-lg text-primary flex items-center gap-2">
+          <span class="material-symbols-outlined text-secondary text-[20px]">notifications_active</span>
+          <span>3. Nhận Thông Báo Đơn Mới</span>
+        </h3>
+
+        <div class="space-y-3 text-xs">
+          <label class="flex items-center gap-3 cursor-pointer">
+            <input type="checkbox" checked class="w-4 h-4 accent-secondary" />
+            <span class="text-primary font-medium">Báo âm thanh chuông khi có đơn hàng mới phát sinh</span>
+          </label>
+          <label class="flex items-center gap-3 cursor-pointer">
+            <input type="checkbox" checked class="w-4 h-4 accent-secondary" />
+            <span class="text-primary font-medium">Gửi tin nhắn SMS cảnh báo khi tác phẩm trong kho sắp hết</span>
+          </label>
+          <label class="flex items-center gap-3 cursor-pointer">
+            <input type="checkbox" class="w-4 h-4 accent-secondary" />
+            <span class="text-primary font-medium">Báo cáo tổng kết tuần qua email</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- 4. Tiện ích: Đặt lại dữ liệu mẫu -->
+      <div class="p-6 rounded-2xl bg-amber-50/70 border border-amber-200/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <h4 class="font-bold text-sm text-amber-900">Khôi Phục Dữ Liệu Mẫu (Demo Reset)</h4>
+          <p class="text-xs text-amber-800">Đặt lại toàn bộ sản phẩm, đơn hàng và số dư ví về trạng thái mẫu ban đầu.</p>
+        </div>
+        <button type="button" onclick="confirmResetAll()" class="px-4 py-2 rounded-xl bg-amber-700 text-white text-xs font-semibold hover:bg-amber-800 transition-colors shrink-0">
+          Đặt lại dữ liệu
+        </button>
+      </div>
+
+    </main>
+
+    <div id="seller-bottom-nav"></div>
+  </div>
+
+  <script src="seller-data.js"></script>
+  <script src="seller.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      SellerApp.initLayout({
+        activeNav: 'settings',
+        pageTitle: 'Cài Đặt Hệ Thống'
+      });
+
+      window.confirmResetAll = function() {
+        SellerApp.confirmAction({
+          title: 'Khôi phục dữ liệu mẫu?',
+          message: 'Thao tác này sẽ đặt lại toàn bộ sản phẩm, đơn hàng và ví tiền của xưởng về mặc định ban đầu.',
+          confirmText: 'Đồng ý khôi phục',
+          isDanger: true,
+          onConfirm: () => {
+            SellerData.resetAll();
+          }
+        });
+      };
+    });
+  </script>
+</body>
+</html>

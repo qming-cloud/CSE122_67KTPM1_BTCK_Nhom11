@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <title>Soạn Đề Xuất & Báo Giá (Proposal Editor) | Kênh Người Sáng Tạo Craft Link</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  
+  <link href="../assets/css/colors.css" rel="stylesheet"/>
+  <link href="../assets/css/base.css" rel="stylesheet"/>
+  <link href="seller.css" rel="stylesheet"/>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../assets/js/tailwind-config.js"></script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+
+  <div id="seller-sidebar"></div>
+
+  <div class="lg:pl-64 flex flex-col min-h-screen">
+    <div id="seller-header"></div>
+
+    <main class="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 max-w-7xl mx-auto w-full pb-24 lg:pb-12">
+      
+      <!-- Thanh Tiêu Đề & Quay Lại -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <a href="brief-inbox.html" class="w-10 h-10 rounded-xl bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-primary transition-colors shadow-2xs" title="Quay lại hộp thư Brief">
+            <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+          </a>
+          <div>
+            <div class="flex items-center gap-2 mb-0.5">
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-secondary/10 text-secondary">
+                Vai trò 2: Người sáng tạo (Maker)
+              </span>
+              <span class="text-xs text-on-surface-variant">• Giao diện 6: Proposal Editor</span>
+            </div>
+            <h2 class="font-serif-craft text-2xl font-bold text-primary" id="page-heading">Soạn Đề Xuất & Báo Giá (Proposal)</h2>
+            <p class="text-xs text-on-surface-variant">Lập phương án kỹ thuật, tính toán chi phí và áp dụng AI tóm tắt yêu cầu chỉnh sửa</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a href="brief-inbox.html" class="px-4 py-2.5 rounded-xl border border-surface-container-highest text-on-surface font-semibold text-xs sm:text-sm hover:bg-surface-container transition-colors">
+            Hủy bỏ
+          </a>
+          <button type="button" id="btn-submit-proposal" class="px-6 py-2.5 rounded-xl bg-secondary text-on-secondary font-semibold text-xs sm:text-sm hover:opacity-95 shadow-sm transition-all flex items-center gap-2">
+            <span class="material-symbols-outlined text-[18px]">send</span>
+            <span>Gửi Đề Xuất Cho Khách</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Layout 2 Cột: Cột Trái (Tóm tắt Brief) & Cột Phải (AI Revision + Form Proposal) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <!-- Cột Trái: Thông Tin Yêu Cầu Gốc (4 Cột) -->
+        <aside class="lg:col-span-4 space-y-4">
+          <div class="bg-surface-container-lowest p-5 rounded-3xl border border-surface-container-high shadow-2xs space-y-4 sticky top-28">
+            <div class="flex items-center justify-between pb-3 border-b border-surface-container">
+              <h3 class="font-serif-craft text-base font-bold text-primary flex items-center gap-2">
+                <span class="material-symbols-outlined text-secondary text-[20px]">assignment</span>
+                <span>Yêu Cầu Tùy Biến (Brief)</span>
+              </h3>
+              <select id="select-active-brief" class="text-xs bg-surface-container-low px-2 py-1 rounded-lg border border-surface-container text-primary font-semibold">
+                <!-- Danh sách brief được nạp tự động -->
+              </select>
+            </div>
+
+            <!-- Tóm tắt chi tiết Brief đang chọn -->
+            <div id="brief-summary-box" class="space-y-3.5 text-xs">
+              <!-- Render động -->
+            </div>
+          </div>
+        </aside>
+
+        <!-- Cột Phải: Module AI Revision Summarizer & Form Soạn Proposal (8 Cột) -->
+        <div class="lg:col-span-8 space-y-6">
+
+          <!-- =============================================================== -->
+          <!-- ⭐ TÍNH NĂNG AI-3 BẮT BUỘC: REVISION SUMMARIZER -->
+          <!-- Luồng đầy đủ: Nhập -> Đang xử lý -> Kết quả -> Giải thích -> Quyết định -> Xử lý thất bại -->
+          <!-- =============================================================== -->
+          <section class="bg-gradient-to-br from-purple-50/80 via-surface-container-lowest to-purple-50/40 rounded-3xl border-2 border-purple-200 p-5 sm:p-6 shadow-sm space-y-4 relative overflow-hidden" id="ai-revision-section">
+            <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-purple-200/30 rounded-full blur-2xl pointer-events-none"></div>
+
+            <!-- Header Tính năng AI -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-purple-200/80">
+              <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-xl bg-purple-700 text-white flex items-center justify-center shadow-xs">
+                  <span class="material-symbols-outlined text-[20px]">psychology</span>
+                </div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <h3 class="font-serif-craft text-base font-bold text-purple-950">AI Revision Summarizer</h3>
+                    <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-purple-200 text-purple-900 uppercase">AI-3 Bắt buộc</span>
+                  </div>
+                  <p class="text-[11px] text-purple-900/80">Tự động phân tích & tóm tắt các yêu cầu chỉnh sửa từ phản hồi dài của khách hàng</p>
+                </div>
+              </div>
+
+              <!-- Nút chuyển đổi chế độ kiểm thử / giả lập lỗi -->
+              <div class="flex items-center gap-2">
+                <button type="button" id="btn-toggle-ai-fail" class="text-[11px] text-purple-700 hover:text-purple-950 underline cursor-pointer" title="Chuyển sang chế độ giả lập AI thất bại để demo cho giảng viên">
+                  [Mô phỏng lỗi AI]
+                </button>
+              </div>
+            </div>
+
+            <!-- 1. BƯỚC 1: NGƯỜI DÙNG NHẬP (Text phản hồi từ khách) -->
+            <div class="space-y-2">
+              <div class="flex items-center justify-between text-xs">
+                <label for="ai-input-text" class="font-semibold text-purple-950 flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-[16px]">chat</span>
+                  <span>Đoạn tin nhắn phản hồi / Góp ý sửa đổi của khách:</span>
+                </label>
+                <button type="button" id="btn-load-sample-feedback" class="text-purple-700 hover:underline font-semibold text-[11px]">
+                  Tải phản hồi mẫu của NTK Minh Quân
+                </button>
+              </div>
+              <textarea id="ai-input-text" rows="3" placeholder="Dán đoạn tin nhắn góp ý của khách hàng vào đây (ví dụ: muốn nhuộm đậm hơn, đổi hoa văn, chỉnh kích thước dài thêm...)"
+                class="w-full p-3.5 rounded-2xl bg-white border border-purple-200 focus:border-purple-600 focus:ring-1 focus:ring-purple-600 focus:outline-none text-xs sm:text-sm text-on-surface leading-relaxed transition-all placeholder:text-outline"></textarea>
+              <div class="flex items-center justify-between text-[11px]">
+                <span class="text-purple-900/70" id="char-count">0 ký tự</span>
+                <p class="text-error hidden" id="err-ai-input">Vui lòng nhập tối thiểu 15 ký tự để AI có đủ dữ liệu phân tích.</p>
+              </div>
+            </div>
+
+            <!-- Nút Hành Động Kích Hoạt AI -->
+            <div class="flex items-center gap-3">
+              <button type="button" id="btn-run-ai" class="px-5 py-2.5 rounded-xl bg-purple-700 text-white font-semibold text-xs sm:text-sm hover:bg-purple-800 shadow-sm transition-all flex items-center gap-2">
+                <span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+                <span>Phân Tích & Tóm Tắt Bằng AI</span>
+              </button>
+              <button type="button" id="btn-clear-ai" class="px-3.5 py-2.5 rounded-xl border border-purple-300 text-purple-900 font-medium text-xs hover:bg-purple-100/50 transition-colors">
+                Xóa văn bản
+              </button>
+            </div>
+
+            <!-- 2. BƯỚC 2: AI ĐANG XỬ LÝ (Loading / Skeleton / Progress) -->
+            <div id="ai-loading-state" class="hidden p-5 rounded-2xl bg-white/90 border border-purple-200 space-y-3">
+              <div class="flex items-center gap-3 text-purple-900 font-semibold text-xs sm:text-sm">
+                <div class="w-5 h-5 border-2 border-purple-700 border-t-transparent rounded-full animate-spin"></div>
+                <span>AI CraftLink đang phân tích tin nhắn và bóc tách các đầu việc...</span>
+              </div>
+              <div class="w-full bg-purple-100 rounded-full h-1.5 overflow-hidden">
+                <div class="bg-purple-700 h-1.5 rounded-full animate-pulse w-3/4"></div>
+              </div>
+              <div class="grid grid-cols-2 gap-2 pt-1">
+                <div class="h-4 bg-purple-100/80 rounded animate-pulse"></div>
+                <div class="h-4 bg-purple-100/80 rounded animate-pulse"></div>
+              </div>
+            </div>
+
+            <!-- 3. TRẠNG THÁI KHI AI THẤT BẠI / KHÔNG CHẮC CHẮN (Error Fallback) -->
+            <div id="ai-error-state" class="hidden p-4 rounded-2xl bg-amber-50 border border-amber-300 space-y-2.5 text-xs text-amber-950">
+              <div class="flex items-center gap-2 font-bold text-amber-900">
+                <span class="material-symbols-outlined text-[20px] text-amber-600">warning</span>
+                <span>AI chưa chắc chắn về kết quả phân tích</span>
+              </div>
+              <p class="leading-relaxed">
+                Đoạn văn bản phản hồi quá ngắn hoặc chứa từ ngữ mơ hồ ("nhìn chưa ưng lắm, cô sửa lại đi"). AI không thể tự động bóc tách thành các đầu mục kỹ thuật cụ thể.
+              </p>
+              <div class="flex items-center gap-2 pt-1">
+                <button type="button" id="btn-retry-ai" class="px-3 py-1.5 rounded-lg bg-amber-600 text-white font-semibold hover:bg-amber-700">
+                  Thử lại
+                </button>
+                <button type="button" id="btn-manual-fallback" class="px-3 py-1.5 rounded-lg bg-surface-container text-primary font-semibold hover:bg-surface-container-high">
+                  Nhập phương án thủ công
+                </button>
+              </div>
+            </div>
+
+            <!-- 4. BƯỚC 3, 4, 5: KẾT QUẢ AI + GIẢI THÍCH + QUYẾT ĐỊNH NGƯỜI DÙNG -->
+            <div id="ai-result-box" class="hidden space-y-4">
+              
+              <!-- Checklist Kết Quả AI Bóc Tách Được -->
+              <div class="p-4 sm:p-5 rounded-2xl bg-white border border-purple-200 shadow-2xs space-y-3">
+                <div class="flex items-center justify-between pb-2 border-b border-surface-container">
+                  <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-purple-700 text-[20px]">checklist</span>
+                    <strong class="font-bold text-xs sm:text-sm text-purple-950">Checklist Đề Xuất Cải Tiến (Do AI Tóm Tắt)</strong>
+                  </div>
+                  <span class="text-[11px] font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full">Độ tin cậy: 98%</span>
+                </div>
+
+                <div class="space-y-2.5 text-xs" id="ai-checklist-items">
+                  <!-- Các mục bóc tách -->
+                </div>
+              </div>
+
+              <!-- Khối Giải Thích: "VÌ SAO CÓ KẾT QUẢ NÀY?" (AI Reasoning) -->
+              <div class="p-3.5 rounded-2xl bg-purple-100/70 border border-purple-200 text-xs text-purple-950 space-y-1.5">
+                <div class="flex items-center gap-1.5 font-bold text-purple-900">
+                  <span class="material-symbols-outlined text-[16px]">info</span>
+                  <span>Vì sao AI đưa ra kết quả này? (Trích xuất bằng chứng)</span>
+                </div>
+                <p class="text-[11px] text-purple-950/90 leading-relaxed" id="ai-reasoning-text">
+                  <!-- Giải thích chi tiết -->
+                </p>
+              </div>
+
+              <!-- BƯỚC 5: NGƯỜI DÙNG QUYẾT ĐỊNH (Chấp nhận / Sửa / Từ chối) -->
+              <div class="flex flex-wrap items-center gap-2.5 pt-1">
+                <button type="button" id="btn-accept-ai" class="px-4 py-2 rounded-xl bg-emerald-700 text-white font-semibold text-xs hover:bg-emerald-800 shadow-xs flex items-center gap-1.5 transition-all">
+                  <span class="material-symbols-outlined text-[16px]">check_circle</span>
+                  <span>Chấp Nhận & Điền Vào Form Đề Xuất</span>
+                </button>
+                <button type="button" id="btn-edit-ai-checklist" class="px-3.5 py-2 rounded-xl border border-purple-300 text-purple-900 font-semibold text-xs hover:bg-purple-100 transition-colors">
+                  Sửa đổi các mục
+                </button>
+                <button type="button" id="btn-reject-ai" class="px-3.5 py-2 rounded-xl text-outline hover:text-error text-xs font-semibold">
+                  Bỏ qua gợi ý này
+                </button>
+              </div>
+
+            </div>
+
+          </section>
+
+          <!-- =============================================================== -->
+          <!-- FORM SOẠN THẢO PROPOSAL CHÍNH -->
+          <!-- =============================================================== -->
+          <form id="proposal-form" class="space-y-6" novalidate>
+            
+            <!-- Nhóm 1: Tiêu đề & Giải pháp Kỹ thuật -->
+            <div class="bg-surface-container-lowest p-6 rounded-3xl border border-surface-container-high shadow-2xs space-y-4">
+              <h3 class="font-serif-craft text-lg font-bold text-primary flex items-center gap-2">
+                <span class="material-symbols-outlined text-secondary text-[20px]">architecture</span>
+                <span>1. Phương Án Kỹ Thuật & Tay Nghề Thủ Công</span>
+              </h3>
+
+              <div>
+                <label for="prop-title" class="block text-xs font-semibold text-primary uppercase mb-1.5">
+                  Tiêu Đề Đề Xuất / Báo Giá <span class="text-error">*</span>
+                </label>
+                <input type="text" id="prop-title" required placeholder="Ví dụ: Phương án dệt khăn lanh nhuộm chàm thêu chữ Vạn An"
+                  class="w-full h-11 px-4 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none text-sm transition-all" />
+                <p class="text-[11px] text-error mt-1 hidden" id="err-title">Vui lòng nhập tiêu đề đề xuất.</p>
+              </div>
+
+              <div>
+                <label for="prop-solution" class="block text-xs font-semibold text-primary uppercase mb-1.5">
+                  Mô Tả Quy Trình Chế Tác & Giải Pháp Hoa Văn <span class="text-error">*</span>
+                </label>
+                <textarea id="prop-solution" rows="4" required placeholder="Nêu rõ chất liệu sợi, kỹ thuật nhuộm thảo mộc, các công đoạn thêu tay/vẽ sáp ong hoặc nung gốm..."
+                  class="w-full p-4 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none text-sm transition-all leading-relaxed"></textarea>
+                <p class="text-[11px] text-error mt-1 hidden" id="err-solution">Vui lòng mô tả chi tiết phương án kỹ thuật.</p>
+              </div>
+
+              <!-- Ảnh Phác Thảo / Mẫu Thử -->
+              <div>
+                <label for="prop-sketch-url" class="block text-xs font-semibold text-primary uppercase mb-1.5">
+                  Đường dẫn ảnh phác thảo / Mẫu vải thử nghiệm
+                </label>
+                <div class="flex gap-2">
+                  <input type="url" id="prop-sketch-url" placeholder="https://..."
+                    class="flex-1 h-11 px-4 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none text-sm transition-all" />
+                  <button type="button" id="btn-sample-image" class="px-3.5 h-11 rounded-xl bg-surface-container-high text-primary hover:bg-surface-container-highest font-semibold text-xs transition-colors shrink-0">
+                    Ảnh mẫu
+                  </button>
+                </div>
+                <div class="mt-2.5 w-36 h-24 rounded-xl overflow-hidden bg-surface-container-low border border-surface-container hidden" id="preview-sketch-box">
+                  <img id="preview-sketch-img" src="" alt="Xem trước phác thảo" class="w-full h-full object-cover" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Nhóm 2: Bóc Tách Chi Phí & Báo Giá (Cost Breakdown) -->
+            <div class="bg-surface-container-lowest p-6 rounded-3xl border border-surface-container-high shadow-2xs space-y-4">
+              <h3 class="font-serif-craft text-lg font-bold text-primary flex items-center gap-2">
+                <span class="material-symbols-outlined text-secondary text-[20px]">payments</span>
+                <span>2. Bóc Tách Chi Phí & Báo Giá Tổng</span>
+              </h3>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div>
+                  <label for="cost-materials" class="block text-xs font-semibold text-primary uppercase mb-1.5">
+                    Chi phí nguyên vật liệu <span class="text-error">*</span>
+                  </label>
+                  <div class="relative">
+                    <input type="number" id="cost-materials" min="0" step="10000" required value="400000"
+                      class="w-full h-11 pl-4 pr-12 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none text-sm font-semibold transition-all" />
+                    <span class="absolute right-3.5 top-3 text-xs text-outline font-semibold">đ</span>
+                  </div>
+                </div>
+
+                <div>
+                  <label for="cost-labor" class="block text-xs font-semibold text-primary uppercase mb-1.5">
+                    Tiền công nghệ nhân <span class="text-error">*</span>
+                  </label>
+                  <div class="relative">
+                    <input type="number" id="cost-labor" min="0" step="10000" required value="650000"
+                      class="w-full h-11 pl-4 pr-12 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none text-sm font-semibold transition-all" />
+                    <span class="absolute right-3.5 top-3 text-xs text-outline font-semibold">đ</span>
+                  </div>
+                </div>
+
+                <div>
+                  <label for="cost-packaging" class="block text-xs font-semibold text-primary uppercase mb-1.5">
+                    Hộp quà di sản & Phí phụ
+                  </label>
+                  <div class="relative">
+                    <input type="number" id="cost-packaging" min="0" step="10000" value="150000"
+                      class="w-full h-11 pl-4 pr-12 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none text-sm font-semibold transition-all" />
+                    <span class="absolute right-3.5 top-3 text-xs text-outline font-semibold">đ</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tổng báo giá hiển thị tự động -->
+              <div class="p-4 rounded-2xl bg-surface-container-low border border-surface-container flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                  <span class="text-xs text-on-surface-variant block uppercase font-medium">Tổng báo giá đề xuất gửi khách:</span>
+                  <div class="flex items-baseline gap-2 mt-0.5">
+                    <span class="font-serif-craft text-2xl font-bold text-secondary" id="total-price-display">1.200.000 đ</span>
+                    <span class="text-xs text-on-surface-variant" id="budget-comparison-badge">(Khớp ngân sách dự kiến của khách)</span>
+                  </div>
+                </div>
+                <div class="text-xs text-on-surface-variant">
+                  <span>Hoa hồng sàn CraftLink (5%): </span>
+                  <strong class="text-primary font-bold" id="platform-fee-display">60.000 đ</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- Nhóm 3: Tiến Độ & Điều Khoản Chỉnh Sửa (Revisions) -->
+            <div class="bg-surface-container-lowest p-6 rounded-3xl border border-surface-container-high shadow-2xs space-y-4">
+              <h3 class="font-serif-craft text-lg font-bold text-primary flex items-center gap-2">
+                <span class="material-symbols-outlined text-secondary text-[20px]">event_repeat</span>
+                <span>3. Tiến Độ & Điều Khoản Chỉnh Sửa (Revision Policy)</span>
+              </h3>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div>
+                  <label for="prop-days" class="block text-xs font-semibold text-primary uppercase mb-1.5">
+                    Thời gian chế tác (Ngày) <span class="text-error">*</span>
+                  </label>
+                  <input type="number" id="prop-days" min="1" max="90" required value="10"
+                    class="w-full h-11 px-4 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:outline-none text-sm font-semibold" />
+                </div>
+
+                <div>
+                  <label for="prop-delivery-date" class="block text-xs font-semibold text-primary uppercase mb-1.5">
+                    Ngày dự kiến bàn giao <span class="text-error">*</span>
+                  </label>
+                  <input type="text" id="prop-delivery-date" required value="28/10/2026"
+                    class="w-full h-11 px-4 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:outline-none text-sm font-semibold" />
+                </div>
+
+                <div>
+                  <label for="prop-revisions-count" class="block text-xs font-semibold text-primary uppercase mb-1.5">
+                    Số vòng sửa đổi miễn phí <span class="text-error">*</span>
+                  </label>
+                  <select id="prop-revisions-count" class="w-full h-11 px-3.5 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:outline-none text-sm font-semibold">
+                    <option value="1">1 lần sửa mẫu</option>
+                    <option value="2" selected>2 lần sửa mẫu (Khuyên dùng)</option>
+                    <option value="3">3 lần sửa mẫu</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Nút Hành Động Cuối Form -->
+            <div class="flex items-center justify-end gap-3 pt-2">
+              <a href="brief-inbox.html" class="px-5 py-3 rounded-xl border border-surface-container-highest text-on-surface font-semibold text-sm hover:bg-surface-container transition-colors">
+                Hủy bỏ
+              </a>
+              <button type="submit" class="px-8 py-3 rounded-xl bg-secondary text-on-secondary font-semibold text-sm hover:opacity-95 shadow-sm transition-all flex items-center gap-2">
+                <span class="material-symbols-outlined text-[18px]">send</span>
+                <span>Gửi Đề Xuất & Báo Giá Ngay</span>
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+  <div id="seller-bottom-nav"></div>
+
+  <!-- Scripts -->
+  <script src="seller-data.js"></script>
+  <script src="seller.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Khởi tạo Layout
+      SellerApp.initLayout({
+        activeNav: 'proposals',
+        pageTitle: 'Soạn Đề Xuất & Báo Giá (Proposal)'
+      });
+
+      const safe = (str) => typeof escapeHtml === 'function' ? escapeHtml(str) : String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+
+      function formatMoney(amount) {
+        return SellerApp.formatVND ? SellerApp.formatVND(amount) : new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
+      }
+
+      // Đọc URL param (vd ?briefId=BR-102)
+      const urlParams = new URLSearchParams(window.location.search);
+      let selectedBriefId = urlParams.get('briefId') || 'BR-101';
+      const autoMode = urlParams.get('mode');
+
+      const selectBrief = document.getElementById('select-active-brief');
+      const briefSummaryBox = document.getElementById('brief-summary-box');
+
+      // AI Elements
+      const aiInput = document.getElementById('ai-input-text');
+      const btnRunAi = document.getElementById('btn-run-ai');
+      const btnClearAi = document.getElementById('btn-clear-ai');
+      const btnLoadSample = document.getElementById('btn-load-sample-feedback');
+      const aiLoading = document.getElementById('ai-loading-state');
+      const aiError = document.getElementById('ai-error-state');
+      const aiResultBox = document.getElementById('ai-result-box');
+      const aiChecklistItems = document.getElementById('ai-checklist-items');
+      const aiReasoningText = document.getElementById('ai-reasoning-text');
+      const btnAcceptAi = document.getElementById('btn-accept-ai');
+      const btnRejectAi = document.getElementById('btn-reject-ai');
+      const btnToggleFail = document.getElementById('btn-toggle-ai-fail');
+      const charCount = document.getElementById('char-count');
+      const errAiInput = document.getElementById('err-ai-input');
+
+      // Form Elements
+      const propTitle = document.getElementById('prop-title');
+      const propSolution = document.getElementById('prop-solution');
+      const propSketchUrl = document.getElementById('prop-sketch-url');
+      const btnSampleImg = document.getElementById('btn-sample-image');
+      const previewSketchBox = document.getElementById('preview-sketch-box');
+      const previewSketchImg = document.getElementById('preview-sketch-img');
+      const costMaterials = document.getElementById('cost-materials');
+      const costLabor = document.getElementById('cost-labor');
+      const costPackaging = document.getElementById('cost-packaging');
+      const totalPriceDisplay = document.getElementById('total-price-display');
+      const budgetComparisonBadge = document.getElementById('budget-comparison-badge');
+      const platformFeeDisplay = document.getElementById('platform-fee-display');
+      const propDays = document.getElementById('prop-days');
+      const propDeliveryDate = document.getElementById('prop-delivery-date');
+      const propRevisions = document.getElementById('prop-revisions-count');
+      const form = document.getElementById('proposal-form');
+
+      let simulateFail = false;
+
+      // 1. Nạp danh sách Brief vào Select
+      function loadBriefSelect() {
+        const briefs = window.SellerData.getBriefs();
+        selectBrief.innerHTML = briefs.map(b => `
+          <option value="${b.id}" ${b.id === selectedBriefId ? 'selected' : ''}>
+            #${b.id} - ${safe(b.buyerName)}
+          </option>
+        `).join('');
+      }
+
+      // 2. Render Tóm Tắt Brief đang chọn vào Cột Trái
+      function renderBriefSummary(briefId) {
+        const brief = window.SellerData.getBriefById(briefId);
+        if (!brief) return;
+
+        selectedBriefId = brief.id;
+
+        briefSummaryBox.innerHTML = `
+          <div class="space-y-3">
+            <h4 class="font-serif-craft text-sm font-bold text-primary">${safe(brief.title)}</h4>
+            
+            <div class="flex items-center gap-2.5 p-2.5 rounded-xl bg-surface-container-low">
+              <img src="${brief.buyerAvatar}" alt="${safe(brief.buyerName)}" class="w-8 h-8 rounded-full object-cover" />
+              <div>
+                <strong class="text-primary block font-bold">${safe(brief.buyerName)}</strong>
+                <span class="text-[11px] text-on-surface-variant">${safe(brief.buyerPhone)}</span>
+              </div>
+            </div>
+
+            <div class="space-y-2 pt-1 border-t border-surface-container">
+              <div class="flex justify-between">
+                <span class="text-on-surface-variant">Ngân sách của khách:</span>
+                <strong class="text-secondary font-bold">${formatMoney(brief.budget)}</strong>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-on-surface-variant">Hạn chót cần hàng:</span>
+                <strong class="text-primary font-bold">${safe(brief.deadline)}</strong>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-on-surface-variant">Kích thước:</span>
+                <strong class="text-primary font-bold">${safe(brief.dimensions || 'Tiêu chuẩn')}</strong>
+              </div>
+            </div>
+
+            <div class="pt-2 border-t border-surface-container">
+              <span class="text-on-surface-variant block text-[11px] font-semibold mb-1">Chất liệu yêu cầu:</span>
+              <p class="text-primary bg-surface-container-low p-2 rounded-lg text-[11px]">${safe(brief.materialRequired || 'Nguyên liệu tự nhiên')}</p>
+            </div>
+
+            ${brief.referenceImages && brief.referenceImages.length > 0 ? `
+              <div class="pt-2 border-t border-surface-container">
+                <span class="text-on-surface-variant block text-[11px] font-semibold mb-1">Ảnh khách gửi:</span>
+                <img src="${brief.referenceImages[0]}" alt="Ảnh mẫu" class="w-full h-24 rounded-xl object-cover border border-surface-container" />
+              </div>
+            ` : ''}
+          </div>
+        `;
+
+        // Nếu brief có feedback gần nhất, tự động đưa vào ô AI input
+        if (brief.latestCustomerFeedback) {
+          aiInput.value = brief.latestCustomerFeedback;
+          charCount.textContent = `${aiInput.value.length} ký tự`;
+        }
+
+        // Tự động điền giá khởi tạo dựa trên ngân sách brief
+        calculateTotal();
+
+        // Kiểm tra xem đã có proposal lưu trước đó cho brief này chưa
+        const existingProp = window.SellerData.getProposalByBriefId(brief.id);
+        if (existingProp) {
+          propTitle.value = existingProp.title;
+          propSolution.value = existingProp.technicalSolution;
+          if (existingProp.priceBreakdown) {
+            costMaterials.value = existingProp.priceBreakdown.materials || 400000;
+            costLabor.value = existingProp.priceBreakdown.craftsmanship || 600000;
+            costPackaging.value = existingProp.priceBreakdown.packaging || 100000;
+          }
+          if (existingProp.sketchImage) {
+            propSketchUrl.value = existingProp.sketchImage;
+            previewSketchImg.src = existingProp.sketchImage;
+            previewSketchBox.classList.remove('hidden');
+          }
+          propDays.value = existingProp.estimatedDays || 10;
+          propDeliveryDate.value = existingProp.deliveryDate || '28/10/2026';
+          calculateTotal();
+        } else {
+          // Mặc định tạo mới
+          propTitle.value = `Phương án chế tác cho #${brief.id} - ${brief.title}`;
+          propSolution.value = `Xưởng cam kết sử dụng 100% nguyên liệu thủ công truyền thống theo yêu cầu của khách hàng. Quy trình chế tác tuân thủ tiêu chuẩn Thương mại công bằng WFTO.`;
+        }
+      }
+
+      selectBrief.addEventListener('change', (e) => {
+        renderBriefSummary(e.target.value);
+      });
+
+      // 3. Tính toán Báo giá (Cost Breakdown)
+      function calculateTotal() {
+        const mat = parseFloat(costMaterials.value) || 0;
+        const lab = parseFloat(costLabor.value) || 0;
+        const pack = parseFloat(costPackaging.value) || 0;
+        const total = mat + lab + pack;
+
+        totalPriceDisplay.textContent = formatMoney(total);
+        platformFeeDisplay.textContent = formatMoney(Math.round(total * 0.05));
+
+        const brief = window.SellerData.getBriefById(selectedBriefId);
+        if (brief && brief.budget) {
+          if (total <= brief.budget) {
+            budgetComparisonBadge.textContent = `(Khớp ngân sách dự kiến ${formatMoney(brief.budget)})`;
+            budgetComparisonBadge.className = 'text-xs text-emerald-700 font-semibold';
+          } else {
+            const diff = total - brief.budget;
+            budgetComparisonBadge.textContent = `(Vượt ngân sách khách +${formatMoney(diff)})`;
+            budgetComparisonBadge.className = 'text-xs text-secondary font-semibold';
+          }
+        }
+      }
+
+      [costMaterials, costLabor, costPackaging].forEach(input => {
+        input.addEventListener('input', calculateTotal);
+      });
+
+      // Phác thảo ảnh
+      propSketchUrl.addEventListener('input', (e) => {
+        const url = e.target.value.trim();
+        if (url) {
+          previewSketchImg.src = url;
+          previewSketchBox.classList.remove('hidden');
+        } else {
+          previewSketchBox.classList.add('hidden');
+        }
+      });
+
+      btnSampleImg.addEventListener('click', () => {
+        const sampleUrl = "https://lh3.googleusercontent.com/aida-public/AB6AXuDCn6Mod7HwcwbLvZp07ozudATDYxeidZxR-QS4uNS1ToADHUlFu6VNniMTudCWf1FfvFVFcy40tjcXN-xsmp6AHmEzg9LxsxAjTNtYvULx69YHTeTlhJ8qO_NrFYcXT3KgZlBVoaHE9dtacSc60jzPIzIHVdz8edwhCjnI2TAif_g12SsVhf5d5TP6DPbxnUKEwNXs6QeDCpGU04qE6jN9r5TQT-ODdhKXN3sfnvOzWRcb-0eN7-38";
+        propSketchUrl.value = sampleUrl;
+        previewSketchImg.src = sampleUrl;
+        previewSketchBox.classList.remove('hidden');
+      });
+
+      // ===============================================================
+      // LOGIC AI-3: REVISION SUMMARIZER ENGINE
+      // ===============================================================
+      aiInput.addEventListener('input', () => {
+        charCount.textContent = `${aiInput.value.length} ký tự`;
+        if (aiInput.value.trim().length >= 15) {
+          errAiInput.classList.add('hidden');
+        }
+      });
+
+      btnLoadSample.addEventListener('click', () => {
+        aiInput.value = "Chào cô Mai, bản phác thảo đợt 1 nhìn rất đẹp rồi ạ! Tuy nhiên cháu có vài góp ý cần cô sửa giúp cháu: 1. Phần màu chàm cháu muốn nhuộm đậm hơn 2 nước nữa cho màu xanh đen trầm hơn chứ đừng ngả xanh lam sáng quá; 2. Vạt áo thêu sáp ong cô bớt họa tiết răng bừa lại giúp cháu, thay bằng hoa văn móc câu đôi nhìn thanh thoát hơn; 3. Chiều dài thân áo cô tăng thêm 4cm (thành 76cm) để mặc trùm qua hông một chút; 4. Về thời gian nếu hoàn thiện trước ngày 02/11 được thì tuyệt vời vì cháu cần đi dự triển lãm. Cô xem lại chi phí có phát sinh gì không nhé!";
+        charCount.textContent = `${aiInput.value.length} ký tự`;
+        errAiInput.classList.add('hidden');
+      });
+
+      btnClearAi.addEventListener('click', () => {
+        aiInput.value = '';
+        charCount.textContent = '0 ký tự';
+        aiResultBox.classList.add('hidden');
+        aiError.classList.add('hidden');
+      });
+
+      // Nút toggle giả lập lỗi AI
+      btnToggleFail.addEventListener('click', () => {
+        simulateFail = !simulateFail;
+        btnToggleFail.textContent = simulateFail ? '[Đang bật chế độ LỖI AI]' : '[Mô phỏng lỗi AI]';
+        btnToggleFail.className = simulateFail ? 'text-[11px] text-error font-bold underline cursor-pointer' : 'text-[11px] text-purple-700 hover:text-purple-950 underline cursor-pointer';
+        SellerApp.showToast(simulateFail ? 'Đã kích hoạt chế độ mô phỏng AI Thất bại / Không chắc chắn' : 'Đã quay lại chế độ AI hoạt động bình thường', 'info');
+      });
+
+      // Chạy phân tích AI
+      btnRunAi.addEventListener('click', () => {
+        const text = aiInput.value.trim();
+        if (text.length < 15) {
+          errAiInput.classList.remove('hidden');
+          return;
+        }
+        errAiInput.classList.add('hidden');
+
+        // Bật loading state
+        aiLoading.classList.remove('hidden');
+        aiResultBox.classList.add('hidden');
+        aiError.classList.add('hidden');
+
+        setTimeout(() => {
+          aiLoading.classList.add('hidden');
+
+          // Kịch bản khi AI thất bại hoặc không chắc chắn
+          if (simulateFail) {
+            aiError.classList.remove('hidden');
+            return;
+          }
+
+          // Kịch bản thành công: Bóc tách ngữ nghĩa dựa trên quy tắc thông minh
+          const structuredItems = [];
+          let reasoning = "";
+
+          if (text.includes("nhuộm") || text.includes("màu chàm") || text.includes("màu")) {
+            structuredItems.push({
+              icon: "palette",
+              type: "Màu sắc & Nhuộm củ thảo",
+              desc: "Nhuộm bổ sung 2 nước chàm rừng tự nhiên để đạt sắc xanh đen trầm (Indigo Dark), loại bỏ sắc lam sáng."
+            });
+          }
+
+          if (text.includes("hoa văn") || text.includes("thêu") || text.includes("sáp ong") || text.includes("móc câu")) {
+            structuredItems.push({
+              icon: "draw",
+              type: "Hoa văn & Kỹ thuật sáp ong",
+              desc: "Thay thế hoa văn răng bừa ở vạt áo bằng hoa văn móc câu đôi H'Mông truyền thống để tạo nét thanh thoát."
+            });
+          }
+
+          if (text.includes("kích thước") || text.includes("chiều dài") || text.includes("thân áo") || text.includes("cm")) {
+            structuredItems.push({
+              icon: "straighten",
+              type: "Thông số may đo (Kích thước)",
+              desc: "Tăng chiều dài thân áo thêm +4cm (từ 72cm lên 76cm) theo dáng phủ hông của khách."
+            });
+          }
+
+          if (text.includes("thời gian") || text.includes("ngày") || text.includes("02/11") || text.includes("sớm")) {
+            structuredItems.push({
+              icon: "alarm",
+              type: "Tiến độ bàn giao",
+              desc: "Đẩy nhanh tiến độ hoàn thiện trước ngày 02/11/2026 (sớm hơn 3 ngày so với kế hoạch ban đầu để phục vụ triển lãm)."
+            });
+          }
+
+          if (structuredItems.length === 0) {
+            structuredItems.push({
+              icon: "check_circle",
+              type: "Yêu cầu chung",
+              desc: "Khách hàng muốn điều chỉnh chi tiết theo mô tả: " + text.slice(0, 100) + "..."
+            });
+          }
+
+          reasoning = `AI bóc tách từ các từ khóa định lượng trong tin nhắn của khách hàng: câu "nhuộm đậm hơn 2 nước" $\\rightarrow$ phân loại vào quy trình Nhuộm; câu "thay bằng hoa văn móc câu đôi" $\\rightarrow$ phân loại vào Thiết kế hoa văn; số đo "thêm 4cm (thành 76cm)" $\\rightarrow$ bóc tách thông số may đo; mốc "trước ngày 02/11" $\\rightarrow$ cập nhật thời hạn giao hàng.`;
+
+          // Render checklist items
+          aiChecklistItems.innerHTML = structuredItems.map(item => `
+            <div class="p-3 rounded-xl bg-purple-50/60 border border-purple-200/60 flex items-start gap-3">
+              <span class="material-symbols-outlined text-purple-700 text-[18px] shrink-0 mt-0.5">${item.icon}</span>
+              <div class="flex-1">
+                <span class="font-bold text-purple-950 block text-xs uppercase tracking-wide">${safe(item.type)}</span>
+                <p class="text-purple-900 text-xs mt-0.5 leading-relaxed">${safe(item.desc)}</p>
+              </div>
+              <input type="checkbox" checked class="w-4 h-4 rounded text-purple-700 border-purple-300 focus:ring-purple-600 mt-1 cursor-pointer" />
+            </div>
+          `).join('');
+
+          aiReasoningText.textContent = reasoning;
+          aiResultBox.classList.remove('hidden');
+
+        }, 800);
+      });
+
+      // Xử lý nút thử lại khi AI lỗi
+      document.getElementById('btn-retry-ai').addEventListener('click', () => {
+        simulateFail = false;
+        btnToggleFail.textContent = '[Mô phỏng lỗi AI]';
+        btnToggleFail.className = 'text-[11px] text-purple-700 hover:text-purple-950 underline cursor-pointer';
+        btnRunAi.click();
+      });
+
+      document.getElementById('btn-manual-fallback').addEventListener('click', () => {
+        aiError.classList.add('hidden');
+        propSolution.focus();
+        SellerApp.showToast('Bạn có thể nhập phương án kỹ thuật thủ công vào ô bên dưới', 'info');
+      });
+
+      // BƯỚC 5: NGƯỜI DÙNG CHẤP NHẬN GỢI Ý AI
+      btnAcceptAi.addEventListener('click', () => {
+        // Tự động điền checklist vào ô Phương án kỹ thuật
+        const currentSolution = propSolution.value;
+        const aiAppend = `\n\n[CẬP NHẬT THEO AI REVISION SUMMARIZER]:\n- 🎨 Màu sắc: Nhuộm chàm thêm 2 nước tạo độ trầm xanh đen sâu lắng.\n- 🪡 Hoa văn: Vẽ sáp ong họa tiết móc câu đôi cổ truyền thay cho răng bừa.\n- 📐 Kích thước: Điều chỉnh chiều dài thân áo 76cm theo form dáng riêng.\n- ⏱️ Bàn giao: Đẩy nhanh hoàn thành trước 02/11/2026.`;
+        
+        propSolution.value = currentSolution + aiAppend;
+        propDeliveryDate.value = "02/11/2026";
+        propDays.value = 8;
+        costMaterials.value = parseInt(costMaterials.value || 0) + 150000; // phụ phí nước nhuộm
+        calculateTotal();
+
+        SellerApp.showToast('✨ Đã áp dụng các đầu việc do AI bóc tách vào biểu mẫu Đề xuất!', 'success');
+        
+        // Cuộn mượt xuống form
+        propSolution.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+
+      btnRejectAi.addEventListener('click', () => {
+        aiResultBox.classList.add('hidden');
+        SellerApp.showToast('Đã bỏ qua gợi ý của AI', 'info');
+      });
+
+      // 4. XỬ LÝ SUBMIT PROPOSAL
+      function handleSaveProposal() {
+        let isValid = true;
+        const titleVal = propTitle.value.trim();
+        const solutionVal = propSolution.value.trim();
+
+        if (!titleVal) {
+          document.getElementById('err-title').classList.remove('hidden');
+          propTitle.classList.add('border-error');
+          isValid = false;
+        } else {
+          document.getElementById('err-title').classList.add('hidden');
+          propTitle.classList.remove('border-error');
+        }
+
+        if (!solutionVal) {
+          document.getElementById('err-solution').classList.remove('hidden');
+          propSolution.classList.add('border-error');
+          isValid = false;
+        } else {
+          document.getElementById('err-solution').classList.add('hidden');
+          propSolution.classList.remove('border-error');
+        }
+
+        if (!isValid) {
+          SellerApp.showToast('Vui lòng điền đầy đủ các thông tin bắt buộc', 'error');
+          return;
+        }
+
+        const brief = window.SellerData.getBriefById(selectedBriefId) || { id: selectedBriefId, title: titleVal, buyerName: "Khách hàng" };
+        const mat = parseFloat(costMaterials.value) || 0;
+        const lab = parseFloat(costLabor.value) || 0;
+        const pack = parseFloat(costPackaging.value) || 0;
+        const total = mat + lab + pack;
+
+        const proposalData = {
+          id: `PROP-${brief.id.replace('BR-', '')}`,
+          briefId: brief.id,
+          briefTitle: brief.title,
+          buyerName: brief.buyerName,
+          title: titleVal,
+          totalPrice: total,
+          priceBreakdown: {
+            materials: mat,
+            craftsmanship: lab,
+            packaging: pack
+          },
+          estimatedDays: parseInt(propDays.value) || 10,
+          deliveryDate: propDeliveryDate.value,
+          allowedRevisions: parseInt(propRevisions.value) || 2,
+          technicalSolution: solutionVal,
+          sketchImage: propSketchUrl.value.trim() || "https://lh3.googleusercontent.com/aida-public/AB6AXuDCn6Mod7HwcwbLvZp07ozudATDYxeidZxR-QS4uNS1ToADHUlFu6VNniMTudCWf1FfvFVFcy40tjcXN-xsmp6AHmEzg9LxsxAjTNtYvULx69YHTeTlhJ8qO_NrFYcXT3KgZlBVoaHE9dtacSc60jzPIzIHVdz8edwhCjnI2TAif_g12SsVhf5d5TP6DPbxnUKEwNXs6QeDCpGU04qE6jN9r5TQT-ODdhKXN3sfnvOzWRcb-0eN7-38",
+          status: "sent",
+          statusText: "Đã gửi khách",
+          createdAt: new Date().toLocaleDateString('vi-VN') + " " + new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })
+        };
+
+        window.SellerData.saveProposal(proposalData);
+        SellerApp.showToast(`🎉 Đã gửi Đề xuất & Báo giá #${proposalData.id} thành công cho khách hàng!`, 'success');
+
+        setTimeout(() => {
+          window.location.href = 'brief-inbox.html';
+        }, 800);
+      }
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        handleSaveProposal();
+      });
+
+      document.getElementById('btn-submit-proposal').addEventListener('click', handleSaveProposal);
+
+      // Khởi chạy ban đầu
+      loadBriefSelect();
+      renderBriefSummary(selectedBriefId);
+
+      // Nếu có query param mode=ai-revision thì tự động cuộn đến phần AI
+      if (autoMode === 'ai-revision') {
+        setTimeout(() => {
+          document.getElementById('ai-revision-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+          btnRunAi.click();
+        }, 300);
+      }
+    });
+  </script>
+</body>
+</html>

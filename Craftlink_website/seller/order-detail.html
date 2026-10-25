@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Chi Tiết Đơn Hàng | Kênh Người Bán Craft Link</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+
+  <link href="../assets/css/colors.css" rel="stylesheet" />
+  <link href="../assets/css/base.css" rel="stylesheet" />
+  <link href="seller.css" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../assets/js/tailwind-config.js"></script>
+</head>
+
+<body class="bg-surface font-body-md text-on-surface antialiased">
+
+  <div id="seller-sidebar"></div>
+
+  <div class="lg:pl-64 flex flex-col min-h-screen">
+    <div id="seller-header"></div>
+
+    <main class="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 max-w-5xl mx-auto w-full pb-24 lg:pb-12">
+
+      <!-- Top Action Bar -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 no-print">
+        <div class="flex items-center gap-3">
+          <a href="orders.html"
+            class="w-10 h-10 rounded-xl bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-primary transition-colors"
+            title="Quay lại danh sách">
+            <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+          </a>
+          <div>
+            <div class="flex items-center gap-2">
+              <h2 class="font-serif-craft text-2xl font-bold text-primary" id="order-heading">Đơn Hàng #CL-240801</h2>
+              <span id="order-badge-placeholder"></span>
+            </div>
+            <p class="text-xs text-on-surface-variant mt-0.5" id="order-time-text">Ngày đặt hàng: 06/10/2026 10:25</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <!-- Nút In Phiếu Giao Hàng -->
+          <button type="button" onclick="window.print()"
+            class="px-4 py-2.5 rounded-xl border border-primary text-primary font-semibold text-sm hover:bg-primary hover:text-on-primary transition-all flex items-center gap-2 shadow-2xs">
+            <span class="material-symbols-outlined text-[18px]">print</span>
+            <span>In phiếu giao hàng</span>
+          </button>
+
+          <!-- Nút Cập nhật nhanh trạng thái -->
+          <button type="button" id="btn-advance-status"
+            class="px-5 py-2.5 rounded-xl bg-secondary text-on-secondary font-semibold text-sm hover:opacity-95 shadow-sm transition-all flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[18px]">update</span>
+            <span id="btn-advance-text">Cập nhật đơn</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Khối In Phiếu Giao Hàng Dành Cho Bưu Tá & Khách Hàng (Tối ưu in ấn) -->
+      <div
+        class="bg-surface-container-lowest rounded-2xl border border-surface-container-high shadow-2xs p-6 sm:p-8 space-y-6 print-only-container">
+
+        <!-- Header phiếu in (Craft Link & Logo) -->
+        <div class="flex items-center justify-between pb-6 border-b border-surface-container">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary">
+              <span class="material-symbols-outlined text-[22px] text-tertiary-fixed">palette</span>
+            </div>
+            <div>
+              <h3 class="font-serif-craft font-bold text-xl text-primary">CRAFT LINK</h3>
+              <p class="text-xs text-on-surface-variant">Sàn Thủ Công Mỹ Nghệ & Di Sản Bản Địa</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <span class="text-xs text-on-surface-variant block uppercase">Mã vận đơn bưu tá</span>
+            <span class="font-mono font-bold text-base sm:text-lg text-primary"
+              id="tracking-code-display">GHTK-VN88921104</span>
+          </div>
+        </div>
+
+        <!-- Timeline Trạng Thái Giao Vận (Ẩn khi in nếu cần) -->
+        <div class="bg-surface-container-low p-6 rounded-xl space-y-4 no-print">
+          <h4 class="font-serif-craft font-bold text-sm text-primary">Tiến Trình Đơn Hàng</h4>
+          <div class="grid grid-cols-1 sm:grid-cols-4 gap-4" id="order-stepper-container">
+            <!-- Render stepper qua JS -->
+          </div>
+        </div>
+
+        <!-- Thông Tin Người Gửi (Xưởng) & Người Nhận (Khách hàng) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+
+          <!-- Người gửi: Xưởng nghệ nhân -->
+          <div class="p-4 rounded-xl border border-surface-container space-y-2">
+            <span class="text-[11px] font-bold text-secondary uppercase tracking-wider block">Người gửi (Gian hàng nghệ
+              nhân)</span>
+            <h5 class="font-bold text-sm text-primary" id="sender-shop-name">Xưởng Dệt Chàm & Thêu Tay Bản Phố</h5>
+            <p class="text-xs text-on-surface-variant" id="sender-artisan-name">Đại diện: Nghệ nhân Vàng Thị Mai</p>
+            <p class="text-xs text-on-surface-variant" id="sender-address">Bản Phố, Huyện Bắc Hà, Tỉnh Lào Cai</p>
+            <p class="text-xs text-on-surface-variant font-medium">SĐT xưởng: 0984 321 789</p>
+          </div>
+
+          <!-- Người nhận: Khách hàng -->
+          <div class="p-4 rounded-xl border border-surface-container space-y-2">
+            <span class="text-[11px] font-bold text-secondary uppercase tracking-wider block">Người nhận hàng</span>
+            <h5 class="font-bold text-sm text-primary" id="receiver-name">Nguyễn Thị Phương Thảo</h5>
+            <p class="text-xs text-on-surface-variant font-medium" id="receiver-phone">SĐT: 0912 345 678</p>
+            <p class="text-xs text-on-surface-variant" id="receiver-address">Số 28 Ngõ 12 Đặng Thai Mai, P. Quảng An, Q.
+              Tây Hồ, Hà Nội</p>
+            <div class="text-xs text-amber-800 bg-amber-50 p-2 rounded-lg font-medium" id="receiver-note">
+              Ghi chú: Vui lòng đóng gói cẩn thận giúp mình làm quà tặng bạn nước ngoài ạ.
+            </div>
+          </div>
+        </div>
+
+        <!-- Bảng Sản Phẩm Trong Đơn -->
+        <div class="pt-4 space-y-3">
+          <h4 class="font-serif-craft font-bold text-base text-primary">Danh Sách Tác Phẩm</h4>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+              <thead>
+                <tr
+                  class="bg-surface-container-low border-b border-surface-container text-on-surface-variant font-semibold">
+                  <th class="py-3 px-3">Tác phẩm</th>
+                  <th class="py-3 px-3 text-center">Số lượng</th>
+                  <th class="py-3 px-3 text-right">Đơn giá</th>
+                  <th class="py-3 px-3 text-right">Thành tiền</th>
+                </tr>
+              </thead>
+              <tbody id="order-items-tbody" class="divide-y divide-surface-container-low">
+                <!-- Render bằng JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Tổng Kết Chi Phí & Thanh Toán -->
+        <div class="pt-4 border-t border-surface-container flex flex-col sm:flex-row justify-between gap-6">
+          <div class="space-y-1.5 text-xs text-on-surface-variant">
+            <div class="font-bold text-primary">Phương thức thanh toán:</div>
+            <div id="payment-method-text" class="text-secondary font-semibold">Chuyển khoản VNPAY (Đã thanh toán)</div>
+            <div>Đơn vị vận chuyển: <strong class="text-primary" id="shipping-provider-text">Giao Hàng Tiết
+                Kiệm</strong></div>
+          </div>
+
+          <div class="w-full sm:w-64 space-y-2 text-xs">
+            <div class="flex justify-between text-on-surface-variant">
+              <span>Tạm tính tác phẩm:</span>
+              <span id="cost-subtotal" class="font-medium text-primary">680.000đ</span>
+            </div>
+            <div class="flex justify-between text-on-surface-variant">
+              <span>Phí vận chuyển:</span>
+              <span id="cost-shipping" class="font-medium text-primary">30.000đ</span>
+            </div>
+            <div class="flex justify-between text-base font-bold text-primary pt-2 border-t border-surface-container">
+              <span>Tổng thanh toán:</span>
+              <span id="cost-total" class="font-serif-craft text-secondary text-lg">710.000đ</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chân trang phiếu in -->
+        <div
+          class="pt-8 border-t border-dashed border-surface-container-high flex items-center justify-between text-[11px] text-on-surface-variant">
+          <div>
+            Cam kết từ Craft Link: 100% thủ công bản địa, giữ trọn di sản văn hóa Việt Nam.
+          </div>
+          <div class="text-right">
+            Chữ ký người nhận: ................................................
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+    <div id="seller-bottom-nav"></div>
+  </div>
+
+  <script src="seller-data.js"></script>
+  <script src="seller.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      SellerApp.initLayout({
+        activeNav: 'orders',
+        pageTitle: 'Chi Tiết Đơn Hàng'
+      });
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const orderId = urlParams.get('id') || 'CL-240801';
+
+      let order = SellerData.getOrderById(orderId) || SellerData.getOrders()[0];
+      const shop = SellerData.getShopInfo();
+
+      if (!order) return;
+
+      // Nạp thông tin Header
+      document.getElementById('order-heading').textContent = `Đơn Hàng #${order.id}`;
+      document.getElementById('order-time-text').textContent = `Ngày đặt hàng: ${order.createdAt}`;
+      document.getElementById('tracking-code-display').textContent = order.trackingCode || 'CHƯA TẠO VẬN ĐƠN';
+      document.getElementById('order-badge-placeholder').innerHTML = SellerApp.getOrderStatusBadge(order.status);
+
+      // Người gửi
+      document.getElementById('sender-shop-name').textContent = shop.name;
+      document.getElementById('sender-artisan-name').textContent = `Đại diện: ${shop.artisanName}`;
+      document.getElementById('sender-address').textContent = shop.village;
+
+      // Người nhận
+      document.getElementById('receiver-name').textContent = order.customerName;
+      document.getElementById('receiver-phone').textContent = `SĐT: ${order.phone}`;
+      document.getElementById('receiver-address').textContent = order.address;
+      document.getElementById('receiver-note').textContent = `Ghi chú: ${order.note || 'Không có ghi chú đặc biệt.'}`;
+
+      // Bảng sản phẩm
+      let subtotal = 0;
+      const tbody = document.getElementById('order-items-tbody');
+      tbody.innerHTML = order.items.map(item => {
+        const itemTotal = item.price * item.quantity;
+        subtotal += itemTotal;
+        return `
+          <tr class="hover:bg-surface-container-low/50">
+            <td class="py-3 px-3">
+              <div class="flex items-center gap-3">
+                <img src="${item.image}" alt="${item.productName}" class="w-12 h-12 rounded-lg object-cover border border-surface-container shrink-0" />
+                <div>
+                  <div class="font-semibold text-primary">${item.productName}</div>
+                  <div class="text-[11px] text-on-surface-variant">Mã SP: #${item.productId}</div>
+                </div>
+              </div>
+            </td>
+            <td class="py-3 px-3 text-center font-bold text-primary">${item.quantity}</td>
+            <td class="py-3 px-3 text-right">${SellerApp.formatVND(item.price)}</td>
+            <td class="py-3 px-3 text-right font-bold text-primary">${SellerApp.formatVND(itemTotal)}</td>
+          </tr>
+        `;
+      }).join('');
+
+      // Chi phí & Thanh toán
+      document.getElementById('cost-subtotal').textContent = SellerApp.formatVND(subtotal);
+      document.getElementById('cost-shipping').textContent = SellerApp.formatVND(order.shippingFee || 0);
+      document.getElementById('cost-total').textContent = SellerApp.formatVND(order.totalAmount);
+      document.getElementById('payment-method-text').textContent = order.paymentMethod;
+      document.getElementById('shipping-provider-text').textContent = order.shippingProvider;
+
+      // Render Stepper tiến trình
+      renderStepper(order.status);
+
+      // Cấu hình nút cập nhật trạng thái
+      const btnAdvance = document.getElementById('btn-advance-status');
+      const btnAdvanceText = document.getElementById('btn-advance-text');
+
+      if (order.status === 'pending') {
+        btnAdvanceText.textContent = 'Xác nhận đơn ngay';
+        btnAdvance.onclick = () => advanceOrder('preparing', 'Đang chuẩn bị hàng');
+      } else if (order.status === 'preparing') {
+        btnAdvanceText.textContent = 'Bàn giao cho Shipper';
+        btnAdvance.onclick = () => advanceOrder('shipping', 'Đang giao hàng');
+      } else if (order.status === 'shipping') {
+        btnAdvanceText.textContent = 'Xác nhận đã giao thành công';
+        btnAdvance.onclick = () => advanceOrder('completed', 'Hoàn thành đơn');
+      } else {
+        btnAdvance.classList.add('hidden');
+      }
+
+      function advanceOrder(nextStatus, label) {
+        SellerApp.confirmAction({
+          title: 'Cập nhật tiến độ đơn hàng',
+          message: `Chuyển trạng thái đơn hàng #${order.id} sang "${label}"?`,
+          confirmText: 'Xác nhận chuyển',
+          onConfirm: () => {
+            const allOrders = SellerData.getOrders();
+            const target = allOrders.find(o => o.id === order.id);
+            if (target) {
+              target.status = nextStatus;
+              SellerData.saveOrders(allOrders);
+              SellerApp.showToast(`Đã cập nhật đơn hàng sang "${label}"!`);
+              setTimeout(() => window.location.reload(), 600);
+            }
+          }
+        });
+      }
+
+      function renderStepper(status) {
+        const steps = [
+          { key: 'pending', title: '1. Chờ duyệt', desc: 'Khách đã đặt đơn' },
+          { key: 'preparing', title: '2. Đang chuẩn bị', desc: 'Xưởng đóng gói' },
+          { key: 'shipping', title: '3. Đang vận chuyển', desc: 'Shipper đang giao' },
+          { key: 'completed', title: '4. Hoàn thành', desc: 'Khách nhận tác phẩm' }
+        ];
+
+        const stepKeys = ['pending', 'preparing', 'shipping', 'completed'];
+        const currentIdx = stepKeys.indexOf(status);
+
+        const container = document.getElementById('order-stepper-container');
+        container.innerHTML = steps.map((s, idx) => {
+          let stateClass = 'bg-surface-container-high text-outline';
+          let borderClass = 'border-surface-container';
+          if (idx < currentIdx) {
+            stateClass = 'bg-emerald-700 text-white';
+            borderClass = 'border-emerald-600';
+          } else if (idx === currentIdx) {
+            stateClass = 'bg-secondary text-on-secondary ring-4 ring-secondary/20';
+            borderClass = 'border-secondary';
+          }
+
+          return `
+            <div class="p-3 rounded-xl bg-surface-container-lowest border ${borderClass} space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${stateClass}">${idx + 1}</span>
+                <span class="font-bold text-xs text-primary">${s.title}</span>
+              </div>
+              <p class="text-[11px] text-on-surface-variant pl-8">${s.desc}</p>
+            </div>
+          `;
+        }).join('');
+      }
+    });
+  </script>
+</body>
+
+</html>

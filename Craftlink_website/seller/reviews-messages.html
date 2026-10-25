@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <title>Đánh Giá & Tin Nhắn | Kênh Người Bán Craft Link</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  
+  <link href="../assets/css/colors.css" rel="stylesheet"/>
+  <link href="../assets/css/base.css" rel="stylesheet"/>
+  <link href="seller.css" rel="stylesheet"/>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../assets/js/tailwind-config.js"></script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+
+  <div id="seller-sidebar"></div>
+
+  <div class="lg:pl-64 flex flex-col min-h-screen">
+    <div id="seller-header"></div>
+
+    <main class="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 max-w-7xl mx-auto w-full pb-24 lg:pb-12">
+      
+      <!-- Tiêu đề & Chuyển đổi 2 chế độ: Đánh giá vs Chat -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="font-serif-craft text-2xl sm:text-3xl font-bold text-primary">Tương Tác Khách Hàng</h2>
+          <p class="text-sm text-on-surface-variant">Lắng nghe góp ý của người yêu thủ công và trò chuyện tư vấn trực tiếp</p>
+        </div>
+
+        <div class="flex items-center gap-2 bg-surface-container-high p-1 rounded-2xl">
+          <button id="toggle-tab-reviews" class="px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-primary text-on-primary shadow-xs transition-all flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[18px]">rate_review</span>
+            <span>Đánh giá từ khách</span>
+          </button>
+          <button id="toggle-tab-messages" class="px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-on-surface hover:text-primary transition-all flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[18px]">chat</span>
+            <span>Tin nhắn tư vấn</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PHẦN 1: TAB ĐÁNH GIÁ (REVIEWS) -->
+      <div id="section-reviews" class="space-y-6">
+        
+        <!-- Tổng quan xếp hạng sao -->
+        <div class="bg-surface-container-lowest p-6 rounded-2xl border border-surface-container-high shadow-2xs flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="flex items-center gap-6">
+            <div class="text-center">
+              <span class="font-serif-craft text-5xl font-extrabold text-primary">4.9</span>
+              <div class="flex text-amber-500 justify-center mt-1">
+                <span class="material-symbols-outlined text-[20px] fill-1">star</span>
+                <span class="material-symbols-outlined text-[20px] fill-1">star</span>
+                <span class="material-symbols-outlined text-[20px] fill-1">star</span>
+                <span class="material-symbols-outlined text-[20px] fill-1">star</span>
+                <span class="material-symbols-outlined text-[20px] fill-1">star</span>
+              </div>
+              <span class="text-xs text-on-surface-variant mt-1 block">148 lượt đánh giá</span>
+            </div>
+            <div class="border-l border-surface-container pl-6 space-y-1 text-xs text-on-surface-variant hidden sm:block">
+              <div class="flex items-center gap-2"><span>5 sao:</span><div class="w-32 h-2 bg-surface-container rounded-full overflow-hidden"><div class="w-[92%] h-full bg-amber-500"></div></div><span class="font-semibold text-primary">92%</span></div>
+              <div class="flex items-center gap-2"><span>4 sao:</span><div class="w-32 h-2 bg-surface-container rounded-full overflow-hidden"><div class="w-[6%] h-full bg-amber-500"></div></div><span class="font-semibold text-primary">6%</span></div>
+              <div class="flex items-center gap-2"><span>3 sao:</span><div class="w-32 h-2 bg-surface-container rounded-full overflow-hidden"><div class="w-[2%] h-full bg-amber-500"></div></div><span class="font-semibold text-primary">2%</span></div>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-low p-4 rounded-xl text-xs text-on-surface-variant max-w-sm">
+            <strong class="text-primary font-bold block mb-1">Tinh thần Craft Link:</strong>
+            Phản hồi chân tình, nhã nhặn từ nghệ nhân giúp lan tỏa văn hóa hiếu khách của các làng nghề truyền thống Việt Nam.
+          </div>
+        </div>
+
+        <!-- Danh sách đánh giá -->
+        <div class="space-y-4" id="reviews-list-container">
+          <!-- Render bằng JS -->
+        </div>
+
+      </div>
+
+      <!-- PHẦN 2: TAB TIN NHẮN (MESSAGES) -->
+      <div id="section-messages" class="hidden bg-surface-container-lowest rounded-2xl border border-surface-container-high shadow-2xs overflow-hidden h-[620px] flex flex-col md:flex-row">
+        
+        <!-- Cột Trái: Danh Sách Cuộc Trò Chuyện (1/3) -->
+        <div class="w-full md:w-80 border-r border-surface-container flex flex-col h-full bg-surface-container-low/30">
+          <div class="p-4 border-b border-surface-container">
+            <h4 class="font-serif-craft font-bold text-base text-primary">Hộp Thư Khách Hàng</h4>
+            <div class="relative mt-2">
+              <span class="material-symbols-outlined absolute left-3 top-2 text-[18px] text-outline">search</span>
+              <input type="text" placeholder="Tìm tên khách..." class="w-full h-8 pl-9 pr-3 rounded-lg bg-surface border border-surface-container text-xs focus:outline-none" />
+            </div>
+          </div>
+
+          <div class="flex-1 overflow-y-auto divide-y divide-surface-container-low" id="chat-threads-list">
+            <!-- Render danh sách khách chat qua JS -->
+          </div>
+        </div>
+
+        <!-- Cột Phải: Khung Chat Trực Tiếp (2/3) -->
+        <div class="flex-1 flex flex-col h-full bg-surface-container-lowest">
+          
+          <!-- Header chat -->
+          <div class="p-4 border-b border-surface-container flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <img id="chat-active-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100" class="w-10 h-10 rounded-full object-cover" />
+              <div>
+                <h5 id="chat-active-name" class="font-bold text-sm text-primary">Nguyễn Thị Phương Thảo</h5>
+                <span class="text-[11px] text-emerald-700 flex items-center gap-1">
+                  <span class="w-2 h-2 rounded-full bg-emerald-600"></span> Đang trực tuyến
+                </span>
+              </div>
+            </div>
+            <div class="text-xs text-on-surface-variant hidden sm:block">
+              Đơn hàng gần nhất: <a href="order-detail.html?id=CL-240801" class="text-secondary font-semibold hover:underline">#CL-240801</a>
+            </div>
+          </div>
+
+          <!-- Khu vực tin nhắn hội thoại -->
+          <div class="flex-1 p-4 overflow-y-auto space-y-3" id="chat-messages-container">
+            <!-- Render tin nhắn qua JS -->
+          </div>
+
+          <!-- Thanh nhập tin nhắn -->
+          <div class="p-3.5 border-t border-surface-container bg-surface-container-low/40 flex items-center gap-2">
+            <input type="text" id="chat-input-text" placeholder="Nhập lời chào hoặc giải đáp cho khách hàng..." 
+              class="flex-1 h-11 px-4 rounded-xl bg-surface border border-surface-container text-sm focus:border-primary focus:outline-none" />
+            <button type="button" id="btn-send-message" class="w-11 h-11 rounded-xl bg-primary hover:bg-primary-container text-on-primary flex items-center justify-center transition-colors shadow-2xs">
+              <span class="material-symbols-outlined text-[20px] text-tertiary-fixed">send</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+    <div id="seller-bottom-nav"></div>
+  </div>
+
+  <script src="seller-data.js"></script>
+  <script src="seller.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      SellerApp.initLayout({
+        activeNav: 'reviews-messages',
+        pageTitle: 'Đánh Giá & Tin Nhắn'
+      });
+
+      const tabReviewsBtn = document.getElementById('toggle-tab-reviews');
+      const tabMessagesBtn = document.getElementById('toggle-tab-messages');
+      const sectionReviews = document.getElementById('section-reviews');
+      const sectionMessages = document.getElementById('section-messages');
+
+      // Chuyển Tab Đánh giá / Chat
+      tabReviewsBtn.onclick = () => {
+        tabReviewsBtn.className = 'px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-primary text-on-primary shadow-xs transition-all flex items-center gap-1.5';
+        tabMessagesBtn.className = 'px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-on-surface hover:text-primary transition-all flex items-center gap-1.5';
+        sectionReviews.classList.remove('hidden');
+        sectionMessages.classList.add('hidden');
+      };
+
+      tabMessagesBtn.onclick = () => {
+        tabMessagesBtn.className = 'px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-primary text-on-primary shadow-xs transition-all flex items-center gap-1.5';
+        tabReviewsBtn.className = 'px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-on-surface hover:text-primary transition-all flex items-center gap-1.5';
+        sectionMessages.classList.remove('hidden');
+        sectionReviews.classList.add('hidden');
+      };
+
+      // --- LOGIC PHẦN ĐÁNH GIÁ ---
+      let reviews = SellerData.getReviews();
+
+      function renderReviews() {
+        const container = document.getElementById('reviews-list-container');
+        container.innerHTML = reviews.map(r => `
+          <div class="bg-surface-container-lowest p-6 rounded-2xl border border-surface-container-high shadow-2xs space-y-4">
+            <div class="flex items-start justify-between gap-4">
+              <div class="flex items-center gap-3">
+                <img src="${r.customerAvatar}" alt="${r.customerName}" class="w-10 h-10 rounded-full object-cover border border-surface-container" />
+                <div>
+                  <h5 class="font-bold text-sm text-primary">${r.customerName}</h5>
+                  <div class="flex items-center gap-2 mt-0.5">
+                    <div class="flex text-amber-500 text-xs">
+                      ${'<span class="material-symbols-outlined text-[16px] fill-1">star</span>'.repeat(r.rating)}
+                    </div>
+                    <span class="text-xs text-on-surface-variant">• ${r.date}</span>
+                  </div>
+                </div>
+              </div>
+              <span class="text-xs text-on-surface-variant font-medium bg-surface-container px-3 py-1 rounded-full hidden sm:block">
+                ${r.productName}
+              </span>
+            </div>
+
+            <p class="text-sm text-on-surface leading-relaxed italic bg-surface-container-low/40 p-4 rounded-xl">
+              "${r.comment}"
+            </p>
+
+            <!-- Khối phản hồi của nghệ nhân -->
+            ${r.reply ? `
+              <div class="ml-4 sm:ml-8 p-4 rounded-xl bg-surface-container-high/60 border-l-4 border-secondary space-y-1">
+                <div class="flex items-center justify-between text-xs">
+                  <span class="font-bold text-secondary">Phản hồi từ Xưởng nghệ nhân:</span>
+                  <span class="text-outline text-[11px]">${r.replyDate}</span>
+                </div>
+                <p class="text-xs text-primary leading-relaxed">${r.reply}</p>
+              </div>
+            ` : `
+              <div class="pt-2" id="reply-form-${r.id}">
+                <div class="flex gap-2">
+                  <input type="text" id="reply-input-${r.id}" placeholder="Viết lời cảm ơn hoặc phản hồi tới khách..." 
+                    class="flex-1 h-9 px-3 rounded-lg bg-surface-container-low border border-surface-container text-xs focus:border-primary focus:outline-none" />
+                  <button type="button" onclick="submitReply('${r.id}')" class="px-4 text-xs font-semibold rounded-lg bg-secondary text-on-secondary hover:opacity-90">
+                    Gửi phản hồi
+                  </button>
+                </div>
+              </div>
+            `}
+          </div>
+        `).join('');
+      }
+
+      window.submitReply = function(id) {
+        const input = document.getElementById(`reply-input-${id}`);
+        if (!input || !input.value.trim()) return;
+
+        const target = reviews.find(r => r.id === id);
+        if (target) {
+          target.reply = input.value.trim();
+          target.replyDate = 'Hôm nay';
+          SellerData.saveReviews(reviews);
+          SellerApp.showToast('Đã gửi phản hồi tới khách hàng thành công!');
+          renderReviews();
+        }
+      };
+
+      renderReviews();
+
+      // --- LOGIC PHẦN TIN NHẮN (CHAT) ---
+      let messages = SellerData.getMessages();
+      let activeChatId = messages[0]?.id || '';
+
+      function renderChatThreads() {
+        const listContainer = document.getElementById('chat-threads-list');
+        listContainer.innerHTML = messages.map(m => {
+          const isActive = m.id === activeChatId;
+          return `
+            <div onclick="selectChatThread('${m.id}')" class="p-3.5 flex items-center gap-3 cursor-pointer transition-colors ${isActive ? 'bg-surface-container-high font-semibold' : 'hover:bg-surface-container'}">
+              <div class="relative">
+                <img src="${m.customerAvatar}" class="w-10 h-10 rounded-full object-cover" />
+                ${m.online ? '<span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-600 ring-2 ring-white"></span>' : ''}
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex justify-between items-baseline">
+                  <h6 class="text-xs text-primary truncate ${m.unread ? 'font-bold' : ''}">${m.customerName}</h6>
+                  <span class="text-[10px] text-outline">${m.lastTime}</span>
+                </div>
+                <p class="text-[11px] text-on-surface-variant truncate mt-0.5 ${m.unread ? 'font-bold text-primary' : ''}">${m.lastMessage}</p>
+              </div>
+              ${m.unread ? `<span class="w-2 h-2 rounded-full bg-secondary"></span>` : ''}
+            </div>
+          `;
+        }).join('');
+      }
+
+      function renderChatMessages() {
+        const activeThread = messages.find(m => m.id === activeChatId);
+        if (!activeThread) return;
+
+        document.getElementById('chat-active-avatar').src = activeThread.customerAvatar;
+        document.getElementById('chat-active-name').textContent = activeThread.customerName;
+
+        const chatBox = document.getElementById('chat-messages-container');
+        chatBox.innerHTML = activeThread.history.map(msg => {
+          const isMe = msg.sender === 'seller';
+          return `
+            <div class="flex ${isMe ? 'justify-end' : 'justify-start'}">
+              <div class="max-w-[75%] p-3 rounded-2xl text-xs leading-relaxed ${isMe ? 'bg-primary text-on-primary rounded-tr-none' : 'bg-surface-container text-on-surface rounded-tl-none'}">
+                <p>${msg.text}</p>
+                <span class="text-[9px] mt-1 block opacity-70 ${isMe ? 'text-right' : 'text-left'}">${msg.time}</span>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
+
+      window.selectChatThread = function(id) {
+        activeChatId = id;
+        const thread = messages.find(m => m.id === id);
+        if (thread) thread.unread = 0;
+        SellerData.saveMessages(messages);
+        renderChatThreads();
+        renderChatMessages();
+      };
+
+      // Gửi tin nhắn
+      const inputChat = document.getElementById('chat-input-text');
+      const btnSend = document.getElementById('btn-send-message');
+
+      function sendMessage() {
+        const text = inputChat.value.trim();
+        if (!text) return;
+
+        const activeThread = messages.find(m => m.id === activeChatId);
+        if (activeThread) {
+          activeThread.history.push({
+            sender: 'seller',
+            text: text,
+            time: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })
+          });
+          activeThread.lastMessage = text;
+          activeThread.lastTime = 'Vừa xong';
+
+          SellerData.saveMessages(messages);
+          inputChat.value = '';
+          renderChatMessages();
+          renderChatThreads();
+        }
+      }
+
+      btnSend.onclick = sendMessage;
+      inputChat.onkeydown = (e) => {
+        if (e.key === 'Enter') sendMessage();
+      };
+
+      renderChatThreads();
+      renderChatMessages();
+    });
+  </script>
+</body>
+</html>
