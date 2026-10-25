@@ -3,14 +3,11 @@
    Chống tràn ngang 320px, tối ưu zoom 200%, drawer & tables responsive
    ========================================================================== */
 
-/* 0. Shared base rules (giữ từ nhánh main) */
+/* 0. Shared base rules */
 @layer base {
   html, body {
     margin: 0;
     padding: 0;
-  }
-  body {
-    overscroll-behavior: none;
   }
   main > :first-child {
     margin-top: 0 !important;
@@ -20,8 +17,20 @@
   }
 }
 
+/* Thanh cuộn hiện đại, thanh mảnh, đồng bộ phong cách thủ công */
 ::-webkit-scrollbar {
-  display: none;
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F5F4EF;
+}
+::-webkit-scrollbar-thumb {
+  background: #C4BFB5;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9A4526;
 }
 
 /* 1. Global Box Sizing & Fluid Resets */
@@ -36,6 +45,7 @@ html {
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
 body {
@@ -43,9 +53,10 @@ body {
   padding: 0;
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
-  position: relative;
   min-height: 100vh;
+  position: relative;
+  overflow-x: clip;
+  overflow-y: visible;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
