@@ -94,19 +94,27 @@
                   </div>
                 </div>
                 <!-- Links -->
-                <div class="p-2 flex flex-col">
-                  <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-primary/5 hover:text-primary transition-colors">
+                <div class="p-2 flex flex-col gap-0.5">
+                  <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-primary/5 hover:text-primary transition-colors">
                     <span class="material-symbols-outlined text-[18px]">person</span>
                     Hồ sơ của tôi
                   </a>
-                  <a href="pages/buyer-orders.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-primary bg-primary/5 hover:bg-primary/10 transition-colors">
+                  <a href="pages/buyer-orders.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-primary bg-primary/5 hover:bg-primary/10 transition-colors">
                     <span class="material-symbols-outlined text-[18px]">list_alt</span>
                     Đơn hàng Đặt làm riêng
                   </a>
-                  <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-primary/5 hover:text-primary transition-colors">
-                    <span class="material-symbols-outlined text-[18px]">local_mall</span>
-                    Đơn hàng sản phẩm
+                  <a href="seller/dashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-[#9A4526] hover:bg-[#9A4526]/10 transition-colors">
+                    <span class="material-symbols-outlined text-[18px]">palette</span>
+                    Kênh Nghệ nhân (Maker)
                   </a>
+                  <a href="admin/pages/admin-platform-dashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-blue-700 hover:bg-blue-50 transition-colors">
+                    <span class="material-symbols-outlined text-[18px]">admin_panel_settings</span>
+                    Trang Quản trị (Admin)
+                  </a>
+                  <button type="button" onclick="document.getElementById('role-switcher-toggle')?.click()" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-amber-800 bg-amber-50 hover:bg-amber-100 transition-colors w-full text-left mt-1">
+                    <span class="material-symbols-outlined text-[18px]">switch_account</span>
+                    Đổi vai trò Persona
+                  </button>
                 </div>
                 <!-- Logout -->
                 <div class="p-2 border-t border-gray-50">
@@ -978,6 +986,9 @@
       }, 1000);
     }
   </script>
+
+  <!-- Widget chuyển đổi vai trò (Buyer / Maker / Admin / Moderator) -->
+  <script src="assets/js/role-switcher.js"></script>
 </body>
 
 </html>
