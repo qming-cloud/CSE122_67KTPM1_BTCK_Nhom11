@@ -7,9 +7,11 @@ Website e-commerce giới thiệu và bán sản phẩm thủ công Việt Nam (
 ```
 ├── index.html              # Trang chủ
 ├── pages/                  # Các trang con
-│   ├── thocam.html         # Bộ sưu tập thổ cẩm
-│   ├── product.html        # Chi tiết sản phẩm
-│   └── impact.html         # Về chúng tôi & Tác động
+│   ├── buyer-marketplace.html  # Sàn khám phá (Marketplace)
+│   ├── buyer-custom-brief.html # Tạo yêu cầu tùy biến (Brief)
+│   ├── buyer-orders.html       # Theo dõi đơn hàng & tiến độ
+│   ├── product.html            # Chi tiết sản phẩm
+│   └── impact.html             # Về chúng tôi & Tác động
 ├── assets/
 │   ├── css/
 │   │   ├── base.css        # Style dùng chung (reset, scrollbar)
