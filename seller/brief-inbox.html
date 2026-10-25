@@ -121,19 +121,19 @@
       </div>
 
       <!-- Thanh Tìm Kiếm & Bộ Lọc Nâng Cao -->
-      <div class="bg-surface-container-lowest p-4 rounded-2xl border border-surface-container-high shadow-2xs space-y-3">
+      <section aria-label="Bộ lọc yêu cầu tùy biến" class="bg-surface-container-lowest p-4 rounded-2xl border border-surface-container-high shadow-2xs space-y-3">
         <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
           
           <!-- Ô tìm kiếm -->
           <div class="sm:col-span-6 relative">
             <span class="material-symbols-outlined absolute left-3.5 top-2.5 text-[20px] text-outline">search</span>
-            <input type="text" id="brief-search-input" placeholder="Tìm theo mã brief (#BR-...), tên khách hoặc chất liệu..." 
+            <input type="text" id="brief-search-input" aria-label="Tìm kiếm yêu cầu brief theo mã, tên khách, hoặc chất liệu" placeholder="Tìm theo mã brief (#BR-...), tên khách hoặc chất liệu..." 
               class="w-full h-10 pl-10 pr-4 rounded-xl bg-surface-container-low text-on-surface text-sm border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none transition-all placeholder:text-outline" />
           </div>
 
           <!-- Lọc danh mục -->
           <div class="sm:col-span-3">
-            <select id="select-category" class="w-full h-10 px-3 rounded-xl bg-surface-container-low text-on-surface text-xs sm:text-sm border border-transparent focus:border-primary focus:outline-none">
+            <select id="select-category" aria-label="Lọc theo danh mục thủ công" class="w-full h-10 px-3 rounded-xl bg-surface-container-low text-on-surface text-xs sm:text-sm border border-transparent focus:border-primary focus:outline-none">
               <option value="">Tất cả danh mục thủ công</option>
               <option value="Thổ cẩm & Dệt may">Thổ cẩm & Dệt may</option>
               <option value="Gốm mộc & Men tro">Gốm mộc & Men tro</option>
@@ -144,7 +144,7 @@
 
           <!-- Lọc ngân sách -->
           <div class="sm:col-span-3">
-            <select id="select-budget" class="w-full h-10 px-3 rounded-xl bg-surface-container-low text-on-surface text-xs sm:text-sm border border-transparent focus:border-primary focus:outline-none">
+            <select id="select-budget" aria-label="Lọc theo mức ngân sách" class="w-full h-10 px-3 rounded-xl bg-surface-container-low text-on-surface text-xs sm:text-sm border border-transparent focus:border-primary focus:outline-none">
               <option value="">Mọi mức ngân sách</option>
               <option value="under_2m">Dưới 2.000.000 đ</option>
               <option value="2m_to_5m">Từ 2.000.000 đ - 5.000.000 đ</option>
@@ -158,6 +158,48 @@
           <span>Tìm thấy <strong class="text-primary font-bold" id="brief-count-display">0</strong> yêu cầu</span>
           <button id="btn-reset-filter" class="hover:text-secondary underline cursor-pointer">Xóa bộ lọc</button>
         </div>
+      </section>
+
+      <!-- Trạng Thái Đang Tải (Skeleton Shimmer Loading) -->
+      <div id="brief-skeleton-state" class="hidden space-y-4">
+        <div class="p-6 rounded-3xl bg-surface-container-lowest border border-surface-container-high space-y-3">
+          <div class="flex justify-between items-center">
+            <div class="w-24 h-5 skeleton rounded-lg"></div>
+            <div class="w-28 h-6 skeleton rounded-full"></div>
+          </div>
+          <div class="w-2/3 h-6 skeleton rounded-md"></div>
+          <div class="grid grid-cols-4 gap-2 pt-2">
+            <div class="h-12 skeleton rounded-xl"></div>
+            <div class="h-12 skeleton rounded-xl"></div>
+            <div class="h-12 skeleton rounded-xl"></div>
+            <div class="h-12 skeleton rounded-xl"></div>
+          </div>
+        </div>
+        <div class="p-6 rounded-3xl bg-surface-container-lowest border border-surface-container-high space-y-3">
+          <div class="flex justify-between items-center">
+            <div class="w-24 h-5 skeleton rounded-lg"></div>
+            <div class="w-28 h-6 skeleton rounded-full"></div>
+          </div>
+          <div class="w-1/2 h-6 skeleton rounded-md"></div>
+          <div class="grid grid-cols-4 gap-2 pt-2">
+            <div class="h-12 skeleton rounded-xl"></div>
+            <div class="h-12 skeleton rounded-xl"></div>
+            <div class="h-12 skeleton rounded-xl"></div>
+            <div class="h-12 skeleton rounded-xl"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trạng Thái Lỗi (Error State) -->
+      <div id="brief-error-state" class="hidden bg-rose-50 border border-rose-200 rounded-3xl p-8 sm:p-12 text-center space-y-3">
+        <div class="w-14 h-14 rounded-2xl bg-rose-100 text-rose-700 flex items-center justify-center mx-auto">
+          <span class="material-symbols-outlined text-[32px]">error</span>
+        </div>
+        <h3 class="font-serif-craft text-lg font-bold text-rose-950">Không thể tải dữ liệu yêu cầu tùy biến</h3>
+        <p class="text-xs text-rose-900 max-w-sm mx-auto">Đã xảy ra sự cố khi truy xuất dữ liệu từ LocalStorage. Vui lòng bấm thử lại.</p>
+        <button id="btn-retry-briefs" class="px-4 py-2 rounded-xl bg-rose-700 text-white text-xs font-semibold hover:bg-rose-800">
+          Tải lại danh sách
+        </button>
       </div>
 
       <!-- Danh Sách Brief Cards -->
@@ -195,7 +237,7 @@
           <span class="material-symbols-outlined text-secondary">palette</span>
           <h3 class="font-serif-craft text-lg font-bold text-primary" id="modal-brief-title">Chi Tiết Yêu Cầu Tùy Biến</h3>
         </div>
-        <button id="btn-close-modal" class="p-1 rounded-lg text-outline hover:bg-surface-container">
+        <button id="btn-close-modal" aria-label="Đóng cửa sổ chi tiết" class="p-1.5 rounded-lg text-outline hover:bg-surface-container transition-colors">
           <span class="material-symbols-outlined">close</span>
         </button>
       </div>
@@ -228,6 +270,8 @@
 
       const container = document.getElementById('brief-list-container');
       const emptyState = document.getElementById('brief-empty-state');
+      const skeletonState = document.getElementById('brief-skeleton-state');
+      const errorState = document.getElementById('brief-error-state');
       const countDisplay = document.getElementById('brief-count-display');
 
       const statPending = document.getElementById('stat-pending');
@@ -287,7 +331,32 @@
         tabCountProgress.textContent = progressCount;
       }
 
-      function renderBriefs() {
+      function renderBriefs(showLoading = false) {
+        try {
+          if (showLoading) {
+            skeletonState.classList.remove('hidden');
+            container.classList.add('hidden');
+            emptyState.classList.add('hidden');
+            errorState.classList.add('hidden');
+            setTimeout(() => {
+              skeletonState.classList.add('hidden');
+              container.classList.remove('hidden');
+              executeFilterAndRender();
+            }, 300);
+            return;
+          }
+          executeFilterAndRender();
+        } catch (err) {
+          console.error("Lỗi khi tải danh sách Briefs:", err);
+          container.classList.add('hidden');
+          skeletonState.classList.add('hidden');
+          emptyState.classList.add('hidden');
+          errorState.classList.remove('hidden');
+        }
+      }
+
+      function executeFilterAndRender() {
+        errorState.classList.add('hidden');
         const allBriefs = window.SellerData.getBriefs();
         updateStats();
 
@@ -547,12 +616,18 @@
         const btnReject = document.getElementById('btn-reject-brief');
         if (btnReject) {
           btnReject.addEventListener('click', () => {
-            if (confirm(`Bạn có chắc muốn từ chối yêu cầu #${brief.id}?`)) {
-              window.SellerData.updateBriefStatus(brief.id, 'rejected', 'Đã từ chối');
-              SellerApp.showToast('Đã từ chối yêu cầu của khách hàng', 'info');
-              closeModal();
-              renderBriefs();
-            }
+            SellerApp.confirmAction({
+              title: `Từ chối yêu cầu #${brief.id}?`,
+              message: `Bạn có chắc muốn từ chối yêu cầu từ khách hàng ${brief.buyerName}? Thao tác này sẽ chuyển trạng thái sang "Đã từ chối".`,
+              confirmText: 'Từ chối yêu cầu',
+              isDanger: true,
+              onConfirm: () => {
+                window.SellerData.updateBriefStatus(brief.id, 'rejected', 'Đã từ chối');
+                SellerApp.showToast('Đã từ chối yêu cầu của khách hàng', 'info');
+                closeModal();
+                renderBriefs();
+              }
+            });
           });
         }
 
@@ -561,11 +636,19 @@
           modal.classList.remove('opacity-0');
           modal.querySelector('div').classList.remove('scale-95');
         }, 10);
+        document.addEventListener('keydown', handleModalEsc);
+      }
+
+      function handleModalEsc(e) {
+        if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+          closeModal();
+        }
       }
 
       function closeModal() {
         modal.classList.add('opacity-0');
         modal.querySelector('div').classList.add('scale-95');
+        document.removeEventListener('keydown', handleModalEsc);
         setTimeout(() => {
           modal.classList.add('hidden');
         }, 250);
@@ -576,7 +659,7 @@
         if (e.target === modal) closeModal();
       });
 
-      // Tab lọc
+      // Tab lọc (Có hiệu ứng Skeleton loading chuyển mượt)
       document.querySelectorAll('#brief-tabs .tab-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           document.querySelectorAll('#brief-tabs .tab-btn').forEach(b => {
@@ -587,7 +670,7 @@
           btn.classList.remove('border-transparent', 'text-on-surface-variant');
 
           currentTab = btn.getAttribute('data-tab');
-          renderBriefs();
+          renderBriefs(true);
         });
       });
 
@@ -601,13 +684,21 @@
       // Lọc danh mục & ngân sách
       document.getElementById('select-category').addEventListener('change', (e) => {
         selectedCategory = e.target.value;
-        renderBriefs();
+        renderBriefs(true);
       });
 
       document.getElementById('select-budget').addEventListener('change', (e) => {
         selectedBudget = e.target.value;
-        renderBriefs();
+        renderBriefs(true);
       });
+
+      // Nút thử lại khi gặp lỗi
+      const btnRetry = document.getElementById('btn-retry-briefs');
+      if (btnRetry) {
+        btnRetry.addEventListener('click', () => {
+          renderBriefs(true);
+        });
+      }
 
       // Nút reset
       document.getElementById('btn-reset-filter').addEventListener('click', () => {
@@ -617,7 +708,7 @@
         selectedCategory = '';
         document.getElementById('select-budget').value = '';
         selectedBudget = '';
-        renderBriefs();
+        renderBriefs(true);
       });
 
       document.getElementById('btn-empty-reset').addEventListener('click', () => {
@@ -637,16 +728,16 @@
             b.classList.add('border-transparent', 'text-on-surface-variant');
           }
         });
-        renderBriefs();
+        renderBriefs(true);
       });
 
       document.getElementById('btn-refresh-briefs').addEventListener('click', () => {
-        renderBriefs();
+        renderBriefs(true);
         SellerApp.showToast('Đã làm mới danh sách yêu cầu tùy biến', 'success');
       });
 
-      // Khởi chạy render lần đầu
-      renderBriefs();
+      // Khởi chạy render lần đầu với hiệu ứng loading
+      renderBriefs(true);
     });
   </script>
 </body>
