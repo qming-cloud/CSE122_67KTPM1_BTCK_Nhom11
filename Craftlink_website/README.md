@@ -37,7 +37,7 @@ Website e-commerce giới thiệu và bán sản phẩm thủ công Việt Nam (
 │   └── js/
 │       ├── tailwind-config.js  # Cấu hình theme Tailwind (dùng chung)
 │       ├── role-switcher.js    # Widget chuyển đổi vai trò (Buyer/Maker/Moderator/Admin)
-│       ├── thocam.js       # Tương tác trang thổ cẩm (price slider)
+│       ├── marketplace.js  # Tương tác trang sàn thương mại (filter, search, pagination)
 │       └── product.js      # Tương tác trang sản phẩm (tab switching)
 └── docs/
     ├── design-system.md    # Design system (màu, typography, component)

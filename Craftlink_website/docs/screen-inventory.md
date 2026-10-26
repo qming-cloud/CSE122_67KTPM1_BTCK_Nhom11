@@ -212,7 +212,7 @@ Craftlink_website/
 │   │   └── base.css                    ← Typography base
 │   └── js/
 │       ├── data.js                     ← Mock data sản phẩm
-│       ├── thocam.js                   ← Logic marketplace (filter, search, pagination, AI-2)
+│       ├── marketplace.js              ← Logic marketplace (filter, search, pagination, AI-2)
 │       ├── product.js                  ← Logic chi tiết sản phẩm (tab, gallery, quantity)
 │       └── tailwind-config.js          ← Cấu hình Tailwind CSS
 └── docs/

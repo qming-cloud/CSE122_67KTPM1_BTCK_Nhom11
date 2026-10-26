@@ -36,7 +36,7 @@
 | # | Prompt tóm tắt | Kết quả | File áp dụng |
 |:---:|---|---|---|
 | P-09 | "Tạo mock data JSON cho 6 sản phẩm thổ cẩm Việt Nam với tên, giá, ảnh, dân tộc, chất liệu" | Array mockProducts | `assets/js/data.js` |
-| P-10 | "Tạo logic filter/search/sort/pagination cho marketplace, kết hợp mock API Postman" | Logic marketplace hoàn chỉnh | `assets/js/thocam.js` |
+| P-10 | "Tạo logic filter/search/sort/pagination cho marketplace, kết hợp mock API Postman" | Logic marketplace hoàn chỉnh | `assets/js/marketplace.js` |
 | P-11 | "Tạo logic tab switching, gallery ảnh, bộ đếm số lượng cho trang chi tiết sản phẩm" | JS tương tác product | `assets/js/product.js` |
 
 ### 2.3. Sinh tài liệu
@@ -63,7 +63,7 @@
 
 | Thành phần | AI sinh | Sinh viên chỉnh sửa |
 |---|---|---|
-| **Filter logic** (`thocam.js`) | AI sinh skeleton filter/search | SV viết lại toàn bộ logic filter đa tiêu chí, kết hợp API Postman mock, xử lý edge cases |
+| **Filter logic** (`marketplace.js`) | AI sinh skeleton filter/search | SV viết lại toàn bộ logic filter đa tiêu chí, kết hợp API Postman mock, xử lý edge cases |
 | **Form validation** (`buyer-custom-brief.html`) | AI sinh validation cơ bản | SV thêm validation đầy đủ, xử lý localStorage CRUD |
 | **Tab/Gallery** (`product.js`) | AI sinh event listeners mẫu | SV chỉnh sửa cho đúng DOM structure thực tế |
 | **Cart logic** | AI sinh template | SV implement localStorage cart, tính tổng, cập nhật badge |
