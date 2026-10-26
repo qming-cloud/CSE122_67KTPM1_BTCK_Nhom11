@@ -25,13 +25,12 @@
 </head>
 
 <body class="bg-surface font-body-md text-on-surface antialiased">
-  <header class="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-lg shadow-sm border-b border-gray-100" <!--
-    Main Navigation -->
-    <div class="max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between gap-8">
+  <header class="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-lg shadow-sm border-b border-gray-100">
+    <div class="max-w-[1400px] mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-3 sm:gap-8">
       <!-- Logo -->
-      <a href="../index.html" class="flex items-center gap-3 shrink-0 group">
+      <a href="../index.html" class="flex items-center gap-2.5 sm:gap-3 shrink-0 group">
         <img alt="Craft Link Heritage Logo"
-          class="h-10 w-auto object-contain transition-transform group-hover:scale-105"
+          class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105"
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhxZHgqwl09Uzofz21BtUSqe8y4LXLZlHjhsrlcmCxyuEV1ZArTaGXStarugkKmhBemL7Mqmal5XoJe19C-24ZTWXQZ_SfC9_cFtdlQiRbygt-FcTHZORNtERKETXhtF3InaeLB0mHQA7OALAZ78tMAgEY0MCbvnHSzI-Zlpilk1999JlSrT6ZKrwBP4zXcTPhnPM77_5PXcO09sN6xO47H4FBz6PxlfzH5bSya1-emdbI75e45SCd" />
         <div class="flex flex-col hidden sm:flex">
           <span class="text-lg text-primary font-bold tracking-wide">CRAFT LINK</span>
@@ -56,20 +55,26 @@
       </nav>
 
       <!-- Actions -->
-      <div class="flex items-center gap-4 shrink-0">
-        <div class="flex items-center gap-1.5">
+      <div class="flex items-center gap-1.5 sm:gap-4 shrink-0">
+        <div class="flex items-center gap-1 sm:gap-1.5">
           <a href="#"
-            class="relative p-2 text-gray-600 hover:text-primary hover:bg-primary/10 rounded-full transition-all">
+            class="hidden xs:inline-flex relative p-2 text-gray-600 hover:text-primary hover:bg-primary/10 rounded-full transition-all" title="Yêu thích">
             <span class="material-symbols-outlined">favorite</span>
             <span
               class="absolute top-0 right-0 w-4 h-4 rounded-full bg-[#E5484D] text-white text-[10px] font-bold flex items-center justify-center border-2 border-white shadow-sm">5</span>
           </a>
-          <a href="#"
-            class="relative p-2 text-gray-600 hover:text-primary hover:bg-primary/10 rounded-full transition-all">
+          <a href="buyer-cart.html"
+            class="relative p-2 text-gray-600 hover:text-primary hover:bg-primary/10 rounded-full transition-all" title="Giỏ hàng">
             <span class="material-symbols-outlined">shopping_bag</span>
-            <span
+            <span id="nav-cart-count"
               class="absolute top-0 right-0 w-4 h-4 rounded-full bg-[#E5484D] text-white text-[10px] font-bold flex items-center justify-center border-2 border-white shadow-sm">3</span>
           </a>
+          <!-- Mobile Menu Hamburger Button -->
+          <button id="mobile-menu-btn" type="button"
+            class="lg:hidden p-2 text-gray-700 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors flex items-center justify-center"
+            aria-label="Mở menu điều hướng">
+            <span class="material-symbols-outlined text-2xl">menu</span>
+          </button>
           <!-- Nút chuyển đổi Giao diện Sáng / Tối (Dark / Light Mode) -->
           <button id="theme-toggle-btn" type="button" onclick="CraftlinkTheme.toggle()"
             class="theme-toggle-btn relative p-2 text-gray-600 hover:text-primary hover:bg-primary/10 rounded-full transition-all cursor-pointer flex items-center justify-center"
@@ -351,7 +356,7 @@
               </div>
               <!-- Quantity & Purchase Action Buttons -->
               <div class="pt-space-xs space-y-space-sm">
-                <div class="flex items-center gap-space-sm">
+                <div class="flex items-center gap-2 sm:gap-space-sm flex-wrap sm:flex-nowrap">
                   <!-- Custom Counter -->
                   <div class="flex items-center bg-surface-container h-12 rounded-lg px-2 shrink-0">
                     <button
@@ -1168,6 +1173,9 @@
         </div>
       </div>
     </div>
+  </footer>
+  <!-- Responsive Navigation for Mobile/Tablet Drawer -->
+  <script src="../assets/js/responsive-nav.js"></script>
   <!-- Widget chuyển đổi vai trò (Buyer / Maker / Admin / Moderator) -->
   <script src="../assets/js/role-switcher.js"></script>
   <!-- Đồng bộ Theme Sáng / Tối toàn hệ thống (Mở rộng 3) -->

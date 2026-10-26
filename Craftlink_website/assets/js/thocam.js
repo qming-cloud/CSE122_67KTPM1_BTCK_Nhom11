@@ -412,21 +412,23 @@ function renderPagination(totalPages) {
     pages.push(totalPages);
   }
 
+  container.className = 'flex items-center gap-1 sm:gap-1.5 flex-wrap justify-center';
+
   const pageButtons = pages.map(p => {
-    if (p === '...') return `<span class="px-2 text-outline">...</span>`;
+    if (p === '...') return `<span class="px-1.5 text-outline text-xs">...</span>`;
     const active = p === currentPage
       ? 'bg-primary text-on-primary font-semibold shadow-sm'
       : 'bg-surface-container-lowest text-primary hover:bg-surface-container-high transition-colors font-semibold shadow-sm cursor-pointer';
-    return `<button type="button" class="w-10 h-10 rounded-lg font-label-md text-label-md ${active}" onclick="goToPage(${p})">${p}</button>`;
+    return `<button type="button" class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg font-label-md text-xs sm:text-label-md ${active}" onclick="goToPage(${p})">${p}</button>`;
   }).join('');
 
   container.innerHTML = `
-    <button type="button" class="w-10 h-10 rounded-lg bg-surface-container-lowest text-outline flex items-center justify-center shadow-sm ${prevDisabled}" onclick="goToPage(${currentPage - 1})">
-      <span class="material-symbols-outlined text-[20px]">chevron_left</span>
+    <button type="button" class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-surface-container-lowest text-outline flex items-center justify-center shadow-sm ${prevDisabled}" onclick="goToPage(${currentPage - 1})">
+      <span class="material-symbols-outlined text-[18px] sm:text-[20px]">chevron_left</span>
     </button>
     ${pageButtons}
-    <button type="button" class="w-10 h-10 rounded-lg bg-surface-container-lowest text-outline flex items-center justify-center shadow-sm ${nextDisabled}" onclick="goToPage(${currentPage + 1})">
-      <span class="material-symbols-outlined text-[20px]">chevron_right</span>
+    <button type="button" class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-surface-container-lowest text-outline flex items-center justify-center shadow-sm ${nextDisabled}" onclick="goToPage(${currentPage + 1})">
+      <span class="material-symbols-outlined text-[18px] sm:text-[20px]">chevron_right</span>
     </button>
   `;
 }

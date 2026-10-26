@@ -55,7 +55,7 @@ body {
   max-width: 100%;
   min-height: 100vh;
   position: relative;
-  overflow-x: clip;
+  overflow-x: hidden;
   overflow-y: visible;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -71,8 +71,8 @@ img, svg, video, canvas, audio, iframe, embed, object {
   display: block;
 }
 
-/* 3. Phóng to 200% (Ctrl + +) không làm mất nội dung */
-@media (min-resolution: 2dppx), (max-width: 768px) {
+/* 3. Phóng to và hiển thị tối ưu trên thiết bị di động (<= 768px) */
+@media (max-width: 768px) {
   body {
     font-size: 15px;
     line-height: 1.6;

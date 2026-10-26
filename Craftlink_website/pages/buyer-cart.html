@@ -14,9 +14,9 @@
 <body class="bg-gray-50 antialiased">
 
   <header class="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-lg shadow-sm border-b border-gray-100">
-    <div class="max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between gap-8">
-      <a href="../index.html" class="flex items-center gap-3 shrink-0 group">
-        <img alt="Craft Link" class="h-10 w-auto object-contain transition-transform group-hover:scale-105"
+    <div class="max-w-[1400px] mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-3 sm:gap-8">
+      <a href="../index.html" class="flex items-center gap-2.5 sm:gap-3 shrink-0 group">
+        <img alt="Craft Link" class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105"
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhxZHgqwl09Uzofz21BtUSqe8y4LXLZlHjhsrlcmCxyuEV1ZArTaGXStarugkKmhBemL7Mqmal5XoJe19C-24ZTWXQZ_SfC9_cFtdlQiRbygt-FcTHZORNtERKETXhtF3InaeLB0mHQA7OALAZ78tMAgEY0MCbvnHSzI-Zlpilk1999JlSrT6ZKrwBP4zXcTPhnPM77_5PXcO09sN6xO47H4FBz6PxlfzH5bSya1-emdbI75e45SCd" />
         <div class="hidden sm:flex flex-col">
           <span class="text-lg text-primary font-bold tracking-wide">CRAFT LINK</span>
@@ -29,18 +29,24 @@
         <a href="buyer-custom-brief.html" class="text-gray-700 hover:text-primary font-medium text-[15px] transition-colors">Đặt Làm Riêng</a>
         <a href="buyer-orders.html" class="text-gray-700 hover:text-primary font-medium text-[15px] transition-colors">Đơn hàng</a>
       </nav>
-      <div class="flex items-center gap-4 shrink-0">
-        <a href="buyer-cart.html" class="relative p-2 text-primary hover:bg-primary/10 rounded-full transition-all">
+      <div class="flex items-center gap-1.5 sm:gap-4 shrink-0">
+        <a href="buyer-cart.html" class="relative p-2 text-primary hover:bg-primary/10 rounded-full transition-all" title="Giỏ hàng">
           <span class="material-symbols-outlined">shopping_bag</span>
           <span id="nav-cart-count" class="absolute top-0 right-0 w-4 h-4 rounded-full bg-[#E5484D] text-white text-[10px] font-bold flex items-center justify-center border-2 border-white shadow-sm hidden">0</span>
         </a>
+        <!-- Mobile Menu Hamburger Button -->
+        <button id="mobile-menu-btn" type="button"
+          class="lg:hidden p-2 text-gray-700 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors flex items-center justify-center"
+          aria-label="Mở menu điều hướng">
+          <span class="material-symbols-outlined text-2xl">menu</span>
+        </button>
         <!-- Nút chuyển đổi Giao diện Sáng / Tối (Dark / Light Mode) -->
         <button id="theme-toggle-btn" type="button" onclick="CraftlinkTheme.toggle()"
           class="theme-toggle-btn relative p-2 text-gray-600 hover:text-primary hover:bg-primary/10 rounded-full transition-all cursor-pointer flex items-center justify-center"
           title="Chuyển sang Chế độ Tối" aria-label="Chuyển chế độ Sáng / Tối">
           <span class="material-symbols-outlined theme-toggle-icon text-[22px]">dark_mode</span>
         </button>
-        <a href="login.html" class="ml-2 flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white hover:opacity-90 shadow-md cursor-pointer">
+        <a href="login.html" class="ml-1 sm:ml-2 flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-primary text-white hover:opacity-90 shadow-md cursor-pointer">
           <span class="material-symbols-outlined text-[20px]">person</span>
         </a>
       </div>
@@ -48,7 +54,7 @@
   </header>
 
   <main class="w-full pt-[100px] min-h-screen pb-20">
-    <div class="max-w-[1100px] mx-auto px-6">
+    <div class="max-w-[1100px] mx-auto px-4 sm:px-6">
       <div class="flex items-center gap-3 mb-8">
         <span class="material-symbols-outlined text-4xl text-secondary">shopping_bag</span>
         <div>
@@ -192,12 +198,12 @@
       emptyEl.classList.add('hidden'); emptyEl.classList.remove('flex');
       summaryEl.classList.remove('hidden');
       listEl.innerHTML = cart.map(item => `
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 flex gap-4 items-start hover:shadow-md transition-shadow">
-          <div class="w-24 h-24 rounded-xl overflow-hidden shrink-0 bg-gray-100">
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 sm:p-5 flex flex-col sm:flex-row gap-4 items-start hover:shadow-md transition-shadow">
+          <div class="w-full sm:w-24 h-48 sm:h-24 rounded-xl overflow-hidden shrink-0 bg-gray-100">
             <img src="${item.image_url}" alt="${item.title}" class="w-full h-full object-cover"
               onerror="this.src='https://images.unsplash.com/photo-1606744888344-498238f0173d?auto=format&fit=crop&w=300&q=80'" />
           </div>
-          <div class="flex-1 min-w-0">
+          <div class="flex-1 w-full min-w-0">
             <div class="flex items-start justify-between gap-2">
               <div>
                 <p class="text-xs text-gray-400 font-medium uppercase tracking-wide">${item.ethnic || ''} · ${item.location || ''}</p>
@@ -230,6 +236,8 @@
 
     document.addEventListener('DOMContentLoaded', () => { renderCart(); updateNavBadge(); });
   </script>
+  <!-- Responsive Navigation for Mobile/Tablet Drawer -->
+  <script src="../assets/js/responsive-nav.js"></script>
   <!-- Widget chuyển đổi vai trò (Buyer / Maker / Admin / Moderator) -->
   <script src="../assets/js/role-switcher.js"></script>
   <!-- Đồng bộ Theme Sáng / Tối toàn hệ thống (Mở rộng 3) -->

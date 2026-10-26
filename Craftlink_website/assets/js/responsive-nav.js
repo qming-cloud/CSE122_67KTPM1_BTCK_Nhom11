@@ -7,25 +7,31 @@
   'use strict';
 
   // Xác định đường dẫn tương đối tùy theo vị trí file đang chạy
-  const isPagesDir = window.location.pathname.includes('/pages/') || 
-                     (!window.location.pathname.endsWith('index.html') && window.location.pathname.includes('buyer-'));
+  const currentPath = window.location.pathname || '';
+  const isPagesDir = currentPath.includes('/pages/') || 
+                     currentPath.includes('buyer-') ||
+                     currentPath.endsWith('/product.html') ||
+                     currentPath.endsWith('/impact.html') ||
+                     currentPath.endsWith('/login.html');
   const prefix = isPagesDir ? '' : 'pages/';
   const homeLink = isPagesDir ? '../index.html' : 'index.html';
 
-  // Tự động nạp role-switcher.js cho toàn bộ giao diện Buyer
+  // Tự động nạp role-switcher.js cho toàn bộ giao diện Buyer nếu chưa có
   if (!document.querySelector('script[src*="role-switcher.js"]')) {
     const roleScript = document.createElement('script');
     roleScript.src = isPagesDir ? '../assets/js/role-switcher.js' : 'assets/js/role-switcher.js';
     document.head.appendChild(roleScript);
   }
 
+  const currentFile = currentPath.split('/').pop().split('?')[0] || 'index.html';
+
   const navItems = [
-    { label: 'Trang chủ', href: homeLink, icon: 'home' },
-    { label: 'Sàn Khám Phá (Bộ sưu tập)', href: prefix + 'buyer-marketplace.html', icon: 'storefront' },
-    { label: 'Đặt Làm Riêng (AI Brief)', href: prefix + 'buyer-custom-brief.html', icon: 'design_services' },
-    { label: 'Đơn Hàng Của Tôi', href: prefix + 'buyer-orders.html', icon: 'inventory_2' },
-    { label: 'Giỏ Hàng', href: prefix + 'buyer-cart.html', icon: 'shopping_bag', id: 'drawer-cart-link' },
-    { label: 'Về chúng tôi & Tác động', href: prefix + 'impact.html', icon: 'volunteer_activism' }
+    { label: 'Trang chủ', href: homeLink, icon: 'home', file: 'index.html' },
+    { label: 'Sàn Khám Phá (Bộ sưu tập)', href: prefix + 'buyer-marketplace.html', icon: 'storefront', file: 'buyer-marketplace.html' },
+    { label: 'Đặt Làm Riêng (AI Brief)', href: prefix + 'buyer-custom-brief.html', icon: 'design_services', file: 'buyer-custom-brief.html' },
+    { label: 'Đơn Hàng Của Tôi', href: prefix + 'buyer-orders.html', icon: 'inventory_2', file: 'buyer-orders.html' },
+    { label: 'Giỏ Hàng', href: prefix + 'buyer-cart.html', icon: 'shopping_bag', id: 'drawer-cart-link', file: 'buyer-cart.html' },
+    { label: 'Về chúng tôi & Tác động', href: prefix + 'impact.html', icon: 'volunteer_activism', file: 'impact.html' }
   ];
 
   function ensureDrawerInDOM() {
@@ -45,17 +51,25 @@
       drawer.className = 'mobile-drawer';
       drawer.setAttribute('aria-label', 'Menu điều hướng di động');
 
-      const linksHtml = navItems.map(item => `
-        <a href="${item.href}" class="flex items-center gap-3.5 px-4 py-3 rounded-xl text-gray-700 hover:text-primary hover:bg-primary/5 font-medium text-[15px] transition-colors">
-          <span class="material-symbols-outlined text-[22px] text-secondary">${item.icon}</span>
-          <span class="flex-1">${item.label}</span>
-          ${item.id === 'drawer-cart-link' ? '<span id="drawer-cart-badge" class="px-2 py-0.5 rounded-full bg-secondary text-white text-[11px] font-bold hidden">0</span>' : ''}
-        </a>
-      `).join('');
+      const linksHtml = navItems.map(item => {
+        const isActive = (item.file === 'index.html' && (currentFile === '' || currentFile === 'index.html')) || 
+                         (item.file !== 'index.html' && currentFile === item.file);
+        const activeClass = isActive 
+          ? 'bg-primary/10 text-primary font-bold' 
+          : 'text-gray-700 hover:text-primary hover:bg-primary/5 font-medium';
+
+        return `
+          <a href="${item.href}" class="flex items-center gap-3.5 px-4 py-3 rounded-xl text-[15px] transition-colors ${activeClass}">
+            <span class="material-symbols-outlined text-[22px] text-secondary">${item.icon}</span>
+            <span class="flex-1">${item.label}</span>
+            ${item.id === 'drawer-cart-link' ? '<span id="drawer-cart-badge" class="px-2 py-0.5 rounded-full bg-secondary text-white text-[11px] font-bold hidden">0</span>' : ''}
+          </a>
+        `;
+      }).join('');
 
       drawer.innerHTML = `
         <!-- Drawer Header -->
-        <div class="p-5 border-b border-gray-200 flex items-center justify-between bg-white">
+        <div class="p-4 sm:p-5 border-b border-gray-200 flex items-center justify-between bg-white">
           <div class="flex items-center gap-2.5">
             <div class="w-8 h-8 rounded-lg bg-primary text-white flex items-center justify-center font-bold text-sm">CL</div>
             <div class="flex flex-col">
@@ -108,7 +122,7 @@
 
   function initNavigation() {
     const { backdrop, drawer } = ensureDrawerInDOM();
-    const openBtns = document.querySelectorAll('#mobile-menu-btn, .mobile-menu-trigger');
+    const openBtns = document.querySelectorAll('#mobile-menu-btn, .mobile-menu-trigger, [data-drawer-toggle]');
     const closeBtn = document.getElementById('close-drawer-btn');
 
     function openDrawer() {

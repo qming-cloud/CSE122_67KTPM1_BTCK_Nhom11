@@ -28,14 +28,14 @@
   <header class="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-lg shadow-sm border-b border-gray-100">
 
     <!-- Main Navigation -->
-    <div class="max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between gap-8">
+    <div class="max-w-[1400px] mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-3 sm:gap-6">
       <!-- Logo -->
-      <a href="../index.html" class="flex items-center gap-3 shrink-0 group">
+      <a href="../index.html" class="flex items-center gap-2 sm:gap-3 shrink-0 group">
         <img alt="Craft Link Heritage Logo"
-          class="h-10 w-auto object-contain transition-transform group-hover:scale-105"
+          class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105"
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhxZHgqwl09Uzofz21BtUSqe8y4LXLZlHjhsrlcmCxyuEV1ZArTaGXStarugkKmhBemL7Mqmal5XoJe19C-24ZTWXQZ_SfC9_cFtdlQiRbygt-FcTHZORNtERKETXhtF3InaeLB0mHQA7OALAZ78tMAgEY0MCbvnHSzI-Zlpilk1999JlSrT6ZKrwBP4zXcTPhnPM77_5PXcO09sN6xO47H4FBz6PxlfzH5bSya1-emdbI75e45SCd" />
         <div class="flex flex-col hidden sm:flex">
-          <span class="text-lg text-primary font-bold tracking-wide">CRAFT LINK</span>
+          <span class="text-base sm:text-lg text-primary font-bold tracking-wide">CRAFT LINK</span>
           <span class="text-[9px] text-gray-500 tracking-[0.2em] uppercase">Di sản thủ công Việt</span>
         </div>
       </a>
@@ -52,24 +52,24 @@
           class="text-gray-700 hover:text-primary font-medium text-[15px] transition-colors whitespace-nowrap relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-primary hover:after:w-full after:transition-all">Về
           chúng tôi & Tác động</a>
         <a href="buyer-custom-brief.html"
-          class="text-gray-700 hover:text-primary font-medium text-[15px] transition-colors whitespace-nowrap relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-primary hover:after:w-full after:transition-all">Đặt
+          class="text-primary font-bold text-[15px] transition-colors whitespace-nowrap relative after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-0.5 after:bg-primary after:transition-all">Đặt
           Làm Riêng</a>
       </nav>
 
       <!-- Actions -->
-      <div class="flex items-center gap-4 shrink-0">
-        <div class="flex items-center gap-1.5">
+      <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
+        <div class="flex items-center gap-1 sm:gap-1.5">
           <a href="#"
             class="relative p-2 text-gray-600 hover:text-primary hover:bg-primary/10 rounded-full transition-all">
-            <span class="material-symbols-outlined">favorite</span>
+            <span class="material-symbols-outlined text-[22px]">favorite</span>
             <span
               class="absolute top-0 right-0 w-4 h-4 rounded-full bg-[#E5484D] text-white text-[10px] font-bold flex items-center justify-center border-2 border-white shadow-sm">5</span>
           </a>
-          <a href="#"
+          <a href="buyer-cart.html"
             class="relative p-2 text-gray-600 hover:text-primary hover:bg-primary/10 rounded-full transition-all">
-            <span class="material-symbols-outlined">shopping_bag</span>
-            <span
-              class="absolute top-0 right-0 w-4 h-4 rounded-full bg-[#E5484D] text-white text-[10px] font-bold flex items-center justify-center border-2 border-white shadow-sm">3</span>
+            <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
+            <span id="nav-cart-count"
+              class="absolute top-0 right-0 w-4 h-4 rounded-full bg-[#E5484D] text-white text-[10px] font-bold flex items-center justify-center border-2 border-white shadow-sm hidden">0</span>
           </a>
           <!-- Nút chuyển đổi Giao diện Sáng / Tối (Dark / Light Mode) -->
           <button id="theme-toggle-btn" type="button" onclick="CraftlinkTheme.toggle()"
@@ -80,7 +80,7 @@
           <!-- Account Dropdown -->
           <div class="relative group">
             <a href="login.html"
-              class="ml-2 flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white hover:opacity-90 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 cursor-pointer">
+              class="ml-1 sm:ml-2 flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-primary text-white hover:opacity-90 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 cursor-pointer">
               <span class="material-symbols-outlined text-[20px]">person</span>
             </a>
 
@@ -128,25 +128,30 @@
             </div>
           </div>
         </div>
+        <!-- Mobile Menu Trigger Button -->
+        <button id="mobile-menu-btn" type="button" aria-label="Mở menu điều hướng"
+          class="lg:hidden p-2 text-gray-700 hover:text-primary hover:bg-gray-100 rounded-lg transition-colors cursor-pointer flex items-center justify-center">
+          <span class="material-symbols-outlined text-[26px]">menu</span>
+        </button>
       </div>
     </div>
   </header>
 
   <main class="w-full pt-[116px] bg-surface pb-20">
-    <div class="max-w-4xl mx-auto px-6 mt-8">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 mt-6 sm:mt-8">
 
       <!-- Page Header -->
-      <div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div class="mb-6 sm:mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 class="text-3xl font-bold text-primary flex items-center gap-3">
-            <span class="material-symbols-outlined text-4xl text-secondary">design_services</span>
+          <h1 class="text-2xl sm:text-3xl font-bold text-primary flex items-center gap-2 sm:gap-3">
+            <span class="material-symbols-outlined text-3xl sm:text-4xl text-secondary">design_services</span>
             Tạo Yêu Cầu Tùy Biến (Custom Brief)
           </h1>
-          <p class="text-gray-600 mt-2">Mô tả ý tưởng của bạn và để AI của CraftLink giúp bạn hoàn thiện một bản yêu cầu
+          <p class="text-gray-600 text-sm sm:text-base mt-2">Mô tả ý tưởng của bạn và để AI của CraftLink giúp bạn hoàn thiện một bản yêu cầu
             chuyên nghiệp gửi tới các nghệ nhân.</p>
         </div>
         <a href="buyer-orders.html"
-          class="group inline-flex items-center gap-2 px-4 py-2 bg-primary/5 hover:bg-primary/10 text-primary rounded-xl font-medium transition-all shadow-sm border border-primary/10">
+          class="group inline-flex items-center justify-center gap-2 px-4 py-2 bg-primary/5 hover:bg-primary/10 text-primary rounded-xl font-medium transition-all shadow-sm border border-primary/10 shrink-0 w-full sm:w-auto text-sm sm:text-base">
           <span
             class="material-symbols-outlined text-xl group-hover:-translate-x-1 transition-transform">inventory_2</span>
           Xem Đơn Hàng Của Bạn
@@ -156,29 +161,29 @@
       </div>
 
       <!-- Main Form -->
-      <form id="briefForm" novalidate class="space-y-8 bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+      <form id="briefForm" novalidate class="space-y-6 sm:space-y-8 bg-white p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl shadow-sm border border-gray-100">
 
         <!-- STEP 1: Ý tưởng thô & AI Builder -->
-        <div class="bg-blue-50/50 p-6 rounded-xl border border-blue-100 relative overflow-hidden">
+        <div class="bg-blue-50/50 p-4 sm:p-6 rounded-xl border border-blue-100 relative overflow-hidden">
           <div class="absolute top-0 left-0 w-1 h-full bg-secondary"></div>
-          <h2 class="text-lg font-semibold text-primary mb-2 flex items-center gap-2">
+          <h2 class="text-base sm:text-lg font-semibold text-primary mb-2 flex items-center gap-2">
             <span class="material-symbols-outlined text-blue-500">lightbulb</span>
             1. Ý tưởng ban đầu của bạn
           </h2>
-          <p class="text-sm text-gray-600 mb-4">Nhập một vài từ khóa hoặc mô tả ngắn gọn, AI sẽ giúp bạn viết chi tiết.
+          <p class="text-xs sm:text-sm text-gray-600 mb-4">Nhập một vài từ khóa hoặc mô tả ngắn gọn, AI sẽ giúp bạn viết chi tiết.
           </p>
 
           <textarea id="rawIdea" rows="3"
-            class="w-full p-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all resize-none text-gray-700"
+            class="w-full p-3 sm:p-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all resize-none text-gray-700 text-sm sm:text-base"
             placeholder="Ví dụ: Tôi muốn làm 10 cái túi xách bằng thổ cẩm sặc sỡ để tặng đối tác nước ngoài..."></textarea>
 
-          <div class="mt-4 flex items-center justify-between">
+          <div class="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <button type="button" id="btnAiBuilder"
-              class="flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg font-medium hover:shadow-md hover:opacity-90 transition-all">
+              class="flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg font-medium hover:shadow-md hover:opacity-90 transition-all cursor-pointer text-sm sm:text-base w-full sm:w-auto">
               <span class="material-symbols-outlined text-[20px]">auto_awesome</span>
               <span>AI Hỗ trợ viết Brief</span>
             </button>
-            <span id="aiStatus" class="text-sm text-blue-600 font-medium hidden flex items-center gap-2">
+            <span id="aiStatus" class="text-xs sm:text-sm text-blue-600 font-medium hidden flex items-center gap-2">
               <span class="material-symbols-outlined animate-spin text-[18px]">progress_activity</span>
               Đang phân tích ý tưởng...
             </span>
@@ -189,23 +194,23 @@
 
         <!-- STEP 2: Yêu cầu chi tiết -->
         <div>
-          <h2 class="text-lg font-semibold text-primary mb-4 flex items-center gap-2">
+          <h2 class="text-base sm:text-lg font-semibold text-primary mb-4 flex items-center gap-2">
             <span class="material-symbols-outlined text-green-600">assignment</span>
             2. Thông tin chi tiết (Bản hoàn thiện)
           </h2>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             <div class="md:col-span-2">
               <label class="block text-sm font-medium text-gray-700 mb-1">Tiêu đề dự án *</label>
               <input type="text" id="projectTitle" required
-                class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none"
+                class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm sm:text-base"
                 placeholder="VD: Bộ túi xách thổ cẩm quà tặng doanh nghiệp" />
             </div>
 
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1">Thể loại sản phẩm *</label>
               <select id="category" required
-                class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none bg-white">
+                class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none bg-white text-sm sm:text-base">
                 <option value="">-- Chọn thể loại --</option>
                 <option value="Thổ cẩm & Dệt may">Thổ cẩm & Dệt may</option>
                 <option value="Gốm mộc">Gốm mộc & Men tro</option>
@@ -217,43 +222,43 @@
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1">Số lượng dự kiến *</label>
               <input type="number" id="quantity" required min="1"
-                class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none"
+                class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm sm:text-base"
                 placeholder="VD: 10" />
             </div>
 
             <div class="md:col-span-2">
               <label class="block text-sm font-medium text-gray-700 mb-1">Mô tả chi tiết kỹ thuật *</label>
               <textarea id="description" required rows="5"
-                class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none resize-none"
+                class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none resize-none text-sm sm:text-base"
                 placeholder="Kích thước, chất liệu cụ thể, hoa văn, màu sắc chủ đạo..."></textarea>
             </div>
 
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1">Ngân sách dự kiến (VND)</label>
               <input type="text" id="budget"
-                class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none"
+                class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm sm:text-base"
                 placeholder="VD: 5,000,000 - 10,000,000" />
             </div>
 
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1">Hạn chót nhận hàng *</label>
               <input type="date" id="deadline" required
-                class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none" />
+                class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm sm:text-base" />
             </div>
           </div>
         </div>
 
         <!-- Submit actions -->
-        <div class="flex items-center justify-end gap-4 pt-6 border-t border-gray-100">
+        <div class="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-end gap-3 pt-6 border-t border-gray-100">
           <a href="../index.html"
-            class="px-6 py-3 text-gray-600 font-medium hover:bg-gray-50 rounded-lg transition-colors">Hủy bỏ</a>
+            class="w-full sm:w-auto px-6 py-3 text-gray-600 font-medium hover:bg-gray-50 rounded-lg transition-colors text-center">Hủy bỏ</a>
           <button type="button" id="btnUpdate"
-            class="px-8 py-3 bg-secondary text-white font-medium rounded-lg hover:bg-secondary/90 hover:shadow-lg transition-all flex items-center gap-2">
+            class="w-full sm:w-auto px-8 py-3 bg-secondary text-white font-medium rounded-lg hover:bg-secondary/90 hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer">
             <span>Cập Nhật</span>
             <span class="material-symbols-outlined text-[20px]">save</span>
           </button>
           <button type="submit" id="btnSubmit"
-            class="px-8 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 hover:shadow-lg transition-all flex items-center gap-2">
+            class="w-full sm:w-auto px-8 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer">
             <span>Gửi Yêu Cầu Đặt Hàng</span>
             <span class="material-symbols-outlined text-[20px]">send</span>
           </button>
@@ -391,7 +396,7 @@
 
           const pageTitle = document.querySelector('h1');
           if (pageTitle) pageTitle.innerHTML = `<span class="material-symbols-outlined text-4xl text-secondary">edit</span> Cập Nhật Yêu Cầu (${editId})`;
-          
+
           if (btnSubmit) btnSubmit.classList.add('hidden');
           if (btnUpdate) {
             btnUpdate.classList.remove('hidden');
@@ -417,7 +422,7 @@
           window.selectedProductForAI = p;
           const pName = p.title || p.name || 'Sản phẩm thủ công';
           const pPrice = p.price ? (typeof p.price === 'number' ? new Intl.NumberFormat('vi-VN').format(p.price) + ' VND' : p.price) : 'Thỏa thuận';
-          
+
           document.getElementById('rawIdea').value = `Tôi muốn tùy biến sản phẩm mẫu: ${pName}. Xin hãy giữ nguyên chất liệu nhưng thay đổi màu sắc và hoa văn để làm quà tặng.`;
           document.getElementById('projectTitle').value = `Tùy biến: ${pName}`;
           document.getElementById('budget').value = pPrice;
@@ -427,7 +432,7 @@
           if (pTribe.includes("H'Mông") || pTribe.includes("Thái") || pMat.includes("Lanh") || pMat.includes("Chàm")) {
             document.getElementById('category').value = "Thổ cẩm & Dệt may";
           }
-          
+
           // Xóa lỗi nếu có giá trị điền sẵn
           clearFieldError(document.getElementById('rawIdea'));
           clearFieldError(document.getElementById('projectTitle'));
@@ -660,6 +665,8 @@
     });
   </script>
 
+  <!-- Responsive Navigation for Mobile/Tablet Drawer -->
+  <script src="../assets/js/responsive-nav.js"></script>
   <!-- Mở rộng 3: Quản lý Chế độ Sáng / Tối toàn hệ thống -->
   <script src="../assets/js/theme-switcher.js"></script>
   <!-- Mở rộng 1: Đồng bộ dữ liệu liên thông Real-time giữa các Role -->

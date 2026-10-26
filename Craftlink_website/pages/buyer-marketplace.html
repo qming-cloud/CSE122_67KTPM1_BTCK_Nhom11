@@ -29,14 +29,14 @@
   <header class="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-lg shadow-sm border-b border-gray-100">
 
     <!-- Main Navigation -->
-    <div class="max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between gap-8">
+    <div class="max-w-[1400px] mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-3 sm:gap-6">
       <!-- Logo -->
-      <a href="../index.html" class="flex items-center gap-3 shrink-0 group">
+      <a href="../index.html" class="flex items-center gap-2 sm:gap-3 shrink-0 group">
         <img alt="Craft Link Heritage Logo"
-          class="h-10 w-auto object-contain transition-transform group-hover:scale-105"
+          class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105"
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhxZHgqwl09Uzofz21BtUSqe8y4LXLZlHjhsrlcmCxyuEV1ZArTaGXStarugkKmhBemL7Mqmal5XoJe19C-24ZTWXQZ_SfC9_cFtdlQiRbygt-FcTHZORNtERKETXhtF3InaeLB0mHQA7OALAZ78tMAgEY0MCbvnHSzI-Zlpilk1999JlSrT6ZKrwBP4zXcTPhnPM77_5PXcO09sN6xO47H4FBz6PxlfzH5bSya1-emdbI75e45SCd" />
         <div class="flex flex-col hidden sm:flex">
-          <span class="text-lg text-primary font-bold tracking-wide">CRAFT LINK</span>
+          <span class="text-base sm:text-lg text-primary font-bold tracking-wide">CRAFT LINK</span>
           <span class="text-[9px] text-gray-500 tracking-[0.2em] uppercase">Di sản thủ công Việt</span>
         </div>
       </a>
@@ -58,19 +58,19 @@
       </nav>
 
       <!-- Actions -->
-      <div class="flex items-center gap-4 shrink-0">
-        <div class="flex items-center gap-1.5">
+      <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
+        <div class="flex items-center gap-1 sm:gap-1.5">
           <a href="#"
             class="relative p-2 text-gray-600 hover:text-primary hover:bg-primary/10 rounded-full transition-all">
-            <span class="material-symbols-outlined">favorite</span>
+            <span class="material-symbols-outlined text-[22px]">favorite</span>
             <span
               class="absolute top-0 right-0 w-4 h-4 rounded-full bg-[#E5484D] text-white text-[10px] font-bold flex items-center justify-center border-2 border-white shadow-sm">5</span>
           </a>
-          <a href="#"
+          <a href="buyer-cart.html"
             class="relative p-2 text-gray-600 hover:text-primary hover:bg-primary/10 rounded-full transition-all">
-            <span class="material-symbols-outlined">shopping_bag</span>
-            <span
-              class="absolute top-0 right-0 w-4 h-4 rounded-full bg-[#E5484D] text-white text-[10px] font-bold flex items-center justify-center border-2 border-white shadow-sm">3</span>
+            <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
+            <span id="nav-cart-count"
+              class="absolute top-0 right-0 w-4 h-4 rounded-full bg-[#E5484D] text-white text-[10px] font-bold flex items-center justify-center border-2 border-white shadow-sm hidden">0</span>
           </a>
           <!-- Nút chuyển đổi Giao diện Sáng / Tối (Dark / Light Mode) -->
           <button id="theme-toggle-btn" type="button" onclick="CraftlinkTheme.toggle()"
@@ -81,7 +81,7 @@
           <!-- Account Dropdown -->
           <div class="relative group">
             <a href="login.html"
-              class="ml-2 flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white hover:opacity-90 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 cursor-pointer">
+              class="ml-1 sm:ml-2 flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-primary text-white hover:opacity-90 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 cursor-pointer">
               <span class="material-symbols-outlined text-[20px]">person</span>
             </a>
 
@@ -129,13 +129,18 @@
             </div>
           </div>
         </div>
+        <!-- Mobile Menu Trigger Button -->
+        <button id="mobile-menu-btn" type="button" aria-label="Mở menu điều hướng"
+          class="lg:hidden p-2 text-gray-700 hover:text-primary hover:bg-gray-100 rounded-lg transition-colors cursor-pointer flex items-center justify-center">
+          <span class="material-symbols-outlined text-[26px]">menu</span>
+        </button>
       </div>
     </div>
   </header>
   <main class="w-full pt-[116px] bg-surface">
     <div class="flex flex-col w-full">
       <!-- Top Heritage Breadcrumb & Editorial Header -->
-      <section class="w-full px-gutter-lg pt-space-md pb-space-lg">
+      <section class="w-full px-4 sm:px-6 lg:px-gutter-lg pt-space-md pb-space-lg">
         <!-- Breadcrumb with organic typography -->
         <nav class="flex items-center gap-space-xs font-body-sm text-body-sm text-outline mb-space-md flex-wrap">
           <a class="hover:text-primary transition-colors" href="#">Trang chủ</a>
@@ -164,7 +169,7 @@
               <span class="material-symbols-outlined text-[15px] text-tertiary-fixed">eco</span>
               Di sản sống Tây Bắc &amp; Trường Sơn
             </div>
-            <h1 class="font-display-lg text-display-lg text-primary tracking-tight">
+            <h1 class="font-display-lg text-3xl sm:text-4xl lg:text-display-lg text-primary tracking-tight">
               Thổ Cẩm &amp; Dệt May Bản Địa
             </h1>
             <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
@@ -193,7 +198,7 @@
         </div>
       </section>
       <!-- Filter Status & View Controls Bar -->
-      <section class="w-full px-gutter-lg pb-space-md">
+      <section class="w-full px-4 sm:px-6 lg:px-gutter-lg pb-space-md">
         <div
           class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-space-md">
           <!-- Search input -->
@@ -203,10 +208,17 @@
               class="w-full pl-10 pr-4 py-2 rounded-lg bg-surface-container-low border border-transparent focus:border-secondary focus:bg-white text-sm outline-none transition-all text-on-surface" />
           </div>
 
-          <!-- Item Count & Sort Selector -->
-          <div class="flex items-center justify-between md:justify-end gap-space-md shrink-0">
+          <!-- Item Count, Mobile Filter Button & Sort Selector -->
+          <div class="flex items-center justify-between md:justify-end gap-3 sm:gap-space-md shrink-0 flex-wrap sm:flex-nowrap">
+            <!-- Mobile Filter Toggle Button -->
+            <button id="mobile-filter-toggle-btn" type="button" aria-label="Mở bộ lọc"
+              class="lg:hidden inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-secondary text-white font-label-md text-label-md font-semibold hover:bg-secondary/90 transition-colors shadow-sm cursor-pointer">
+              <span class="material-symbols-outlined text-[18px]">tune</span>
+              <span>Bộ lọc</span>
+            </button>
+
             <span class="font-body-sm text-body-sm text-on-surface-variant whitespace-nowrap">
-              Hiển thị <strong class="text-primary font-semibold" id="productCountDisplay">0</strong> tác phẩm di sản
+              Hiển thị <strong class="text-primary font-semibold" id="productCountDisplay">0</strong> tác phẩm
             </span>
             <div class="flex items-center gap-space-xs">
               <label class="font-label-md text-label-md text-outline hidden sm:inline" for="sort-select">Sắp
@@ -227,19 +239,29 @@
           </div>
         </div>
       </section>
-      <!-- Main Body: Sticky Filter Sidebar + Responsive Artisan Product Grid -->
-      <section class="w-full px-gutter-lg pb-space-xl">
+      <!-- Main Body: Responsive Filter Sidebar (Drawer on mobile, Sticky on desktop) + Product Grid -->
+      <section class="w-full px-4 sm:px-6 lg:px-gutter-lg pb-space-xl">
+        <!-- Backdrop for mobile filter drawer -->
+        <div id="mobile-filter-backdrop" class="fixed inset-0 bg-primary/40 backdrop-blur-sm z-[998] hidden lg:hidden transition-opacity"></div>
+
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-lg items-start">
-          <!-- Smart Filter Sidebar (lg:col-span-3) -->
-          <aside class="lg:col-span-3 space-y-space-md">
-            <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-lg sticky top-[88px]">
-              <div class="flex items-center justify-between pb-space-xs">
+          <!-- Smart Filter Sidebar: Hidden by default on mobile, slide-out drawer when toggled -->
+          <aside id="marketplace-filter-sidebar" 
+            class="hidden lg:block lg:col-span-3 space-y-space-md fixed lg:static inset-y-0 left-0 w-[320px] max-w-[85vw] lg:w-auto z-[999] lg:z-auto bg-surface lg:bg-transparent overflow-y-auto lg:overflow-visible p-4 lg:p-0 shadow-2xl lg:shadow-none transition-transform duration-300">
+            <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-lg lg:sticky lg:top-[88px]">
+              <div class="flex items-center justify-between pb-space-xs border-b lg:border-none border-gray-100">
                 <span class="font-headline-sm text-headline-sm text-primary font-semibold flex items-center gap-2">
                   <span class="material-symbols-outlined text-secondary text-[22px]">tune</span>
                   Bộ lọc thủ công
                 </span>
-                <button class="font-label-sm text-label-sm text-outline hover:text-secondary uppercase cursor-pointer"
-                  id="btn-reset-top" type="button">Đặt lại</button>
+                <div class="flex items-center gap-2">
+                  <button class="font-label-sm text-label-sm text-outline hover:text-secondary uppercase cursor-pointer"
+                    id="btn-reset-top" type="button">Đặt lại</button>
+                  <button id="close-mobile-filter-btn" type="button" aria-label="Đóng bộ lọc"
+                    class="lg:hidden p-1.5 text-gray-500 hover:text-primary hover:bg-gray-100 rounded-lg transition-colors cursor-pointer">
+                    <span class="material-symbols-outlined text-[22px]">close</span>
+                  </button>
+                </div>
               </div>
               <!-- Filter Group 1: Dân tộc / Nghệ nhân -->
               <!-- Filter Group 2: Vùng Làng Nghề -->
@@ -597,9 +619,48 @@
     </div>
   </footer>
 
+  <script>
+    // Logic điều khiển Mobile Filter Drawer
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggleBtn = document.getElementById('mobile-filter-toggle-btn');
+      const closeBtn = document.getElementById('close-mobile-filter-btn');
+      const backdrop = document.getElementById('mobile-filter-backdrop');
+      const sidebar = document.getElementById('marketplace-filter-sidebar');
+      const applyBtn = document.getElementById('btn-apply-filter');
+
+      function openMobileFilter() {
+        if (!sidebar || !backdrop) return;
+        sidebar.classList.remove('hidden');
+        backdrop.classList.remove('hidden');
+        document.body.classList.add('drawer-open');
+      }
+
+      function closeMobileFilter() {
+        if (!sidebar || !backdrop) return;
+        sidebar.classList.add('hidden');
+        backdrop.classList.add('hidden');
+        document.body.classList.remove('drawer-open');
+      }
+
+      if (toggleBtn) toggleBtn.addEventListener('click', openMobileFilter);
+      if (closeBtn) closeBtn.addEventListener('click', closeMobileFilter);
+      if (backdrop) backdrop.addEventListener('click', closeMobileFilter);
+      if (applyBtn) {
+        applyBtn.addEventListener('click', () => {
+          if (window.innerWidth < 1024) {
+            closeMobileFilter();
+          }
+        });
+      }
+    });
+  </script>
 
   <!-- Mở rộng 3: Quản lý Chế độ Sáng / Tối toàn hệ thống -->
   <script src="../assets/js/theme-switcher.js"></script>
+  <!-- Mở rộng 1: Đồng bộ dữ liệu liên thông Real-time giữa các Role -->
+  <script src="../assets/js/realtime-sync.js"></script>
+  <!-- Điều khiển Menu Drawer và Điều hướng Responsive trên Di động -->
+  <script src="../assets/js/responsive-nav.js"></script>
   <!-- Widget chuyển đổi vai trò (Buyer / Maker / Admin / Moderator) -->
   <script src="../assets/js/role-switcher.js"></script>
 </body>
