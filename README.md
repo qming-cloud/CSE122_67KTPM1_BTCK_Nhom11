@@ -145,9 +145,9 @@ Craftlink-web/
 |---|---|:---:|
 | **Dùng chung** | Trang chủ, Đăng nhập, Tác động, Chi tiết SP, Giỏ hàng | ✅ |
 | **Khách hàng** | Sàn Khám Phá, Tạo Brief, Đơn hàng, Giỏ hàng | ✅ |
-| **Người sáng tạo** | Listing Management, Brief Inbox, Proposal Editor | 🔲 |
-| **Kiểm duyệt viên** | Moderation Queue, Report Center, Content Guidelines | 🔲 |
-| **Quản trị viên** | Category Mgmt, User Mgmt, Platform Dashboard | 🔲 |
+| **Người sáng tạo** | Listing Management, Brief Inbox, Proposal Editor | ✅ |
+| **Kiểm duyệt viên** | Moderation Queue, Report Center, Content Guidelines | ✅ |
+| **Quản trị viên** | Category Mgmt, User Mgmt, Platform Dashboard | ✅ |
 
 > Chi tiết xem: [`docs/screen-inventory.md`](Craftlink_website/docs/screen-inventory.md)
 
