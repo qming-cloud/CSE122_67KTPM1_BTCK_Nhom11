@@ -193,8 +193,8 @@ Craftlink-web/
 
 ## 👥 Phân công nhóm
 
-| Thành viên | Vai trò chính | Trách nhiệm chéo |
-|---|---|---|
+| Thành viên | Vai trò chính | 
+|---|---|
 | **Nguyễn Nam Khánh** | Khách hàng (Buyer) |
 | **Lê Quang Minh** | Người sáng tạo (Maker) |
 | **Trần Phương Nam** | Kiểm duyệt + Quản trị |
